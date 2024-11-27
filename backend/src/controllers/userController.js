@@ -1,8 +1,14 @@
 const db = require("../config/db"); // Importa o db.js, conexão com o DB
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+const { validationResult } = require("express-validator");
+// TOKEN LOGIN: const jwt = require("jsonwebtoken");
 
 exports.register = (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   const { name, email, password } = req.body;
 
   //Verifica se o email já existe
