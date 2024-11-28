@@ -2,11 +2,14 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const userRoutes = require("./routes/userRoutes");
 const db = require("./config/db");
-
+const cors = require("cors");
 const app = express();
 
 // Config para que o express entenda JSON no corpo da requisição
 app.use(bodyParser.json());
+
+// Requisição do html
+app.use(cors());
 
 // Roteamento
 app.use("/api/users", userRoutes);
