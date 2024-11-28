@@ -4,7 +4,7 @@
   "description": "Um site de estudos feito de alunos para alunos.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -16,5 +16,9 @@
     "express-validator": "^7.2.0",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.11.4"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
   }
 }
