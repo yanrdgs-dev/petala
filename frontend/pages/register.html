@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Petála: cadastro</title>
+    <link rel="stylesheet" href="/frontend/assets/css/register.css" />
+  </head>
+  <body class="fundo">
+    <div class="caixa-nav-bar">
+      <header class="nav-bar">
+        <img
+          class="logo"
+          src="../assets/images/Pétala logo.png"
+          alt="Logo do Pétala por extenso"
+        />
+        <!-- adicionar/checar o link para a pagina de pré-login quando estiver pronta -->
+        <a href="index.html" class="caixa-botao-voltar">
+          <button class="botao voltar">Voltar</button>
+        </a>
+      </header>
+    </div>
+    <div class="caixa-logo-cerejeira">
+      <img
+        class="logo-cerejeira"
+        src="../assets/images/LogoCerejeira 1.png"
+        alt="foto da logo Logo Cerejeira"
+      />
+    </div>
+    <div class="caixa-cadastro">
+      <form action="post" class="formularios">
+        <input
+          class="caixa-forms"
+          type="text"
+          name="nome-usuario"
+          id="nome-usuario"
+          placeholder="nome de usuario"
+          required
+          maxlength="50"
+        />
+        <input
+          class="caixa-forms"
+          type="text"
+          name="nome-completo"
+          id="nome-completo"
+          placeholder="nome completo"
+          required
+          maxlength="50"
+        />
+        <input
+          class="caixa-forms"
+          type="text"
+          name="Email"
+          id="Email"
+          placeholder="Email"
+          required
+          maxlength="320"
+        />
+        <input
+          class="caixa-forms"
+          type="date"
+          name="data-de-nascimento"
+          id="Data de nascimento"
+          required
+          min="1924-01-01"
+          max="2124-12-31"
+        />
+        <input
+          class="caixa-forms"
+          type="text"
+          name="senha"
+          id="senha"
+          placeholder="senha"
+          required
+        />
+        <input
+          class="caixa-forms"
+          type="text"
+          name="confirmcao-senha"
+          id="confirmcao-senha"
+          placeholder="Confirme sua senha"
+          required
+        />
+        <!-- adicionar/checar o link para a pagina de login quando estiver pronta -->
+        <div class="caixa-botao-cadastro">
+          <a href="Login.html">
+            <input type="submit" value="Cadastrar-se" class="botao cadastro" />
+          </a>
+        </div>
+      </form>
+      <div class="barra-de-separacao"></div>
+      <p class="texto-para-login">Já possui uma conta?</p>
+      <div class="caixa-botao-login">
+        <!-- adicionar/checar o link para a pagina de login quando estiver pronta -->
+        <a href="Login.html">
+          <button class="botao login">Entrar</button>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
