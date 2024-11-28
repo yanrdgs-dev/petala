@@ -42,7 +42,23 @@ describe("POST /api/users/register", () => {
     expect(response.status).toBe(400);
     expect(response.body.message).toBe("E-mail já cadastrado.");
   });
+  it("não deve registrar usuário com username já existente", async () => {
+    await request(app).post("/api/users/register").send({
+      username: "newuser",
+      name: "Existing User",
+      email: "test@example.com",
+      password: "password123",
+    });
+    const response = await request(app).post("/api/users/register").send({
+      username: "newuser",
+      name: "New User",
+      email: "newuser@example.com",
+      password: "password123",
+    });
 
+    expect(response.status).toBe(400);
+    expect(response.body.message).toBe("Nome de usuário já existe.");
+  });
   it("não deve registrar usuário sem um email", async () => {
     const response = await request(app).post("/api/users/register").send({
       username: "newuser",
