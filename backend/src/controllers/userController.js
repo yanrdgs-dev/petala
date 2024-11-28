@@ -17,7 +17,7 @@ exports.register = (req, res) => {
       return res.status(500).json({ message: "Erro ao verificar e-mail." });
     }
     if (result.length > 0) {
-      return res.status(400).json({ message: "E-mail já cadastrado. " });
+      return res.status(400).json({ message: "E-mail já cadastrado." });
     }
 
     // Criptografar senha
