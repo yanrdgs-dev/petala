@@ -55,7 +55,7 @@
       { "field": "email", "message": "Forneça um e-mail válido." },
       { "field": "password", "message": "A senha deve ter ao menos 8 caracteres." },
       { "field": "password", "message": "A senha deve conter pelo menos um número."},
-      { "field": "password", "message": A senha deve conter pelo menos uma letra." },
+      { "field": "password", "message": "A senha deve conter pelo menos uma letra." },
     ]
   }
   ```
