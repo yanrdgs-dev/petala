@@ -1,0 +1,158 @@
+.fundo{
+    background-color: #FBE2E2;
+    padding: 0px;
+    margin: 0px;
+}
+
+.nav-bar{
+    background-color: #FAFAFA;
+    width: 100%;
+    height: auto;
+    display: inline-flex;
+    align-items: center;
+    padding: 19px 0px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);    
+
+} 
+
+.botao{
+    color: #FAFAFA;
+    background-color:  #1F1717;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto; 
+    font-size: 16px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border: 0px;
+
+}
+
+.botao:hover {
+    color: rgb(255, 255, 255);
+    background-color: #120d0d;
+    text-decoration: none;
+}
+
+.botao:active {
+    background-color: #120d0d;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
+    transform: translateY(4px);
+}
+
+
+.voltar{
+    width: 100px;
+    height: 55px;
+    border-radius: 10px;
+    
+}
+
+.logo{
+    margin-left: 20px;
+    -webkit-filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.25));
+
+}
+
+.caixa-botao-voltar{
+    width: 100px;
+    height: 55px;
+    justify-content: center;
+    align-items: center;
+    margin-right: 40px;
+    margin-left: auto;
+    
+}   
+
+.caixa-cadastro{
+    background-color: #FAFAFA;
+    position: relative;
+    display: block;
+    width: 465px;
+    height: fit-content;
+    border-radius: 32px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+    margin-bottom: 180px;
+    padding: 42px 0px;
+    
+}
+
+.caixa-logo-cerejeira{
+    width: 171px;
+    height: 161PX;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+    
+}
+
+.caixa-forms{
+    display: block;
+    width: 345px;
+    height: 50px;
+    border-radius: 20px;
+    background-color: #483636;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    padding: 0px 18px;
+    font-size: 16px;
+    color:rgba(250, 250, 250, 0.70);
+    border: 0px;
+}
+
+.caixa-botao-cadastro, .caixa-botao-login{
+    width: 190px;
+    height: 55px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 18px;
+}
+
+/* isso impede que o autofill do google mude a cor da caixa de texto, então não mexa se não souber uma solução melhor*/
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 0s 600000s, color 0s 600000s !important;
+}
+
+::placeholder{
+    color: #ffffff;
+    opacity: 0.70;
+}
+
+.cadastro, .login{
+    width: 190px;
+    height: 55px;
+    border-radius: 20px;
+}
+
+.barra-de-separacao{
+    display: block;
+    width: 384px;
+    height: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #1F1717;
+    margin-bottom: 18px;
+}
+
+.texto-para-login{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 18px;
+    width: fit-content;
+    height: fit-content;
+    color: #1F1717;
+    font-size: 16px;
+}
+
+a:link {
+    background-color: transparent;
+    text-decoration: none;
+}
