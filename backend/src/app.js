@@ -11,6 +11,7 @@ app.use(bodyParser.json());
 // Roteamento
 app.use("/api/users", userRoutes);
 
+// Conectar com o banco de dados
 db.connect((err) => {
   if (err) {
     console.error("Falha na conexão com o banco de dados.");
@@ -19,8 +20,5 @@ db.connect((err) => {
   console.log("Banco de dados conectado com sucesso.");
 });
 
-// Inicializa o servidor
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
-});
+// Exportar o app
+module.exports = app;
