@@ -49,7 +49,10 @@ exports.register = (req, res) => {
             }
             res
               .status(201)
-              .json({ message: "Usuário cadastrado com sucesso." });
+              .json({
+                message: "Usuário cadastrado com sucesso.",
+                username: username,
+              });
           },
         );
       });
