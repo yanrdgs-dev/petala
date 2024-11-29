@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teste</title>
+  </head>
+  <body>
+    <h1>Bem vindo, <span id="username"></span>!</h1>
+    <script>
+      const username = localStorage.getItem("username");
+      if (username) {
+        document.getElementById("username").textContent = username;
+      } else {
+        window.location.href = "./register.html";
+      }
+    </script>
+  </body>
+</html>
