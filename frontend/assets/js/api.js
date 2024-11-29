@@ -3,7 +3,6 @@ const errorMessages = document.getElementById("errorMessages");
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
-  console.log("Formulario enviado");
 
   errorMessages.innerHTML = "";
 
@@ -36,11 +35,20 @@ form.addEventListener("submit", async (event) => {
 
     if (response.ok) {
       const result = await response.json();
-      errorMessages.innerHTML = "Sucesso";
-      alert(result.message);
+      errorMessages.innerHTML = "Cadastro feito com sucesso. Redirecionando...";
+      localStorage.setItem("username", result.username);
+      window.location.href = "./dashboard.html";
     } else {
       const errorData = await response.json();
-      errorMessages.innerHTML = `${errorData.message}`;
+      if (
+        errorData.errors &&
+        Array.isArray(errorData.errors) &&
+        errorData.errors.length > 0
+      ) {
+        errorMessages.innerHTML = `${errorData.errors[0].msg}`;
+      } else {
+        errorMessages.innerHTML = `${errorData.message}`;
+      }
     }
   } catch (error) {
     console.error("Erro ao fazer requisição:", error);
