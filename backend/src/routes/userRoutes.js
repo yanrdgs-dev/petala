@@ -3,6 +3,7 @@ const { body } = require("express-validator");
 const router = express.Router();
 const userController = require("../controllers/userController");
 
+
 // Rota de cadastro
 router.post(
   "/register",
@@ -22,6 +23,6 @@ router.post(
   userController.register,
 );
 
-// Rota de Login (TODO)
+
 
 module.exports = router;
