@@ -5,34 +5,47 @@ const bcrypt = require('bcryptjs');
 exports.login = (req,res) => {
     
     const {name, password}  = req.body;
+    
 
-    bcrypt.query("SELECT * FROM  users WHERE name" [name], (err,result) => {
+    if (!name || !password) {
+        return res.status(400).json({ message: "Nome e senha são obrigatórios." });
+    }
+
+    
+    db.query("SELECT * FROM  users WHERE name = ?", [name], (err,result) => {
         
         if (err) {
-            res.status(400).send("Erro no servidor")
+            return res.status(500).send({message:"Erro no servidor"})
             
         }
         if (result.length == 0) {
 
-            res.status(400).send("Nome ou senha incorretos")
+            return res.status(400).send({message:"Nome ou senha incorretos"})
 
         }
         
         const usuario = result[0]
         
 
-        bcrypt.compare(password, user_password_hash, (hash, isMatch) =>{
+        bcrypt.compare(password, usuario.password_hash, (err, isMatch) =>{
 
             if(err){
                 return res.status(500).json({ message: "Erro ao verificar sua senha." });
 
             }
             if (!isMatch) {
-                return res.status(400).json({ message: "E-mail ou senha incorretos." });
+                return res.status(400).json({ message: "Nome ou senha incorretos." });
               }
               
               
+              res.status(200).json({message:"Sucesso ao entrar", user: {
+                id: usuario.id, 
+                name: usuario.name
+            }
+    
+            })  
         })
+        
     }
     )
 }
