@@ -1,15 +1,18 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const userRoutes = require("./routes/userRoutes");
+const loginRoutes = require("./routes/loginRoutes")
 const db = require("./config/db");
+
 
 const app = express();
 
 // Config para que o express entenda JSON no corpo da requisição
-app.use(bodyParser.json());
+app.use(express.json());
 
 // Roteamento
 app.use("/api/users", userRoutes);
+app.use("/login", loginRoutes );
 
 // Conectar com o banco de dados
 db.connect((err) => {
