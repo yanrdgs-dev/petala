@@ -3,12 +3,17 @@ const bodyParser = require("body-parser");
 const userRoutes = require("./routes/userRoutes");
 const loginRoutes = require("./routes/loginRoutes")
 const db = require("./config/db");
+const cors = require("cors");
 
 
 const app = express();
 
+app.use(cors());
+
 // Config para que o express entenda JSON no corpo da requisição
 app.use(express.json());
+
+// Requisição do html
 
 // Roteamento
 app.use("/api/users", userRoutes);
