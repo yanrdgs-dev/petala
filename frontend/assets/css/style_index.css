@@ -41,7 +41,7 @@ body{
 .Nav_Bar_extra {
     position: relative;
     font-size: 20px;
-    color: rgb(91, 29, 29);
+    color: #483636;
     font-weight: 500;
     text-decoration: none;
     margin-left: 68px;
@@ -54,7 +54,7 @@ body{
     left: 0;
     width: 0px;
     height: 2px;
-    background: rgb(74, 17, 17);
+    background: #483636;
     transition: .3s;
 }
 
@@ -65,7 +65,7 @@ body{
 .btn {
     position: relative;
     padding: 12px 30px;
-    background: rgb(48, 48, 48);
+    background: #1F1717;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
     color: white;
@@ -296,17 +296,17 @@ footer{
 .btn2{
     margin-right: 80px;
     padding: 12px 30px;
-    background: rgb(201, 201, 201);
+    background: #E6E6E6;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-    color: rgb(53, 53, 53);
+    color: #171717;
     font-weight: 500;
     font-size: 20px;
     text-decoration: none;
 }
 #bt3{
     margin-right: 24px;
-    background: rgb(39, 39, 39);
+    background: #1F1717;
     color: white;
 }
 
