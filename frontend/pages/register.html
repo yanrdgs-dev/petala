@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="PT-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Petála: cadastro</title>
+    <title>Petála - Cadastrar-se</title>
     <link rel="stylesheet" href="/frontend/assets/css/register.css" />
   </head>
   <body class="fundo">
@@ -28,31 +28,31 @@
       />
     </div>
     <div class="caixa-cadastro">
-      <form action="post" class="formularios">
+      <form action="post" class="formularios" id="registerForm">
         <input
           class="caixa-forms"
           type="text"
-          name="nome-usuario"
-          id="nome-usuario"
-          placeholder="nome de usuario"
+          name="username"
+          id="username"
+          placeholder="Nome de usuário"
           required
           maxlength="50"
         />
         <input
           class="caixa-forms"
           type="text"
-          name="nome-completo"
-          id="nome-completo"
-          placeholder="nome completo"
+          name="name"
+          id="name"
+          placeholder="Nome Completo"
           required
           maxlength="50"
         />
         <input
           class="caixa-forms"
           type="text"
-          name="Email"
-          id="Email"
-          placeholder="Email"
+          name="email"
+          id="email"
+          placeholder="E-mail"
           required
           maxlength="320"
         />
@@ -67,35 +67,35 @@
         />
         <input
           class="caixa-forms"
-          type="text"
-          name="senha"
-          id="senha"
-          placeholder="senha"
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Senha"
           required
         />
         <input
           class="caixa-forms"
-          type="text"
-          name="confirmcao-senha"
-          id="confirmcao-senha"
+          type="password"
+          name="confirmPassword"
+          id="confirmPassword"
           placeholder="Confirme sua senha"
           required
         />
         <!-- adicionar/checar o link para a pagina de login quando estiver pronta -->
+        <div class="error" id="errorMessages"></div>
         <div class="caixa-botao-cadastro">
-          <a href="Login.html">
-            <input type="submit" value="Cadastrar-se" class="botao cadastro" />
-          </a>
+          <button type="submit" class="botao cadastro">Cadastrar-se</button>
         </div>
       </form>
       <div class="barra-de-separacao"></div>
       <p class="texto-para-login">Já possui uma conta?</p>
       <div class="caixa-botao-login">
         <!-- adicionar/checar o link para a pagina de login quando estiver pronta -->
-        <a href="Login.html">
+        <a href="login.html">
           <button class="botao login">Entrar</button>
         </a>
       </div>
     </div>
+    <script src="../assets/js/api.js"></script>
   </body>
 </html>
