@@ -104,8 +104,8 @@ body{
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.6); /* Branco com 50% de transparência */
-    pointer-events: none; /* Permite interações através do overlay */
+    background-color: rgba(255, 255, 255, 0.6);
+    pointer-events: none;
     border-radius: 40px;
   }
 .centerimage{
