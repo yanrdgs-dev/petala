@@ -4,7 +4,7 @@
   "description": "Um site de estudos feito de alunos para alunos.",
   "main": "index.js",
   "scripts": {
-    "dev":"nodemon backend/src/server.js",
+    "dev": "nodemon backend/src/server.js",
     "test": "jest"
   },
   "keywords": [],
