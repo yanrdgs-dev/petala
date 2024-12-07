@@ -2,6 +2,8 @@ const db = require("../config/db"); // Importa o db.js, conexão com o DB
 const bcrypt = require("bcryptjs");
 const { validationResult } = require("express-validator");
 // TOKEN LOGIN: const jwt = require("jsonwebtoken");
+const crypto = require('crypto');
+const { error } = require("console");
 
 exports.register = (req, res) => {
   const errors = validationResult(req);
@@ -58,4 +60,51 @@ exports.register = (req, res) => {
       });
     },
   );
+  // Criando a vericação no email: 
+
+  const emailToken = crypto.randomBytes(32).toString('hex');
+const emailExpires = new Date();
+emailExpires.setHours(emailExpires.getHours() + 9 );
+
+
+db.query("INSERT INTO users (username, name, email, password_hash, email_verification_token,  email_expires) VALUES (?,?,?,?,?,?)",
+  [username, name, email, hashedPassword, emailToken,emailExpires ],
+  (error) =>{
+    if (error) {
+      return res.status(500).json({message:"Erro ao cadastrar usuário"})     
+    }
+    res.status(200).json({message:"Usuário cadastrado com sucesso! Veifique seu email para validar.", verificationToken: emailToken})
+  }
+
+  
+
+
+)
+
+
 };
+
+
+// Criação da lógica de verificação de Email:
+
+
+// const emailToken = crypto.randomBytes(32).toString('hex');
+// const emailExpires = new Date();
+// emailExpires.setHours(emailExpires.getHours() + 9 );
+
+
+// db.query("INSERT INTO users (username, name, email, password_hash, email_verification_token,  email_expires) VALUES (?,?,?,?,?,?)",
+//   [username,name,email,hashedPassword, emailToken,emailExpires ],
+//   (error) =>{
+//     if (error) {
+//       return res.status(500).json({message:"Erro ao cadastrar usuário"})     
+//     }
+//     res.status(200).json({message:"Usuário cadastrado com sucesso! Veifique seu email para validar.", verificationToken: emailToken})
+//   }
+
+  
+
+
+// )
+
+// {username, name, email, hashedPassword, emailToken, emailExpires}
