@@ -1,7 +1,13 @@
+*{
+    margin: 0;
+}
 body{
     background-color: #F9B0B0;
 }
 
 .navbarBranca{
     background-color: #FFFF;
+}
+.conteiner-nav{
+    
 }
