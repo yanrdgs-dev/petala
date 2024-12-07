@@ -16,7 +16,8 @@
     "express": "^4.21.1",
     "express-validator": "^7.2.0",
     "jsonwebtoken": "^9.0.2",
-    "mysql2": "^3.11.4"
+    "mysql2": "^3.11.4",
+    "nodemailer": "^6.9.16"
   },
   "devDependencies": {
     "jest": "^29.7.0",
