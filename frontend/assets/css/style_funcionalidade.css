@@ -7,12 +7,15 @@ html {
     box-sizing: border-box;
 }
 body{
-    min-height: 100hv;
+    min-height: 100vh;
     background: linear-gradient(to bottom, rgb(252, 229, 229), rgb(251, 210, 210), #FAC2C2, #F9A5A5, #603535);
     background-size: cover;
     background-position: center;
    
 }
+
+/*------------------------------------*/
+
 .header{
     position:fixed;
     top: 0;
@@ -60,7 +63,9 @@ body{
     font-size: 20px;
     text-decoration: none;
 }
+
 /*_______________________________________________________*/
+
 .container_funcionalidades{
     position: relative;
     margin-top: 165px;
@@ -145,14 +150,14 @@ body{
 
 .container_funcao.animar.left {
     animation-name: Enter_Screen_Left;
-    animation-duration: 1.2s;
+    animation-duration: .8s;
     animation-timing-function: ease-out;
     animation-fill-mode: forwards;
 }
 
 .container_funcao.animar.right {
     animation-name: Enter_Screen_Right;
-    animation-duration: 1.2s;
+    animation-duration: .8s;
     animation-timing-function: ease-out;
     animation-fill-mode: forwards;
 }
@@ -199,6 +204,9 @@ body{
     margin-right: auto;
     margin-left: auto;
 }
+
+/*----------------------------------------*/
+
 footer{
     display: flex;
     position: relative;

@@ -1,0 +1,87 @@
+html {
+    scroll-behavior: smooth;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    min-height: 100vh;
+    background-image: url(../images/Fundo_Pos_login.png);
+    background-size: cover;
+    background-position: center;
+}
+.imagem_navbar{
+    position: fixed;
+    left: -46%;
+}
+.header_pos{
+    position:fixed;
+    top: 4%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 80px;
+    padding: 20px 62px;
+    border-radius: 40px;
+    background: white;
+    display:flex;
+    z-index: 100;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.navbar_pos {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+.navbar_pos a {
+    text-align: center;
+    margin:auto;
+    text-decoration: none;
+    color: #1F1717;
+    font-weight: 540;
+    font-size: 1.3em;
+}
+
+/*__________________________________________*/
+
+.mensagem_inicial {
+    display: flex;
+    justify-content: center;
+    margin-top: 148px;
+    font-size: 30px;
+    font-weight: 700;
+}
+.visao_geral {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-top: 100px;
+    margin-left: 126px;
+    width: 937px;
+    border: green solid 2px;
+    height: 100px;
+}
+.tarefas_progresso {
+    display: flex;
+    height: 100px;
+    width: 205px;
+    padding: 10px 21px 6px 20px;
+    gap: 17px;
+    border-radius: 16px;
+    background: #FAFAFA;
+    box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
+}
+.tarefas_concluidas {
+    display: flex;
+    height: 100px;
+    width: 205px;
+    padding: 10px 21px 6px 20px;
+    gap: 17px;
+    border-radius: 16px;
+    background: #FAFAFA;
+    box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
+}
