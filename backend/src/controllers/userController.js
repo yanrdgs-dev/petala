@@ -79,8 +79,33 @@ db.query("INSERT INTO users (username, name, email, password_hash, email_verific
 
 )
 
+exports.tokenVerify = () => {
+
+  const {token} = req.query;
+
+  if (!token) {
+    res.status(400).json({message:"O token é obrigatório"})
+  }
+
+  db.query("SELECT * FROM users WHERE email_verification_token = ? AND email_expires > NOW()", [token],err)
+
+  if (err) {
+    res.status(400).json({message:"Erro no servidor"})      
+  }
+  
+  if (token.length === 0) {
+    res.status(400).json({message:"Token inexistente ou expirado"})
+  }
+
+
+}
 
 };
+
+
+
+
+
 
 
 // Criação da lógica de verificação de Email:
