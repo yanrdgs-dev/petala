@@ -47,12 +47,10 @@ exports.register = (req, res) => {
                 .status(500)
                 .json({ message: "Erro ao cadastrar usuário." });
             }
-            res
-              .status(201)
-              .json({
-                message: "Usuário cadastrado com sucesso.",
-                username: username,
-              });
+            res.status(201).json({
+              message: "Usuário cadastrado com sucesso.",
+              username: username,
+            });
           },
         );
       });
