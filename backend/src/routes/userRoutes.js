@@ -2,12 +2,7 @@ const express = require("express");
 const { body } = require("express-validator");
 const router = express.Router();
 const userController = require("../controllers/userController");
-<<<<<<< HEAD
 const passwordResetController = require("../controllers/passwordResetController");
-=======
-
-
->>>>>>> 15637f0dfb221fde830028fdb1824a93372a168c
 // Rota de cadastro
 router.post(
   "/register",
@@ -26,8 +21,6 @@ router.post(
   ],
   userController.register,
 );
-
-
 
 // Rota de recuperação de senha
 // router.post("/forgot-password", userController.requestPassswordReset);
