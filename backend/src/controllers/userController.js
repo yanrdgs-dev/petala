@@ -1,6 +1,7 @@
 const db = require("../config/db"); // Importa o db.js, conexão com o DB
 const bcrypt = require("bcryptjs");
 const { validationResult } = require("express-validator");
+const { sendWelcomeEmail } = require("../services/sendWelcomeEmail");
 // TOKEN LOGIN: const jwt = require("jsonwebtoken");
 
 exports.register = (req, res) => {
@@ -56,4 +57,5 @@ exports.register = (req, res) => {
       });
     },
   );
+  sendWelcomeEmail({ name, email }).catch(console.error);
 };
