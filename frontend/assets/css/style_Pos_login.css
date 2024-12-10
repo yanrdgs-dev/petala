@@ -14,7 +14,8 @@ body {
 }
 .imagem_navbar {
   position: fixed;
-  left: -46%;
+  left: 25px;
+  top: 4%;
 }
 .header_pos {
   position: fixed;
@@ -53,6 +54,7 @@ body {
   margin-top: 148px;
   font-size: 30px;
   font-weight: 700;
+  /* background-color: green; */
 }
 .visao_geral {
   display: inline-flex;
@@ -62,7 +64,7 @@ body {
   margin-top: 100px;
   margin-left: 126px;
   width: 937px;
-  border: green solid 2px;
+  border: red dashed 2px;
   height: 100px;
 }
 .tarefas_progresso {
@@ -84,4 +86,116 @@ body {
   border-radius: 16px;
   background: #fafafa;
   box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
+}
+.tempo_de_foco{
+  display: flex;
+  height: 100px;
+  width: 205px;
+  padding: 10px 21px 6px 20px;
+  gap: 17px;
+  border-radius: 16px;
+  background: #fafafa;
+  box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
+}
+.provas_futuras{
+  display: flex;
+  height: 100px;
+  width: 205px;
+  padding: 10px 21px 6px 20px;
+  gap: 17px;
+  border-radius: 16px;
+  background: #fafafa;
+  box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
+}
+
+.visao{
+  position: absolute;
+  top: 258px;
+  left: 126px;
+  font-size: 20px;
+}
+
+.continue_onde_parou {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin-top: 100px;
+  margin-left: 126px;
+  width: 937px;
+  border: red dashed 2px;
+  height: 200px;
+}
+.container_rotina {
+  display: flex;
+  height: 200px;
+  width: 205px;
+  padding: 10px 21px 6px 20px;
+  gap: 17px;
+  border-radius: 16px;
+  background: #fafafa;
+  box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
+}
+.container_desempenho {
+  display: flex;
+  height: 200px;
+  width: 205px;
+  padding: 10px 21px 6px 20px;
+  gap: 17px;
+  border-radius: 16px;
+  background: #fafafa;
+  box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
+}
+.container_biblioteca{
+  display: flex;
+  height: 200px;
+  width: 205px;
+  padding: 10px 21px 6px 20px;
+  gap: 17px;
+  border-radius: 16px;
+  background: #fafafa;
+  box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
+}
+.container_foco{
+  display: flex;
+  height: 200px;
+  width: 205px;
+  padding: 10px 21px 6px 20px;
+  gap: 17px;
+  border-radius: 16px;
+  background: #fafafa;
+  box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
+}
+
+.continue{
+  position: absolute;
+  top: 458px;
+  left: 126px;
+  font-size: 20px;
+  z-index: ;
+}
+
+.container_direita{
+  position: absolute;
+  right: 126px;
+  bottom: 58px;
+  height: 485px;
+  width: 200px;
+  background-color: yellow; 
+}
+
+.calendario{
+  position: relative;
+  height: 187px;
+  width: 184px;
+  background-color: blue;
+}
+
+.atividade{
+  position: relative;
+  display: flex;
+  align-self: flex-end;
+  height: 187px;
+  width: 184px;
+  background-color: green;
 }
