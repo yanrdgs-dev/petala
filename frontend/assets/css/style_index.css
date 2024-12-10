@@ -1,0 +1,353 @@
+html {
+    scroll-behavior:smooth;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    min-height: 100hv;
+    background: linear-gradient(to bottom, rgb(252, 229, 229), rgb(251, 210, 210), #FAC2C2, #F9A5A5, #603535);
+    background-size: cover;
+    background-position: center;
+   
+}
+
+
+/*______________________________________________________________________*/
+
+
+.header{
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    padding: 20px 62px;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+
+/*______________________________________________________________________*/
+
+
+.Nav_Bar_extra {
+    position: relative;
+    font-size: 20px;
+    color: #483636;
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: 68px;
+}
+
+.Nav_Bar_extra::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0px;
+    height: 2px;
+    background: #483636;
+    transition: .3s;
+}
+
+.Nav_Bar_extra:hover::before{
+    width: 100%;
+}
+
+.btn {
+    position: relative;
+    padding: 12px 30px;
+    background: #1F1717;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    color: white;
+    font-weight: 500;
+    margin-left: 19px;
+    font-size: 20px;
+    text-decoration: none;
+}
+#buttonsep{
+    margin-left: 150px;
+}
+
+
+/*______________________________________________________________________*/
+
+
+.caixa_de_texto_inicial{
+    position: relative;
+    margin-top: 165px;
+    height: 553px;
+    width: 1374px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 40px;
+    margin-bottom: 140px;
+    background-image: url(../images/arvoredecerejeira.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 40px;
+    box-shadow: 0px 7px 7px 0px rgba(0, 0, 0, 0.25);
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+    pointer-events: none;
+    border-radius: 40px;
+  }
+.centerimage{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding-top: 73px;
+}
+.centertext{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#text1{
+    font-weight: 600;
+    margin-top: 65px;
+    font-size: 40px;
+}
+#text2{
+    margin-top: 65px;
+    font-size: 32px;
+}
+#text3{
+    font-size: 32px;
+}
+
+/*______________________________________________________________________*/
+
+
+
+.line{
+    height: 500px;
+    width: 1100px;
+    /*border: solid 2px;*/
+    margin: auto;
+    margin-top: 70px;
+}
+.Line_left{
+    float: left;
+    margin-left: 0px;
+    margin-top: 0px;
+    height: 500px;
+    width: 500px;
+    background: white;
+    border-radius: 50px;
+    padding: 30px;
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+.Line_right{
+    float: right;
+    margin-right: 0px;
+    margin-top: 0px;
+    height: 500px;
+    width: 500px;
+    background: white;
+    border-radius: 50px;
+    padding: 30px;
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+.caixa_texto_linha{
+    position: absolute;
+    top: 50%;
+    transform: translate(0%, -50%);
+    text-align: center;
+    padding: 20px;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+#img_line{
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+}
+#text_line{
+    box-shadow: 0px 7px 7px 0px rgba(0, 0, 0, 0.25);
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 36px;
+}
+
+/*______________________________________________________________________*/
+
+
+.barra_final{
+    margin-top: 194px;
+    background: white;
+    height: 267px;
+    width: 100%;
+    padding-top: 14px;
+    text-align: center;
+}
+.caixa_de_texto{
+    width: 700px;
+    height: 151px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin: auto;
+    /*border: solid 2px;*/
+}
+.textos{
+    font-weight: 200;
+}
+#botaoestudeagora{
+    font-size: 22px;
+    font-weight: 700;
+    height: 90px;
+    width: 345px;
+    border-radius: 8px;
+    display: inline-flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin: auto;
+    
+
+}
+
+
+/*______________________________________________________________________*/
+
+
+.textoprecomentario{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin-top: 264px;
+}
+.comentarios{
+    width: 100%;
+    height: 420px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+.caixa_de_comentario{
+    width: 405px;
+    height: 235px;
+    border-radius: 12px;
+    background: white;
+    padding: 18px;
+}
+#caixa_de_comentariocentral{
+    margin-left: 32px;
+    margin-right: 32px;
+}
+
+
+/*______________________________________________________________________*/
+
+
+footer{
+    display: flex;
+    position: relative;
+    margin-bottom: 0px;
+    margin-top: 90px;
+    height: 236px;
+    width: 100%;
+    background: white;
+    align-items: center;
+    
+}
+.petala_rodape{
+    align-items: center;
+    font-size: 34px;
+    font-weight: 700;
+    align-items: center;
+    margin-left: 80px;
+}
+.container{
+    width: 100%;
+    display: flex;
+    justify-content:right;
+}
+.btn2{
+    margin-right: 80px;
+    padding: 12px 30px;
+    background: #E6E6E6;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    color: #171717;
+    font-weight: 500;
+    font-size: 20px;
+    text-decoration: none;
+}
+#bt3{
+    margin-right: 24px;
+    background: #1F1717;
+    color: white;
+}
+.icones_contato {
+    position:absolute;
+    display: flex;
+    bottom: 10px;
+    left: 80px;
+    gap: 14px;
+}
+.icones_contato a {
+    font-size: 24px; 
+    color: black; 
+    text-decoration: none; 
+}
+.icones_contato a:hover {
+    color: #555; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*______________________________________________________________________*/
+.test{
+    margin-top: 73px;
+}
