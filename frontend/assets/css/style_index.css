@@ -6,11 +6,6 @@ html {
     padding: 0;
     box-sizing: border-box;
 }
-
-
-/*______________________________________________________________________*/
-
-
 body{
     min-height: 100hv;
     background: linear-gradient(to bottom, rgb(252, 229, 229), rgb(251, 210, 210), #FAC2C2, #F9A5A5, #603535);
@@ -276,10 +271,11 @@ body{
 
 footer{
     display: flex;
+    position: relative;
     margin-bottom: 0px;
     margin-top: 90px;
     height: 236px;
-    width: auto;
+    width: 100%;
     background: white;
     align-items: center;
     
@@ -311,6 +307,21 @@ footer{
     margin-right: 24px;
     background: #1F1717;
     color: white;
+}
+.icones_contato {
+    position:absolute;
+    display: flex;
+    bottom: 10px;
+    left: 80px;
+    gap: 14px;
+}
+.icones_contato a {
+    font-size: 24px; 
+    color: black; 
+    text-decoration: none; 
+}
+.icones_contato a:hover {
+    color: #555; 
 }
 
 
