@@ -97,6 +97,16 @@ exports.tokenVerify = () => {
     res.status(400).json({message:"Token inexistente ou expirado"})
   }
 
+  db.query("UPDATE users SET email_verify = true, email_verification_token = NULL, email_expires = NULL WHERE email_verification_token = ?", 
+    [token],),
+    (err) =>{
+      if (err) {
+        res.status(500).json({message:"Não foi possível verificar seu email"})
+      }if (!err) {
+        res.status(200).json({message:"Email veificado com sucesso!"})
+      }
+    }
+
 
 }
 
@@ -124,10 +134,6 @@ exports.tokenVerify = () => {
 //     }
 //     res.status(200).json({message:"Usuário cadastrado com sucesso! Veifique seu email para validar.", verificationToken: emailToken})
 //   }
-
-  
-
-
 // )
 
 // {username, name, email, hashedPassword, emailToken, emailExpires}
