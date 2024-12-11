@@ -47,21 +47,32 @@ body {
 }
 
 /*__________________________________________*/
+main{
+  display: flex;
+  height: 900px;
+  margin-top: 120px;
+  border: purple 5px solid;
+}
 
 .mensagem_inicial {
   display: flex;
-  justify-content: center;
-  margin-top: 148px;
+  position: absolute;
+  margin-top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 30px;
   font-weight: 700;
   /* background-color: green; */
 }
+
+/* ______________________________________________________ */
+
 .visao_geral {
   display: inline-flex;
   justify-content: center;
   align-items: center;
   gap: 40px;
-  margin-top: 100px;
+  margin-top: 112px;
   margin-left: 126px;
   width: 937px;
   border: red dashed 2px;
@@ -110,17 +121,20 @@ body {
 
 .visao{
   position: absolute;
-  top: 258px;
-  left: 126px;
+  margin-top: 86px;
+  margin-left: 126px;
   font-size: 20px;
 }
 
+/* _______________________________________________________________________ */
+
 .continue_onde_parou {
+  position: absolute;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   gap: 40px;
-  margin-top: 100px;
+  margin-top: 412px;
   margin-left: 126px;
   width: 937px;
   border: red dashed 2px;
@@ -168,35 +182,42 @@ body {
 }
 
 .continue{
+  display: flex;
   position: absolute;
-  top: 458px;
-  left: 126px;
+  margin-top: 386px;
+  margin-left: 126px;
   font-size: 20px;
+  border:deeppink 2px solid;
 }
+
+/* ___________________________________________________________________-- */
 
 .container_direita{
   position: absolute;
+  display: flex;
   right: 126px;
-  bottom: -140px;
+  margin-top: 86px;
   height: 680px;
   width: 205px;
-  display: flex;
-  flex-wrap: wrap;
-  /* border: orange 5px solid;
-  z-index: 100; */
+  flex-wrap: nowrap;
+  border: orange 1px solid;
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items: center;
 }
 
 .calendario{
-  position: relative;
+  position: absolute;
   display: flex;
   height: 230px;
   width: 205px;
+  background-color: turquoise; 
   flex-direction: column;
-  justify-content: space-between;
+  justify-content:flex-start;
   align-items: center;
-  background-color: turquoise;
 }
 .button{
+  position: absolute;
   display: flex;
   width: 170px;
   height: 42px;
@@ -208,14 +229,20 @@ body {
   align-items: center;
 }
 .atividade{
-  position: relative;
+  position: absolute;
   display: flex;
   height: 380px;
   width: 205px;
-  margin-bottom: 20px;
+  bottom: 0px;
   border-radius: 16px;
   background-color: gold;
   flex-direction: column;
   justify-content:flex-start;
   align-items: center;
+}
+#button_ver_mais {
+  bottom: 0px
+}
+#button_Ver_amigos {
+  bottom: 15px;
 }
