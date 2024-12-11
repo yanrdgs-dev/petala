@@ -172,30 +172,50 @@ body {
   top: 458px;
   left: 126px;
   font-size: 20px;
-  z-index: ;
 }
 
 .container_direita{
   position: absolute;
   right: 126px;
-  bottom: 58px;
-  height: 485px;
-  width: 200px;
-  background-color: yellow; 
+  bottom: -140px;
+  height: 680px;
+  width: 205px;
+  display: flex;
+  flex-wrap: wrap;
+  /* border: orange 5px solid;
+  z-index: 100; */
 }
 
 .calendario{
   position: relative;
-  height: 187px;
-  width: 184px;
-  background-color: blue;
+  display: flex;
+  height: 230px;
+  width: 205px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: turquoise;
 }
-
+.button{
+  display: flex;
+  width: 170px;
+  height: 42px;
+  background-color: #1F1717;
+  border-radius: 25px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+  color: #FFFFFF;
+  justify-content: center;
+  align-items: center;
+}
 .atividade{
   position: relative;
   display: flex;
-  align-self: flex-end;
-  height: 187px;
-  width: 184px;
-  background-color: green;
+  height: 380px;
+  width: 205px;
+  margin-bottom: 20px;
+  border-radius: 16px;
+  background-color: gold;
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items: center;
 }
