@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS users (
     password_hash VARCHAR(255) NOT NULL, -- senha criptografada
     reset_token VARCHAR(255), -- token de reset de senha
     reset_token_expiry DATETIME,-- data de expiração do token de reset de senha
-    email_verification_token VARCHAR(255) NOT NULL,
+    email_verification_token VARCHAR(255),
     email_verify BOOLEAN DEFAULT false,
     email_expires TIMESTAMP 
 );
