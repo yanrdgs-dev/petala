@@ -60,24 +60,12 @@ exports.register = (req, res) => {
   );
   // Criando a vericação no email: 
 
-  const emailToken = crypto.randomBytes(32).toString('hex');
+const emailToken = crypto.randomBytes(32).toString('hex');
 const emailExpires = new Date();
 emailExpires.setHours(emailExpires.getHours() + 9 );
 
 
-db.query("INSERT INTO users (username, name, email, password_hash, email_verification_token,  email_expires) VALUES (?,?,?,?,?,?)",
-  [username, name, email, hashedPassword, emailToken,emailExpires ],
-  (error) =>{
-    if (error) {
-      return res.status(500).json({message:"Erro ao cadastrar usuário"})     
-    }
-    res.status(200).json({message:"Usuário cadastrado com sucesso! Veifique seu email para validar.", verificationToken: emailToken})
-  }
-
-  
-
-
-)
+};
 
 exports.tokenVerify = () => {
 
@@ -106,14 +94,19 @@ exports.tokenVerify = () => {
         res.status(200).json({message:"Email veificado com sucesso!"})
       }
     }
-
-
 }
 
-};
 
+// 
 
-
+// db.query("INSERT INTO users (username, name, email, password_hash, email_verification_token,  email_expires) VALUES (?,?,?,?,?,?)",
+//   [username, name, email, hashedPassword, emailToken,emailExpires ]),
+//   (err) =>{
+//     if (err) {
+//       return res.status(500).json({message:"Erro ao cadastrar usuário"})     
+//     }
+//     res.status(200).json({message:"Usuário cadastrado com sucesso! Veifique seu email para validar.", verificationToken: emailToken})
+//   }
 
 
 
