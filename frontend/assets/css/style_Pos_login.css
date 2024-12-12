@@ -12,14 +12,31 @@ body {
   background-size: cover;
   background-position: center;
 }
+header{
+  position: fixed;
+  display: flex;
+  top: 0px;
+  width: 100%;
+  height: 120px;
+  /* background-color: white; */
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+button{
+  margin: 0;
+  padding: 0;
+  border: none;
+  text-decoration: none;
+}
 .imagem_navbar {
   position: fixed;
-  left: 25px;
-  top: 4%;
+  left: 50px;
 }
 .header_pos {
   position: fixed;
-  top: 4%;
   left: 50%;
   transform: translateX(-50%);
   width: 50%;
@@ -45,13 +62,46 @@ body {
   font-weight: 540;
   font-size: 1.3em;
 }
+/* ________________________________________________ */
+.dropdown{
+  margin-left: auto;
+} 
+.dropdown button{
+  cursor: pointer;
+}
+.dropdown a{
+  font-size: 1.3em;
+  height: 34px;
+  display: block;
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  
+}
+.dropdown .dropdown_content{
+  display: none;
+  position: absolute;
+  transform: translateX(-82.0px);
+  background-color: #483636;
+  min-width:max-content;
+  box-shadow: 2px 2px 5px hsla(0, 0%, 0%, 0.8);
+  flex-direction: column;
+}
+.dropdown:hover .dropdown_content{
+  display: flex;
+}
+.dropdown a:hover{
+  background-color: #F9A5A5;
+  
+}
 
 /*__________________________________________*/
 main{
   display: flex;
+  position: relative;
   height: 900px;
   margin-top: 120px;
-  border: purple 5px solid;
+  /* border: purple 5px solid; */
 }
 
 .mensagem_inicial {
@@ -75,7 +125,7 @@ main{
   margin-top: 112px;
   margin-left: 126px;
   width: 937px;
-  border: red dashed 2px;
+  /* border: red dashed 2px; */
   height: 100px;
 }
 .tarefas_progresso {
@@ -137,7 +187,7 @@ main{
   margin-top: 412px;
   margin-left: 126px;
   width: 937px;
-  border: red dashed 2px;
+  /* border: red dashed 2px; */
   height: 200px;
 }
 .container_rotina {
@@ -187,7 +237,7 @@ main{
   margin-top: 386px;
   margin-left: 126px;
   font-size: 20px;
-  border:deeppink 2px solid;
+  /* border:deeppink 2px solid; */
 }
 
 /* ___________________________________________________________________-- */
@@ -200,7 +250,7 @@ main{
   height: 680px;
   width: 205px;
   flex-wrap: nowrap;
-  border: orange 1px solid;
+  /* border: orange 1px solid; */
   flex-direction: column;
   justify-content:flex-start;
   align-items: center;
