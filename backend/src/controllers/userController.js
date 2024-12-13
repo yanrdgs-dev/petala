@@ -1,10 +1,8 @@
 const db = require("../config/db"); // Importa o db.js, conexão com o DB
 const bcrypt = require("bcryptjs");
 const { validationResult } = require("express-validator");
-const { sendWelcomeEmail } = require("../services/sendWelcomeEmail");
-// TOKEN LOGIN: const jwt = require("jsonwebtoken");
+const crypto = require("crypto");
 
-// Função de registro
 exports.register = (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -26,11 +24,13 @@ exports.register = (req, res) => {
           return res.status(400).json({ message: "E-mail já cadastrado." });
         }
         if (result.some((user) => user.username === username)) {
-          return res.status(400).json({ message: "Nome de usuário já existe." });
+          return res
+            .status(400)
+            .json({ message: "Nome de usuário já existe." });
         }
       }
 
-      // Gera token e data de expiração
+      // Gera o token de verificação e a data de expiração
       const emailToken = crypto.randomBytes(32).toString("hex");
       const emailExpires = new Date();
       emailExpires.setHours(emailExpires.getHours() + 9);
@@ -43,22 +43,58 @@ exports.register = (req, res) => {
 
         // Insere o usuário no banco de dados
         db.query(
-          "INSERT INTO users (username, name, email, password_hash, email_verify_token, email_expires) VALUES (?, ?, ?, ?, ?, ?)",
+          "INSERT INTO users (username, name, email, password_hash, email_verification_token, email_expires) VALUES (?, ?, ?, ?, ?, ?)",
           [username, name, email, hashedPassword, emailToken, emailExpires],
           (err) => {
             if (err) {
-              return res.status(500).json({ message: "Erro ao cadastrar usuário." });
+              return res
+                .status(500)
+                .json({ message: "Erro ao cadastrar usuário." });
             }
             res.status(201).json({
-              message: "Usuário cadastrado com sucesso. Verifique seu email para confirmar.",
+              message:
+                "Usuário cadastrado com sucesso. Verifique seu email para confirmar",
               username: username,
               verificationCode: emailToken,
             });
           }
         );
       });
-    },
-    
+    }
   );
-  sendWelcomeEmail({ name, email }).catch(console.error);
+};
+
+
+exports.tokenVerify = (req, res) => {
+  const { token } = req.query;
+
+  if (!token) {
+    return res.status(400).json({ message: "O token é obrigatório" });
+  }
+
+  
+  db.query(
+    "SELECT * FROM users WHERE email_verification_token = ? AND email_expires > NOW() ",
+    [token],
+    (err, result) => {
+      if (err) {
+        return res.status(500).json({ message: "Erro no servidor" });
+      }
+      if (result.length === 0) {
+        return res.status(400).json({ message: "Token expirado ou inexistente" });
+      }
+
+    
+      db.query(
+        "UPDATE users SET email_verify = true, email_verification_token = NULL, email_expires = NULL WHERE email_verification_token = ?",
+        [token],
+        (err) => {
+          if (err) {
+            return res.status(500).json({ message: "Erro ao verificar email" });
+          }
+          return res.status(200).json({ message: "Email confirmado com sucesso" });
+        }
+      );
+    }
+  );
 };
