@@ -8,7 +8,7 @@ html {
 }
 body {
   min-height: 100vh;
-  background-image: url(../images/Fundo_Pos_login.png);
+  background-image: url(../images/árvore\ pos\ login.png);
   background-size: cover;
   background-position: center;
 }
@@ -129,41 +129,41 @@ main{
   height: 100px;
 }
 .tarefas_progresso {
+  position: relative;
   display: flex;
   height: 100px;
   width: 205px;
-  padding: 10px 21px 6px 20px;
-  gap: 17px;
+  padding: 10px 10px 10px 10px;
   border-radius: 16px;
   background: #fafafa;
   box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
 }
 .tarefas_concluidas {
+  position: relative;
   display: flex;
   height: 100px;
   width: 205px;
-  padding: 10px 21px 6px 20px;
-  gap: 17px;
+  padding: 10px 10px 10px 10px;
   border-radius: 16px;
   background: #fafafa;
   box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
 }
 .tempo_de_foco{
+  position: relative;
   display: flex;
   height: 100px;
   width: 205px;
-  padding: 10px 21px 6px 20px;
-  gap: 17px;
+  padding: 10px 10px 10px 10px;
   border-radius: 16px;
   background: #fafafa;
   box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
 }
 .provas_futuras{
+  position: relative;
   display: flex;
   height: 100px;
   width: 205px;
-  padding: 10px 21px 6px 20px;
-  gap: 17px;
+  padding: 10px 10px 10px 10px;
   border-radius: 16px;
   background: #fafafa;
   box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
@@ -195,7 +195,6 @@ main{
   height: 200px;
   width: 205px;
   padding: 10px 21px 6px 20px;
-  gap: 17px;
   border-radius: 16px;
   background: #fafafa;
   box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
@@ -205,7 +204,6 @@ main{
   height: 200px;
   width: 205px;
   padding: 10px 21px 6px 20px;
-  gap: 17px;
   border-radius: 16px;
   background: #fafafa;
   box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
@@ -215,7 +213,6 @@ main{
   height: 200px;
   width: 205px;
   padding: 10px 21px 6px 20px;
-  gap: 17px;
   border-radius: 16px;
   background: #fafafa;
   box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
@@ -225,7 +222,6 @@ main{
   height: 200px;
   width: 205px;
   padding: 10px 21px 6px 20px;
-  gap: 17px;
   border-radius: 16px;
   background: #fafafa;
   box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
@@ -261,7 +257,7 @@ main{
   display: flex;
   height: 230px;
   width: 205px;
-  background-color: turquoise; 
+  background-color: white;
   flex-direction: column;
   justify-content:flex-start;
   align-items: center;
@@ -285,7 +281,7 @@ main{
   width: 205px;
   bottom: 0px;
   border-radius: 16px;
-  background-color: gold;
+  background-color: white;
   flex-direction: column;
   justify-content:flex-start;
   align-items: center;
@@ -295,4 +291,20 @@ main{
 }
 #button_Ver_amigos {
   bottom: 15px;
+}
+
+.tarefas-progresso-texto{
+  display: flex;
+  font-size: medium;
+  height: 28px;
+  /* background-color: #1F1717; */
+}
+
+.tarefas-progresso-variavel{
+  display: flex;
+  bottom: 10px;
+  position: absolute;
+  background-color: blue;
+  height: 42px;
+  width: 185px;
 }
