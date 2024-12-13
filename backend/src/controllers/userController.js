@@ -1,7 +1,8 @@
 const db = require("../config/db"); // Importa o db.js, conexão com o DB
 const bcrypt = require("bcryptjs");
 const { validationResult } = require("express-validator");
-const crypto = require("crypto");
+const { sendWelcomeEmail } = require("../services/sendWelcomeEmail");
+// TOKEN LOGIN: const jwt = require("jsonwebtoken");
 
 // Função de registro
 exports.register = (req, res) => {
@@ -56,40 +57,8 @@ exports.register = (req, res) => {
           }
         );
       });
-    }
+    },
+    
   );
-};
-
-exports.tokenVerify = (req, res) => {
-  const { token } = req.query;
-
-
-  if (!token) {
-    return res.status(400).json({ message: "O token é obrigatório." });
-  }
-
- 
-  db.query(
-    "SELECT * FROM users WHERE email_verification_token = ? AND email_expires > NOW()",
-    [token],
-    (err, result) => {
-      if (err) {
-        return res.status(500).json({ message: "Erro no servidor ao verificar token." });
-      }
-      if (result.length === 0) {
-        return res.status(400).json({ message: "Token expirado ou inexistente." });
-      }
-
-      db.query(
-        "UPDATE users SET email_verify = true, email_verification_token = NULL, email_expires = NULL WHERE email_verification_token = ?",
-        [token],
-        (err) => {
-          if (err) {
-            return res.status(500).json({ message: "Erro ao atualizar o status do email." });
-          }
-          res.status(200).json({ message: "Email confirmado com sucesso!" });
-        }
-      );
-    }
-  );
+  sendWelcomeEmail({ name, email }).catch(console.error);
 };
