@@ -26,7 +26,7 @@ exports.requestPassswordReset = async (req, res) => {
         return res
           .status(200)
           .json({ message: "Email para redefinição enviado com sucesso!" });
-      },
+      }
     );
   });
 };
@@ -80,11 +80,11 @@ exports.resetPassword = async (req, res) => {
                 return res
                   .status(200)
                   .json({ message: "Senha redefinida com sucesso!" });
-              },
+              }
             );
-          },
+          }
         );
       });
-    },
+    }
   );
 };
