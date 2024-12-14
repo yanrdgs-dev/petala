@@ -1,6 +1,9 @@
 const fs = require("fs");
 const path = require("path");
 const nodemailer = require("nodemailer");
+const images = require("./images");
+const imagesArray = Object.values(images);
+
 require("dotenv").config(); // variaveis de ambiente
 
 const transporter = nodemailer.createTransport({
@@ -22,11 +25,24 @@ async function sendEmail(to, subject, templatePath, variables = {}) {
       htmlContent = htmlContent.replace(regex, value);
     }
 
+    const imageAttachments = imagesArray.map((image) => ({
+      __filename: petala_logo.png,
+      path: path.resolve(
+        __dirname,
+        "frontend",
+        "assets",
+        "images",
+        "petala_logo.png"
+      ),
+      cid: "logo_petala_image",
+    }));
+
     const send = await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to,
       subject,
       html: htmlContent,
+      attachments: [imageAttachments],
     });
 
     console.log(`Email enviado: ${send.messageId}`);
