@@ -1,10 +1,9 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const userRoutes = require("./routes/userRoutes");
-const loginRoutes = require("./routes/loginRoutes")
+const loginRoutes = require("./routes/loginRoutes");
+const dashboardRoutes = require("./routes/dashboardRoutes");
 const db = require("./config/db");
 const cors = require("cors");
-
 
 const app = express();
 
@@ -17,7 +16,8 @@ app.use(express.json());
 
 // Roteamento
 app.use("/api/users", userRoutes);
-app.use("/login", loginRoutes );
+app.use("/login", loginRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 
 // Conectar com o banco de dados
 db.connect((err) => {
