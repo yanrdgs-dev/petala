@@ -10,6 +10,7 @@ html {
     padding: 0;
     box-sizing: border-box;
     font-family: Montserrat;
+    font-size: 20px;
 }
 body{
     min-height: 100hv;
@@ -41,7 +42,7 @@ body{
 /*______________________________________________________________________*/
 
 
-.Nav_Bar_extra {
+.NavBar-extra {
     position: relative;
     font-size: 20px;
     color: #483636;
@@ -50,7 +51,7 @@ body{
     margin-left: 68px;
 }
 
-.Nav_Bar_extra::before {
+.NavBar-extra::before {
     content: '';
     position: absolute;
     top: 100%;
@@ -61,11 +62,11 @@ body{
     transition: .3s;
 }
 
-.Nav_Bar_extra:hover::before{
+.NavBar-extra:hover::before{
     width: 100%;
 }
 
-.btn {
+.button-dark {
     position: relative;
     padding: 12px 30px;
     background: #1F1717;
@@ -111,7 +112,7 @@ body{
     pointer-events: none;
     border-radius: 40px;
   }
-.centerimage{
+.center-image{
     position: relative;
     display: flex;
     justify-content: center;
@@ -119,7 +120,7 @@ body{
     margin: 0;
     padding-top: 73px;
 }
-.centertext{
+.center-text{
     position: relative;
     display: flex;
     justify-content: center;
@@ -222,7 +223,7 @@ body{
 .textos{
     font-weight: 200;
 }
-#botaoestudeagora{
+#botao-estude-agora{
     font-size: 22px;
     font-weight: 700;
     height: 90px;
@@ -241,7 +242,7 @@ body{
 /*______________________________________________________________________*/
 
 
-.textoprecomentario{
+.texto-pre-comentario{
     width: 100%;
     height: 60px;
     display: flex;
@@ -258,14 +259,14 @@ body{
     text-align: center;
     align-items: center;
 }
-.caixa_de_comentario{
+.caixa-de-comentario{
     width: 405px;
     height: 235px;
     border-radius: 12px;
     background: white;
     padding: 18px;
 }
-#caixa_de_comentariocentral{
+#caixa-de-comentario-central{
     margin-left: 32px;
     margin-right: 32px;
 }
@@ -297,7 +298,7 @@ footer{
     display: flex;
     justify-content:right;
 }
-.btn2{
+.button-light{
     margin-right: 80px;
     padding: 12px 30px;
     background: #E6E6E6;
@@ -310,8 +311,6 @@ footer{
 }
 #bt3{
     margin-right: 24px;
-    background: #1F1717;
-    color: white;
 }
 .icones_contato {
     position:absolute;
