@@ -1,8 +1,12 @@
+@font-face{
+    src: url(../fonts/Montserrat-VariableFont_wght.ttf);
+    font-family: Montserrat;
+  }
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: initial;
+    font-family: Montserrat;
 }
 header{
     background-color: #ffffff;

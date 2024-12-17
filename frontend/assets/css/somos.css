@@ -1,6 +1,11 @@
+@font-face{
+  src: url(../fonts/Montserrat-VariableFont_wght.ttf);
+  font-family: Montserrat;
+}
 * {
   margin: 0;
   overflow: hidden;
+  font-family: Montserrat;
 }
 
 body {
