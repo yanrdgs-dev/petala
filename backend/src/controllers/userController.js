@@ -1,7 +1,7 @@
 const db = require("../config/db"); // Importa o db.js, conexão com o DB
 const bcrypt = require("bcryptjs");
 const { validationResult } = require("express-validator");
-// TOKEN LOGIN: const jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const { error } = require("console");
 
@@ -49,21 +49,29 @@ exports.register = (req, res) => {
                 .status(500)
                 .json({ message: "Erro ao cadastrar usuário." });
             }
+            const token = jwt.sign(
+              { id: result.insertId, email, username },
+              process.env.JWT_SECRET,
+              {
+                expiresIn: "24h",
+              },
+            );
             res.status(201).json({
               message: "Usuário cadastrado com sucesso.",
               username: username,
+              token: token,
             });
-          }
+          },
         );
       });
-    }
+    },
   );
   // Criando a vericação no email:
 
   db.query(
     "INSERT INTO users (username, name, email, password_hash, email_verification_token,  email_expires) VALUES (?,?,?,?,?,?)",
     [username, name, email, hashedPassword, emailToken, emailExpires],
-    err
+    err,
   ),
     (err) => {
       if (err) {
@@ -92,7 +100,7 @@ exports.tokenVerify = () => {
 
   db.query(
     "SELECT * FROM users WHERE email_verification_token = ? AND email_expires > NOW()",
-    [token]
+    [token],
   ),
     (err) => {
       if (err) {
