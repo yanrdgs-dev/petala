@@ -1,13 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const connection = require("../config/db");
+const db = require("../config/db");
+const authenticator = require("../middlewares/authenticator");
 
 // GET /api/dashboard - Obter dados do dashboard
-router.get("/", (req, res) => {
+router.get("/", authenticator, (req, res) => {
   const userId = req.user.id; // Obter id do usuário autenticado
   const query = "SELECT * FROM dashboard WHERE user_id = ?";
 
-  connection.query(query, [userId], (err, results) => {
+  db.query(query, [userId], (err, results) => {
     if (err) {
       console.error("Erro ao buscar o dashboard: ", err);
       return res.status(500).json({ message: "Erro ao buscar o dashboard" });
@@ -22,7 +23,7 @@ router.get("/", (req, res) => {
 });
 
 // PUT /api/dashboard -- Atualizar dados do dashboard
-router.put("/", (req, res) => {
+router.put("/", authenticator, (req, res) => {
   const userId = req.user.id;
   const {
     tarefas_em_progresso,
@@ -34,7 +35,7 @@ router.put("/", (req, res) => {
   const query =
     "UPDATE dashboard SET tarefas_em_progresso = ?, tarefas_completas_semana = ?, tempo_foco_semana = ?, provas_futuras = ?, updated_at = CURRENT_TIMESTAMP WHERE user_id = ?";
 
-  connection.query(
+  db.query(
     query,
     [
       tarefas_em_progresso,
