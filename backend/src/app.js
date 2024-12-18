@@ -1,11 +1,21 @@
 const express = require("express");
 const userRoutes = require("./routes/userRoutes");
 const loginRoutes = require("./routes/loginRoutes")
+const logoutRoutes = require('./routes/logoutRoutes');
 const db = require("./config/db");
 const cors = require("cors");
+const session = require("express-session");
 
 
 const app = express();
+
+app.use(session({
+  secret:"petalaroot", //! Lembrar depois para trocar pelo arquvio .ENV ou apenas armazenar lá!
+  resave:false,
+  saveUninitialized:true,
+  cookie:{secure:false}
+
+}))
 
 app.use(cors());
 
@@ -17,7 +27,7 @@ app.use(express.json());
 // Roteamento
 app.use("/api/users", userRoutes);
 app.use("/login", loginRoutes );
-
+app.use("/logout", logoutRoutes )
 // Conectar com o banco de dados
 db.connect((err) => {
   if (err) {
