@@ -13,7 +13,9 @@ html {
     font-size: 20px;
 }
 body{
+    overflow-x: hidden;
     min-height: 100hv;
+    width: 100%;
     background: linear-gradient(to bottom, rgb(252, 229, 229), rgb(251, 210, 210), #FAC2C2, #F9A5A5, #603535);
     background-size: cover;
     background-position: center;
@@ -41,14 +43,24 @@ body{
 
 /*______________________________________________________________________*/
 
-
+.navbar{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%); 
+    /* background-color: red; */
+    align-content: center;
+}
 .NavBar-extra {
     position: relative;
-    font-size: 20px;
+    font-size: 1em;
     color: #483636;
     font-weight: 500;
     text-decoration: none;
     margin-left: 68px;
+    
+        
 }
 
 .NavBar-extra::before {
@@ -75,7 +87,7 @@ body{
     color: white;
     font-weight: 500;
     margin-left: 19px;
-    font-size: 20px;
+    font-size: 1em;
     text-decoration: none;
 }
 #buttonsep{
@@ -90,7 +102,7 @@ body{
     position: relative;
     margin-top: 165px;
     height: 553px;
-    width: 1374px;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     border-radius: 40px;
@@ -129,14 +141,14 @@ body{
 #text1{
     font-weight: 600;
     margin-top: 65px;
-    font-size: 40px;
+    font-size: 2em;
 }
 #text2{
     margin-top: 65px;
-    font-size: 32px;
+    font-size: 1.6em;
 }
 #text3{
-    font-size: 32px;
+    font-size: 1.6em;
 }
 
 /*______________________________________________________________________*/
@@ -144,16 +156,15 @@ body{
 
 
 .line{
+    display: flex;
     height: 500px;
-    width: 1100px;
-    /*border: solid 2px;*/
+    width: 100%;
+    border: solid 2px;
     margin: auto;
     margin-top: 70px;
 }
 .Line_left{
-    float: left;
-    margin-left: 0px;
-    margin-top: 0px;
+    left: 10%;
     height: 500px;
     width: 500px;
     background: white;
@@ -163,12 +174,10 @@ body{
     display: flex;
     justify-content: center;
     text-align: center;
-    position: relative;
+    position: absolute;
 }
 .Line_right{
-    float: right;
-    margin-right: 0px;
-    margin-top: 0px;
+    right: 10%;
     height: 500px;
     width: 500px;
     background: white;
@@ -178,7 +187,7 @@ body{
     display: flex;
     justify-content: center;
     text-align: center;
-    position: relative;
+    position: absolute;
 }
 .caixa_texto_linha{
     position: absolute;
@@ -194,7 +203,7 @@ body{
 }
 #text_line{
     box-shadow: 0px 7px 7px 0px rgba(0, 0, 0, 0.25);
-    font-size: 24px;
+    font-size: 1.2em;
     font-weight: 500;
     line-height: 36px;
 }
@@ -211,7 +220,7 @@ body{
     text-align: center;
 }
 .caixa_de_texto{
-    width: 700px;
+    width: 100%;
     height: 151px;
     display: flex;
     justify-content: center;
@@ -224,7 +233,7 @@ body{
     font-weight: 200;
 }
 #botao-estude-agora{
-    font-size: 22px;
+    font-size: 1.2em;
     font-weight: 700;
     height: 90px;
     width: 345px;
@@ -288,7 +297,7 @@ footer{
 }
 .petala_rodape{
     align-items: center;
-    font-size: 34px;
+    font-size: 1.7em;
     font-weight: 700;
     align-items: center;
     margin-left: 80px;
@@ -306,7 +315,7 @@ footer{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
     color: #171717;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 1em;
     text-decoration: none;
 }
 #bt3{
@@ -320,7 +329,7 @@ footer{
     gap: 14px;
 }
 .icones_contato a {
-    font-size: 24px; 
+    font-size: 1.2em; 
     color: black; 
     text-decoration: none; 
 }
@@ -336,13 +345,119 @@ footer{
 
 
 
+@media (max-width: 1330px) {    /*A navbar Quebra*/
+    *{
+        font-size: 18px;
+    }
+    .line{
+        background-color: greenyellow;
+    }
+}
 
 
 
+@media (max-width: 1281px){     /* Imagens e Textos se sobrepoem */
+    *{
+        font-size: 14px;        /* Tentar aumentar */
+    }
+    .header{
+        height: 80px;
+        padding: 20px 20px;
+        background: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+    }
+    .line{
+        background-color: red;
+    }
+    #buttonsep{
+        margin-left: 19px;
+    }
+    .Line_left{
+        width: 48%;
+        left: 0%;
+    }
+    .Line_right{
+        right: 0%;
+        width: 48%;
+    }
+}
 
 
+@media (max-width:1017px){
+    *{
+        font-size: 12px;
+    }
+    .header img{
+        height: 58px;
+    }
+    .NavBar-extra {
+        margin-left: 20px;
+    }
+    .line{
+        background-color: blueviolet;
+    }
+    .Line_left{
+        width: 49.8%;
+    }
+    .Line_right{
+        width: 49.8%;
+    }
+}
+
+@media (max-width:700px){   /* MENOR */
+    .header img{
+        height: 40px;
+    }
+    .NavBar-extra {
+        margin-left: 15px;
+    }
+    .line{
+        background-color: gold;
+    }
+    
+}
+
+@media (max-width:665px) {
+    *{
+        font-size: 10px;
+    }
+    .header{
+        padding: 10px 10px;
+    }
+    .header img{
+        height: 40px;
+    }
+    .NavBar-extra {
+        margin-left: 10px;
+    }
+    .button-dark{
+        padding: 9px 22.5px;
+    }
+    .line{
+        background-color: #171717;
+    }
+}
 
 
+@media (max-width: 540px){
+    .header{
+        height: 50px;
+    }
+    .line{
+        background-color: chartreuse;
+    }
+    .caixa_texto_linha{
+        line-height: 3em;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .button-dark{
+        padding: 8px 10px;
+    }
+}
 
 
 
@@ -355,3 +470,10 @@ footer{
 .test{
     margin-top: 73px;
 }
+
+/*
+320px: Smartphones pequenos
+768px: Tablets
+1024px: Laptops
+1200px ou mais: Desktops grandes
+ */
