@@ -1,3 +1,10 @@
+@font-face{
+    src: url(../fonts/Montserrat-VariableFont_wght.ttf);
+    font-family: Montserrat;
+  }
+* {
+    font-family: Montserrat;
+}
 .fundo{
     background-color: #FBE2E2;
     padding: 0px;

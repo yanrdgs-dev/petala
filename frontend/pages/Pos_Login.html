@@ -1,50 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../assets/css/style_Pos_login.css">
-    <script src="https://kit.fontawesome.com/28be5bc03d.js" crossorigin="anonymous"></script>
-</head>
+<html lang="PT-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Petala</title>
+    <link rel="stylesheet" href="../assets/css/style_Pos_login.css" />
+    <script
+      src="https://kit.fontawesome.com/28be5bc03d.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
+  <body>
+    
+    <header>
+      <div class="imagem_navbar">
+        <a href="index.html"
+          ><img src="../assets/images/logoSemPetala.png" height="83px"
+        /></a>
+      </div>
 
-<body>
-    <header class="header_pos">
-        <div class="imagem_navbar"><a href="#"><img src="../assets/images/logoSemPetala.png" height="83px"></a></div>
+      <div class="header_pos">
+        
         <nav class="navbar_pos">
-            <a href="#">Página inicial</a>
-            <a href="#">Rotina</a>
-            <a href="#">Biblioteca</a>
-            <a href="#">Agenda</a>
+          <a href="#start">Página inicial</a>
+          <a href="#">Rotina</a>
+          <a href="#">Biblioteca</a>
+          <a href="#">Agenda</a>
         </nav>
-    </header>
+      </div>
+    
+<!-- _________________________________________________________________________________ -->
+      
+      <div class="side-bar">
+        <input type="checkbox" id="sidebar-active">
+        <label for="sidebar-active" class="open-sidebar-button">
+          <i class="fa-solid fa-bars fa-xl"></button></i>
+        </label>
+        <div class="link-container">
+          <label for="sidebar-active" class="close-sidebar-button">
+            <i class="fa-solid fa-xmark fa-xl"></i>
+          </label>
+          <a href="#" id="sidebar-link-1">Início</a>
+          <a href="#">Início</a>
+          <a href="#">Rotina</a>
+          <a href="#">Agenda</a>
+          <a href="#">Desempenho</a>
+          <a href="#">...</a>
+          <a href="#" id="sidebar-link-second-last">Configurações</a>
+          <a href="#">Sair</a>
+        </div>
+      </div>
+
+    </header> 
     
     
+<!-- _________________________________________________________________________________ -->
+
     <main>
-        <div class="mensagem_inicial">Bem vindo, [__________]!Vamos estudar?</div>
-        
-        <div class="visao_geral">
-            <div class="tarefas_progresso">
-            </div>
-            <div class="tarefas_concluidas"></div>
-            <div class="tempo_de_foco"></div>
-            <div class="provas_futuras"></div>
-        </div>
-        
-        <div class="continue_onde_parou">
-            <div class="container_rotina"></div>
-            <div class="container_desempenho"></div>
-            <div class="container_biblioteca"></div>
-            <div class="container_foco"></div>
-        </div>
+      <div class="mensagem_inicial" id="start">Bem vindo, Sérgio!Vamos estudar?</div>
+      
+      <div class="visao">
+        <p>Visão geral</p>
+      </div>
 
+      <div class="visao_geral">
+      
+        <div class="tarefas_progresso">
+          <div class="tarefas-progresso-texto"><p>Tarefas em progresso:</p></div>
+          <div class="tarefas-progresso-variavel"></div>
+        </div>
+        <div class="tarefas_concluidas">
+          <div class="tarefas-concluidas-texto"><p>Tarefas concluídas essa semana:</p></div>
+          <div class="tarefas-progresso-variavel"></div>
+        </div>
+        <div class="tempo_de_foco">
+          <div class="foco-texto"><p>Tempo de foco essa semana:</p></div>
+          <div class="tarefas-progresso-variavel"></div>
+        </div>
+        <div class="provas_futuras">
+          <div class="provas-texto"><p>Provas provas futuras:</p></div>
+          <div class="tarefas-progresso-variavel"></div>
+        </div>
+      </div>
 
-        <div class="calendario"></div>
-        <div class="atividade"></div>
+      <div class="continue">
+          <p>Continue de onde parou</p>
+      </div>
+
+      <div class="continue_onde_parou">
+        <div class="container_rotina"></div>
+        <div class="container_desempenho"></div>
+        <div class="container_biblioteca"></div>
+        <div class="container_foco"></div>
+      </div>
+
+      <div class="container_direita">
+        <div class="calendario">calendario + Botão
+          <div class="calendario_interativo"></div>
+          <div class="button" id="button_ver_mais">Ver mais</div>
+        </div>
+        <div class="atividade">Atividade de amigos
+          <p>Pedro</p>
+          <p>Informação</p>
+          <p>Bruno</p>
+          <p>Informação</p>
+          <p>...</p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <div class="button" id="button_Ver_amigos">Ver amigos</div>
+        </div>
+      </div>
     </main>
 
-
     <footer></footer>
-</body>
+  </body>
 </html>
