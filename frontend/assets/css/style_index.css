@@ -12,6 +12,29 @@ html {
     font-family: Montserrat;
     font-size: 20px;
 }
+.button-light{
+    margin-right: 80px;
+    padding: 12px 30px;
+    background: #E6E6E6;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    color: #171717;
+    font-weight: 500;
+    font-size: 1em;
+    text-decoration: none;
+}
+.button-dark {
+    position: relative;
+    padding: 12px 30px;
+    background: #1F1717;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    color: white;
+    font-weight: 500;
+    margin-left: 19px;
+    font-size: 1em;
+    text-decoration: none;
+}
 body{
     overflow-x: hidden;
     min-height: 100hv;
@@ -27,6 +50,7 @@ body{
 
 
 .header{
+    display: flex;
     position:fixed;
     top: 0;
     left: 0;
@@ -34,17 +58,40 @@ body{
     height: 80px;
     padding: 20px 62px;
     background: white;
-    display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 100;
+    box-shadow: 0px 7px 7px 0px rgba(0, 0, 0, 0.10);
+    
 }
-
-
-/*______________________________________________________________________*/
-
+.header a {
+    white-space: nowrap
+}
+.Logo {
+    cursor: pointer;
+    height: 4em;
+    /* margin-right: auto; */
+}
+li ,a {
+    text-decoration: none;
+    padding: 0px;
+}
+.nav_link{
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly; 
+    padding: 0;
+    /* border: greenyellow 2px solid; */
+}
+.nav_link li{
+    display: inline-block;
+    padding: 0px 2em;
+    width: auto;
+    border: none;
+}
 .navbar{
     position: relative;
+    display: flex;
     height: 100%;
     width: 100%;
     top: 50%;
@@ -52,18 +99,33 @@ body{
     /* background-color: red; */
     align-content: center;
 }
-.NavBar-extra {
+.nav_link li a {
     position: relative;
+    white-space: nowrap;
     font-size: 1em;
     color: #483636;
     font-weight: 500;
     text-decoration: none;
-    margin-left: 68px;
+    transition: all 0.3 ease 0s;
+    padding: 1.5em 1em;
     
-        
 }
-
 .NavBar-extra::before {
+    display: inline-flex;
+    content: '';
+    position: absolute;
+    top: 3em;
+    left: 0;
+    width: 0px;
+    height: 3px;
+    background: #483636;
+    transition: .3s;
+
+}
+.NavBar-extra:hover::before {
+    width: 100%;
+}
+/* .nav_link li a::before {
     content: '';
     position: absolute;
     top: 100%;
@@ -74,24 +136,17 @@ body{
     transition: .3s;
 }
 
-.NavBar-extra:hover::before{
+.nav_link li a:hover::before{
     width: 100%;
-}
+} */
 
-.button-dark {
-    position: relative;
-    padding: 12px 30px;
-    background: #1F1717;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-    color: white;
-    font-weight: 500;
-    margin-left: 19px;
-    font-size: 1em;
-    text-decoration: none;
-}
+
 #buttonsep{
-    margin-left: 150px;
+    /* margin-left: auto; */
+    margin: none;
+}
+#bt1{
+    margin: none;
 }
 
 
@@ -307,17 +362,7 @@ footer{
     display: flex;
     justify-content:right;
 }
-.button-light{
-    margin-right: 80px;
-    padding: 12px 30px;
-    background: #E6E6E6;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-    color: #171717;
-    font-weight: 500;
-    font-size: 1em;
-    text-decoration: none;
-}
+
 #bt3{
     margin-right: 24px;
 }
@@ -358,16 +403,10 @@ footer{
 
 @media (max-width: 1281px){     /* Imagens e Textos se sobrepoem */
     *{
-        font-size: 14px;        /* Tentar aumentar */
+        font-size: 16px;        /* Tentar aumentar */
     }
     .header{
-        height: 80px;
         padding: 20px 20px;
-        background: white;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        z-index: 100;
     }
     .line{
         background-color: red;
@@ -386,12 +425,13 @@ footer{
 }
 
 
-@media (max-width:1017px){
+@media (max-width:1056px){
     *{
-        font-size: 12px;
+        font-size: 14px;
     }
-    .header img{
-        height: 58px;
+    .nav_link li{
+        display: inline-block;
+        padding: 0px 0.5em;
     }
     .NavBar-extra {
         margin-left: 20px;
@@ -407,22 +447,22 @@ footer{
     }
 }
 
-@media (max-width:700px){   /* MENOR */
-    .header img{
-        height: 40px;
+@media (max-width:860px){  
+    .nav_link li{
+        padding: 0px 0em;
     }
-    .NavBar-extra {
-        margin-left: 15px;
-    }
+    .nav_link a[href="#contatos"] {
+        display: none;
+      }
     .line{
         background-color: gold;
     }
     
 }
 
-@media (max-width:665px) {
+@media (max-width:710px) {
     *{
-        font-size: 10px;
+        font-size: 12px;
     }
     .header{
         padding: 10px 10px;
@@ -442,7 +482,7 @@ footer{
 }
 
 
-@media (max-width: 540px){
+@media (max-width: 560px){
     .header{
         height: 50px;
     }
