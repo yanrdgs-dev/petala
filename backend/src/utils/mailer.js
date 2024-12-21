@@ -1,18 +1,15 @@
 const fs = require("fs");
 const path = require("path");
-const nodemailer = require("nodemailer");
-const images = require("./images");
-const imagesArray = Object.values(images);
-
+const formData = require("form-data");
+const Mailgun = require("mailgun.js");
+const mailgun = new Mailgun(formData);
 require("dotenv").config(); // variaveis de ambiente
-
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
+const mg = mailgun.client({
+  username: "api",
+  key: process.env.MAILGUN_API_KEY,
 });
+
+const mime = require("mime-types");
 
 async function sendEmail(to, subject, templatePath, variables = {}) {
   try {
@@ -25,27 +22,13 @@ async function sendEmail(to, subject, templatePath, variables = {}) {
       htmlContent = htmlContent.replace(regex, value);
     }
 
-    const imageAttachments = imagesArray.map((image) => ({
-      __filename: petala_logo.png,
-      path: path.resolve(
-        __dirname,
-        "frontend",
-        "assets",
-        "images",
-        "petala_logo.png"
-      ),
-      cid: "logo_petala_image",
-    }));
-
-    const send = await transporter.sendMail({
-      from: process.env.EMAIL_USER,
+    const response = await mg.messages.create(process.env.MAILGUN_DOMAIN, {
+      from: "Pétala <no-reply@petala.net>",
       to,
       subject,
       html: htmlContent,
-      attachments: [imageAttachments],
     });
-
-    console.log(`Email enviado: ${send.messageId}`);
+    console.log(`Email enviado: ${response.id}`);
   } catch (error) {
     console.error("Erro ao enviar email: ", error);
     throw error;
