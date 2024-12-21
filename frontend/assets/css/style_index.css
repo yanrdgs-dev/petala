@@ -13,7 +13,7 @@ html {
     font-size: 20px;
 }
 .button-light{
-    margin-right: 80px;
+    margin-right: 4em;
     padding: 12px 30px;
     background: #E6E6E6;
     border-radius: 8px;
@@ -22,18 +22,20 @@ html {
     font-weight: 500;
     font-size: 1em;
     text-decoration: none;
+    align-content: center;
 }
 .button-dark {
     position: relative;
-    padding: 12px 30px;
+    padding: 0.6em 1.5em;
     background: #1F1717;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
     color: white;
     font-weight: 500;
-    margin-left: 19px;
+    margin-left: 1em;
     font-size: 1em;
     text-decoration: none;
+    align-content: center;
 }
 body{
     overflow-x: hidden;
@@ -185,7 +187,10 @@ li ,a {
     justify-content: center;
     align-items: center;
     margin: 0;
-    padding-top: 73px;
+    padding-top: 3.5em;
+}
+.center-image img {
+    height: 6em;
 }
 .center-text{
     position: relative;
@@ -197,13 +202,16 @@ li ,a {
     font-weight: 600;
     margin-top: 65px;
     font-size: 2em;
+    text-align: center;
 }
 #text2{
     margin-top: 65px;
     font-size: 1.6em;
+    text-align: center;
 }
 #text3{
     font-size: 1.6em;
+    text-align: center;
 }
 
 /*______________________________________________________________________*/
@@ -214,7 +222,7 @@ li ,a {
     display: flex;
     height: 500px;
     width: 100%;
-    border: solid 2px;
+    /* border: solid 2px; */
     margin: auto;
     margin-top: 70px;
 }
@@ -250,8 +258,12 @@ li ,a {
     transform: translate(0%, -50%);
     text-align: center;
     padding: 20px;
-    padding-left: 60px;
-    padding-right: 60px;
+    padding-left: 3em;
+    padding-right: 3em;
+    
+}
+.titulo_linha {
+    line-height: 3em;
 }
 #img_line{
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
@@ -352,10 +364,14 @@ footer{
 }
 .petala_rodape{
     align-items: center;
+    align-items: center;
+    margin-left: 4em;
+}
+.petala-rodape {
+    align-items: center;
     font-size: 1.7em;
     font-weight: 700;
     align-items: center;
-    margin-left: 80px;
 }
 .container{
     width: 100%;
@@ -364,13 +380,13 @@ footer{
 }
 
 #bt3{
-    margin-right: 24px;
+    margin-right: 1.2em;
 }
 .icones_contato {
     position:absolute;
     display: flex;
     bottom: 10px;
-    left: 80px;
+    left: 4em;
     gap: 14px;
 }
 .icones_contato a {
@@ -395,7 +411,7 @@ footer{
         font-size: 18px;
     }
     .line{
-        background-color: greenyellow;
+        /* background-color: greenyellow; */
     }
 }
 
@@ -409,7 +425,7 @@ footer{
         padding: 20px 20px;
     }
     .line{
-        background-color: red;
+        /* background-color: red; */
     }
     #buttonsep{
         margin-left: 19px;
@@ -437,7 +453,7 @@ footer{
         margin-left: 20px;
     }
     .line{
-        background-color: blueviolet;
+        /* background-color: blueviolet; */
     }
     .Line_left{
         width: 49.8%;
@@ -455,7 +471,7 @@ footer{
         display: none;
       }
     .line{
-        background-color: gold;
+        /* background-color: gold; */
     }
     
 }
@@ -477,8 +493,16 @@ footer{
         padding: 9px 22.5px;
     }
     .line{
-        background-color: #171717;
+        /* background-color: #171717; */
     }
+    .caixa_texto_linha{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .comentarios :not(:first-child) {
+        display: none;
+    }
+
 }
 
 
@@ -487,7 +511,7 @@ footer{
         height: 50px;
     }
     .line{
-        background-color: chartreuse;
+        /* background-color: chartreuse; */
     }
     .caixa_texto_linha{
         line-height: 3em;
@@ -499,9 +523,41 @@ footer{
     }
 }
 
+/* Celulares Pequenos */
 
-
-
+@media (max-width: 515px){
+    .caixa_texto_linha{
+        line-height: 2em;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .titulo_linha {
+        line-height: 2em;
+    }
+    .navbar-buttons a[href="register.html"] {
+        display: none;
+    }
+}
+/* OU SEM AS IMAGENS */
+@media (max-width:511px){
+    .caixa_texto_linha{
+        line-height: 2em;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .titulo_linha {
+        line-height: 2em;
+    }
+    #text_line {
+        width: 100%;
+    }
+    #img_line {
+        display: none;
+    }
+    .navbar-buttons a[href="register.html"] {
+        display: none;
+    }
+}
 
 
 
