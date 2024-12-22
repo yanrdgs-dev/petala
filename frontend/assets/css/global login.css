@@ -1,8 +1,11 @@
+@font-face{
+    src: url(../fonts/Montserrat-VariableFont_wght.ttf);
+    font-family: Montserrat;
+  }
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: initial;
 }
 header{
     background-color: #ffffff;
@@ -95,7 +98,7 @@ button{
     height: 54px;
     border-radius: 20px;
     box-shadow: 2px 5px 4px #000000;
-
+    cursor: pointer;
 }
 .s-button{
     margin-top: 2px;
