@@ -53,31 +53,31 @@ body{
 .box{
     display: flex;
     flex-direction: column;
-    height: 400px;
-    width: 467px;
+    height: 470px;
+    width: 570px;
 }
 .card{
     background-color: #ffffff;
     padding: 20px 20px 5px;
-    height: 400px;
-    gap: 13px;
+    height: 1000px;
+    gap: 15px;
     border-radius: 32px;
     box-shadow:  0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 input{
-    height: 50px;
+    height: 60px;
     border-radius: 20px;
-    padding: 20px;
-    font-size: 18px;
-    width: 345px;
+    padding: 30px;
+    font-size: 23px;
+    width: 480px;
     color: #ffffff;
     background-color: #483636;
     box-shadow: 1px 1px 1px #888888;
 }
 .card a{
     margin-bottom: 3px;
-    font-size: 15px;
+    font-size: 21px;
 }
 a{
     text-decoration: none;
@@ -92,21 +92,21 @@ input:focus{
 }
 button{
     background-color: #1F1717;
-    font-size: 20px;
+    font-size: 22px;
     color: #ffffff;
-    width: 287px;
-    height: 54px;
+    width: 420px;
+    height: 65px;
     border-radius: 20px;
     box-shadow: 2px 5px 4px #000000;
     cursor: pointer;
 }
 .s-button{
-    margin-top: 2px;
+    margin-top: 3px;
     border-radius: 20px;
     background-color: #1F1717;
-    width: 267px;
-    height: 54px;
-    font-size: 20px;
+    width: 410px;
+    height: 60px;
+    font-size: 22px;
     color: #ffffff;
     box-shadow: 2px 5px 4px #000000;
 }
@@ -117,5 +117,5 @@ button{
     margin: 5px 0;
 }
 p{
-    font-size: 18px;
+    font-size: 19px;
 }
