@@ -1,0 +1,24 @@
+@media screen and (max-width: 750px){
+    .logo{
+        width: 245px;
+        margin-bottom: 2px;
+    }
+    .caixa-botao-voltar{
+        margin-right: 20px;
+    }
+    .caixa-cadastro{
+        width: 395px;       
+    }
+    .cadastro, .login{
+        width: 210px;
+        height: 65px;
+    }
+    
+    .barra-de-separacao{
+        width: 360px;
+    }
+    .caixa-forms{
+        width: 315px;
+        height: 60px;
+    }
+}
