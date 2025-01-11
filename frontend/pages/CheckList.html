@@ -6,6 +6,10 @@
 
     <title>Petala</title>
     <link rel="stylesheet" href="../assets/css/Style_CheckList.css">
+    <script
+      src="https://kit.fontawesome.com/28be5bc03d.js"
+      crossorigin="anonymous"
+    ></script>
 </head>
 
 
@@ -63,39 +67,58 @@
             </div>
 
             <div class="container-grid">
-                <div class="grid-item">aaaaa</div>
-                <div class="grid-item">aaaaa</div>
-                <div class="grid-item">aaaaa</div>
-                <div class="grid-item">aaaaa</div>
-                <div class="grid-item">aaaaa</div>
-                <div class="grid-item">aaaaa</div>
-                <div class="grid-item">aaaaa</div>
-                <div class="grid-item">aaaaa</div>
-                <div class="grid-item">aaaaa</div>
-                <div class="grid-item">aaaaa</div>
-                <div class="grid-item">aaaaa</div>
-                <div class="grid-item">aaaaa</div>
-                <div class="grid-item">aaaaa</div>
-                <div class="grid-item">aaaaa</div>
-                <div class="grid-item">aaaaa</div>
-                <div class="grid-item">aaaaa</div>
-                <div class="grid-item">aaaaa</div>
-                <div class="grid-item">aaaaa</div>
-                <div class="grid-item">aaaaa</div>
-                <div class="grid-item">aaaaa</div>
-                <div class="grid-item">aaaaa</div>
-                <div class="grid-item">aaaaa</div>
-                <div class="grid-item">aaaaa</div>
-                <div class="grid-item">aaaaa</div>
-                <div class="grid-item">aaaaa</div>
-                <div class="grid-item">aaaaa</div>
-                <div class="grid-item">aaaaa</div>
-                <div class="grid-item">aaaaa</div>
-                <div class="grid-item">aaaaa</div>
-                <div class="grid-item">aaaaa</div>
+                <!--Coluna 1-->
+                <div class="collumn">
+                    <div class="grid-item">
+                        <input type="text" id="Em-andamento"  placeholder="Crie um novo ...">
+                        <button onclick="addItem('lista-em-andamento', 'Em-andamento')"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                    <ul id="lista-em-andamento" class="list"></ul>
+                </div>
+                <!---->
+                <div class="collumn">
+                    <div class="grid-item">
+                        <input type="text" id="Revisar"  placeholder="Crie um novo ...">
+                        <button onclick="addItem('lista-revisar', 'Revisar')"><i class="fa-solid fa-plus"></i></button>                
+                    </div>
+                    <ul id="lista-revisar" class="list"></ul>
+                </div>
+                <!---->
+                <div class="collumn">
+                    <div class="grid-item">
+                        <input type="text" id="Concluido"  placeholder="Crie um novo ...">
+                        <button onclick="addItem('lista-Concluido', 'Concluido')"><i class="fa-solid fa-plus"></i></button>                
+                    </div>
+                    <ul id="lista-Concluido" class="list"></ul>
+                </div>
 
             </div>
         </div>
+        <script>
+            function addItem(listId, inputId) {
+            const list = document.getElementById(listId);
+            const input = document.getElementById(inputId);
+
+            if (input.value.trim() === "") {
+                alert("O campo de texto não pode estar vazio!");
+                return;
+            }
+
+            const li = document.createElement("li");
+            li.textContent = input.value;
+
+            // Opção de remover item
+            const deleteButton = document.createElement("button");
+            deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
+            deleteButton.style.marginLeft = "10px";
+            deleteButton.style.color = "red";
+            deleteButton.onclick = () => li.remove();
+
+            li.appendChild(deleteButton);
+            list.appendChild(li);
+            input.value = ""; // Limpa o campo de texto
+            }
+        </script>
     </main>
     
 <!-------------------------------------------------------------------------------------->
