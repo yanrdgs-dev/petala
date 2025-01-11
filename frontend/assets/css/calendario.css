@@ -161,13 +161,13 @@ main {
     display: flex;
     background-color: #483636;
     border-radius: 35px;
-    height: 100%;
     align-items: center;
     padding: 25px;
     gap: 18px;
     color: white;
     align-self: center;
     justify-content: center;
+    aspect-ratio: 1 / 1;
 }
 .dia {
     font-weight: 550;
