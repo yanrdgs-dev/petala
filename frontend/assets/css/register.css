@@ -163,3 +163,13 @@ a:link {
     background-color: transparent;
     text-decoration: none;
 }
+
+.error{
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    color: #1F1717;
+    font-size: 16px;
+    width: fit-content;
+    height: fit-content;
+}
