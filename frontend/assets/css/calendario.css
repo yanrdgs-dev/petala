@@ -127,48 +127,41 @@
     margin-top: auto;
   }
 /*---------------------------------------*/
-main {
-    flex-direction: column;
-    align-items: center;
-    margin: 0;
-  }
-.container-calendario {
-    height: 1000px;
-    width: 90vw;
-    padding: 0px 8vw;
-    background-color: rgb(255, 255, 255);
-    display: flex;
-    position: absolute;
-    margin-top: 200px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 20px;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+#calendario{
+  width: 70%;
+  margin: 125px auto;
+  border: 5px solid #ddd;
+  border-radius: 20px;
+  overflow: hidden;
 }
-.grid-calendario {
-    width: 100%;
-    margin-top: 150px;
-    display: grid;
-    grid-template-columns:repeat(7, 1fr);
-    grid-template-rows: repeat(5);
-    padding: 40px;
-    gap: 35px;
-    background-color: #FBE2E2;
-    border: 1px solid black;
-    border-radius: 12px;
+.calendario-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: aqua;
 }
-.grid-item {
-    display: flex;
-    background-color: #483636;
-    border-radius: 35px;
-    align-items: center;
-    padding: 25px;
-    gap: 18px;
-    color: white;
-    align-self: center;
-    justify-content: center;
-    aspect-ratio: 1 / 1;
+.nav-btn{
+  font-size: 18px;
+  cursor: pointer;
+  background: none;
+  border: none;
 }
-.dia {
-    font-weight: 550;
+#mes-ano{
+  font-size: 18px;
+  font-weight: medium;
+}
+.calendario-dias, #dias{
+  display: grid;
+  grid-template-columns: repeat(7,1fr);
+  text-align: center;
+}
+.dia-nome{
+  pad: 10px 0px;
+  background-color: #eee;
+}
+
+#dias{
+  margin-top: 5px;
+  height: 500px;
 }
