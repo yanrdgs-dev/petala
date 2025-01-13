@@ -12,50 +12,43 @@
     ></script>
 </head>
 
-
 <body>
     <header>
-
         <div class="imagem_navbar">
-            <a href="index.html"
-              ><img src="../assets/images/logoSemPetala.png" width="70%" alt="logo"
-            /></a>
-          </div>
-    
-          <div class="header_pos">
-            
+            <a href="index.html">
+                <img src="../assets/images/logoSemPetala.png" width="70%" alt="logo" />
+            </a>
+        </div>
+        <div class="header_pos">
             <nav class="navbar_pos">
-              <a href="#start">Página inicial</a>
-              <a href="#">Rotina</a>
-              <a href="#">Biblioteca</a>
-              <a href="#">Agenda</a>
+                <a href="#start">Página inicial</a>
+                <a href="#">Rotina</a>
+                <a href="#">Biblioteca</a>
+                <a href="#">Agenda</a>
             </nav>
-          </div>
-          
-          <div class="side-bar">
+        </div>
+        <div class="side-bar">
             <input type="checkbox" id="sidebar-active">
             <label for="sidebar-active" class="open-sidebar-button">
-              <i class="fa-solid fa-bars fa-xl"></button></i>
+                <i class="fa-solid fa-bars fa-xl"></i>
             </label>
             <div class="link-container">
-              <label for="sidebar-active" class="close-sidebar-button">
-                <i class="fa-solid fa-xmark fa-xl"></i>
-              </label>
-              <a href="#" id="sidebar-link-1">Início</a>
-              <a href="#">Início</a>
-              <a href="#">Rotina</a>
-              <a href="#">Agenda</a>
-              <a href="#">Desempenho</a>
-              <a href="#">...</a>
-              <a href="#" id="sidebar-link-second-last">Configurações</a>
-              <a href="#">Sair</a>
+                <label for="sidebar-active" class="close-sidebar-button">
+                    <i class="fa-solid fa-xmark fa-xl"></i>
+                </label>
+                <a href="#" id="sidebar-link-1">Início</a>
+                <a href="#">Início</a>
+                <a href="#">Rotina</a>
+                <a href="#">Agenda</a>
+                <a href="#">Desempenho</a>
+                <a href="#">...</a>
+                <a href="#" id="sidebar-link-second-last">Configurações</a>
+                <a href="#">Sair</a>
             </div>
-          </div>
-
+        </div>
     </header>
 
-<!-------------------------------------------------------------------------------------->
-
+    <!-------------------------------------------------------------------------------------->
     <main>
         <div class="main-container">
             <div class="header-container">
@@ -65,67 +58,43 @@
                     <div class="header-item">Revisar</div>
                 </div>
             </div>
-
             <div class="container-grid">
                 <!--Coluna 1-->
                 <div class="collumn">
                     <div class="grid-item">
-                        <input type="text" id="Em-andamento"  placeholder="Crie um novo ...">
-                        <button onclick="addItem('lista-em-andamento', 'Em-andamento')"><i class="fa-solid fa-plus"></i></button>
+                        <input type="text" id="Em-andamento" placeholder="Crie um novo ...">
+                        <button onclick="addItem('lista-em-andamento', 'Em-andamento')">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
                     </div>
                     <ul id="lista-em-andamento" class="list"></ul>
                 </div>
-                <!---->
+                <!--Coluna 2-->
                 <div class="collumn">
                     <div class="grid-item">
-                        <input type="text" id="Revisar"  placeholder="Crie um novo ...">
-                        <button onclick="addItem('lista-revisar', 'Revisar')"><i class="fa-solid fa-plus"></i></button>                
+                        <input type="text" id="Revisar" placeholder="Crie um novo ...">
+                        <button onclick="addItem('lista-revisar', 'Revisar')">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
                     </div>
                     <ul id="lista-revisar" class="list"></ul>
                 </div>
-                <!---->
+                <!--Coluna 3-->
                 <div class="collumn">
                     <div class="grid-item">
-                        <input type="text" id="Concluido"  placeholder="Crie um novo ...">
-                        <button onclick="addItem('lista-Concluido', 'Concluido')"><i class="fa-solid fa-plus"></i></button>                
+                        <input type="text" id="Concluido" placeholder="Crie um novo ...">
+                        <button onclick="addItem('lista-Concluido', 'Concluido')">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
                     </div>
                     <ul id="lista-Concluido" class="list"></ul>
                 </div>
-
             </div>
         </div>
-        <script>
-            function addItem(listId, inputId) {
-            const list = document.getElementById(listId);
-            const input = document.getElementById(inputId);
-
-            if (input.value.trim() === "") {
-                alert("O campo de texto não pode estar vazio!");
-                return;
-            }
-
-            const li = document.createElement("li");
-            li.textContent = input.value;
-
-            // Opção de remover item
-            const deleteButton = document.createElement("button");
-            deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
-            deleteButton.style.marginLeft = "10px";
-            deleteButton.style.color = "red";
-            deleteButton.onclick = () => li.remove();
-
-            li.appendChild(deleteButton);
-            list.appendChild(li);
-            input.value = ""; // Limpa o campo de texto
-            }
-        </script>
     </main>
-    
-<!-------------------------------------------------------------------------------------->
-
+    <!-------------------------------------------------------------------------------------->
     <footer></footer>
 
+    <script src="../assets/js/CheckList.js"></script>
 </body>
-
-
 </html>
