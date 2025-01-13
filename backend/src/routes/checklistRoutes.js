@@ -6,6 +6,7 @@ const authenticateUser = require("../utils/authenticateUser");
 // Autenticar usuário em todas as rotas
 router.use(authenticateUser);
 
+// Criar tarefa
 router.post("/", (req, res) => {
   const userId = req.user.id;
   const { titulo, descricao, prazo } = req.body;
@@ -26,9 +27,13 @@ router.post("/", (req, res) => {
   });
 });
 
+// Buscar tarefas
 router.get("/", (req, res) => {
   const userId = req.user.id;
-  const query = `SELECT id, titulo, descricao, status, prazo, created_at, updated_at FROM checklist WHERE user_id = ? ORDER BY created_at DESC`;
+  const query = `SELECT id, titulo, descricao, status, prazo, created_at, updated_at 
+                 FROM checklist 
+                 WHERE user_id = ? 
+                 ORDER BY created_at DESC`;
 
   db.query(query, [userId], (err, results) => {
     if (err) {
@@ -40,4 +45,62 @@ router.get("/", (req, res) => {
   });
 });
 
+router.put("/:id", (req, res) => {
+  const userId = req.user.id;
+  const checklistID = req.params.id;
+  const { titulo, descricao, prazo } = req.body;
+
+  if (!titulo && !descricao && !prazo) {
+    return res.status(400).json({
+      message: "É necessário fornecer ao menos um campo para atualizar.",
+    });
+  }
+
+  const query = `
+    UPDATE checklist 
+    SET 
+      titulo = COALESCE(?, titulo), 
+      descricao = COALESCE(?, descricao), 
+      prazo = COALESCE(?, prazo), 
+      updated_at = NOW() 
+    WHERE user_id = ? AND id = ?
+  `;
+
+  db.query(
+    query,
+    [titulo, descricao, prazo, userId, checklistID],
+    (err, result) => {
+      if (err) {
+        console.error("Erro ao atualizar tarefa: ", err);
+        return res.status(500).json({ message: "Erro ao atualizar tarefa." });
+      }
+
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ message: "Tarefa não encontrada." });
+      }
+
+      res.status(200).json({ message: "Tarefa atualizada com sucesso." });
+    }
+  );
+});
+
+router.delete("./:id", (req, res) => {
+  const userId = req.user.id;
+  const checklistID = req.params.id;
+
+  const query = `DELETE checklist WHERE user_id = ? AND id = ?`;
+
+  db.query(query, [userId, checklistID], (err, result) => {
+    if (err) {
+      console.error("Erro ao excluir tarefa: ", err);
+      return res.status(500).json({ message: "Erro ao excluir tarefa." });
+    }
+
+    if (result.affectedRows === 0) {
+      return res.status(400).json({ message: "Tarefa não encontrada" });
+    }
+
+    return res.status(200).json({ message: "Tarefa excluída com sucesso." });
+  });
+});
 module.exports = router;
