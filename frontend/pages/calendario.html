@@ -12,7 +12,6 @@
     ></script>
 </head>
 
-
 <body>
     <header>
 
@@ -53,8 +52,42 @@
           </div>
 
     </header>
-    <main></main>
+
+
+    <main>
+        <div id="calendario">
+          <div class="calendario-header">
+            <button id="prev" class="nav-btn"><</button>
+            <div id="mes-ano"></div>
+            <button id="next" class="nav-btn">></button>
+          </div>
+          <div class="calendario-dias">
+            <div class="dia-nome">Dom</div>
+            <div class="dia-nome">Seg</div>            
+            <div class="dia-nome">Ter</div>            
+            <div class="dia-nome">Qua</div>            
+            <div class="dia-nome">Qui</div>            
+            <div class="dia-nome">Sex</div>            
+            <div class="dia-nome">Sab</div>            
+          </div>
+          <div id="dias"></div>
+        </div>
+
+        <div id="modal" class="modal">
+          <div class="modal-content">
+            <span class="close"></span>
+            <h2>Adicionar evento</h2>
+            <form id="evento-form">
+              <label for="evento-descricao">Descrição:</label>
+              <input type="text" id="evento-descricao" required />
+              <button type="submit">Salvar</button>
+            </form>
+          </div>
+        </div>
+    </main>
+    
+
     <footer></footer>
-    <script src="../assets/js/calendario.js"></script>
+    <script src="../assets/js/calendario_1.js"></script>
     </body>
 </html>
