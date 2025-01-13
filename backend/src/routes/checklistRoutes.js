@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../config/db");
-// const authenticateUser (TODO)
+const authenticateUser = require("../utils/authenticateUser");
 
-// Autenticar usuário (TODO)
+// Autenticar usuário em todas as rotas
+router.use(authenticateUser);
 
 router.post("/", (req, res) => {
   const userId = req.user.id;
