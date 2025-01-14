@@ -57,7 +57,7 @@
     <main>
         <div id="calendario">
           <div class="calendario-header">
-            <button id="prev" class="nav-btn"><</button>
+          <button id="prev" class="nav-btn"><</button>
             <div id="mes-ano"></div>
             <button id="next" class="nav-btn">></button>
           </div>
@@ -78,9 +78,12 @@
             <span class="close"></span>
             <h2>Adicionar evento</h2>
             <form id="evento-form">
-              <label for="evento-descricao">Descrição:</label>
-              <input type="text" id="evento-descricao" required />
+              <div>
+                <label for="evento-descricao">Descrição:</label>
+                <input type="text" id="evento-descricao" required />
+              </div>
               <button type="submit">Salvar</button>
+              <button type="submit">Cancelar</button>
             </form>
           </div>
         </div>
