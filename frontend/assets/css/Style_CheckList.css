@@ -125,7 +125,8 @@ main {
   margin: 0;
 }
 .main-container {
-  height: 1000px;
+  min-height: 1200px;
+  height: auto;
   width: 90vw;
   padding: 0px 8vw;
   background-color: rgb(255, 255, 255);
@@ -136,6 +137,7 @@ main {
   transform: translateX(-50%);
   border-radius: 20px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  padding-bottom: 75px;
 }
 
 .header-container {
@@ -179,6 +181,7 @@ main {
   background-color: #FBE2E2;
   border: 1px solid black;
   border-radius: 12px;
+  padding-bottom: 90px;
 }
 .grid-item {
   display: flex;
@@ -261,9 +264,6 @@ button {
   outline: none;
   color: white;
 }
-.add-button {
-  color: #DFD3D6;
-}
 ul {
   list-style-type: none;
   padding: 0;
@@ -271,7 +271,7 @@ ul {
 
 /*------------------------------------------------------------*/
 /*   Modal   */
-/* Modal */
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -285,10 +285,10 @@ ul {
 }
 
 .modal {
-  background: white;
-  padding: 20px;
+  background: #EDDEE1;
+  padding: 20px 30px ;
   border-radius: 8px;
-  width: 40vw;
+  width: 50vw;
   height: auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
@@ -302,7 +302,7 @@ ul {
   margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  color: black;
+  color: #1F1717;
   font-size: 16px;
   line-height: 1.5;
   resize: none; 
@@ -317,13 +317,13 @@ ul {
 }
 
 #saveEdit {
-  background-color: #c4365f;
-  color: white;
+  background-color: #FFA6A6;
+  color: #1F1717;
   font-weight: 580;
 }
 
 #cancelEdit {
-  background-color: #000000;
+  background-color:#1F1717;
   color: white;
   font-weight: 580;
 }
