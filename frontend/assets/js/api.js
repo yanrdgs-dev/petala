@@ -46,6 +46,7 @@ form.addEventListener("submit", async (event) => {
         errorData.errors.length > 0
       ) {
         errorMessages.innerHTML = `${errorData.errors[0].msg}`;
+        console.log(errorData.errors);
       } else {
         errorMessages.innerHTML = `${errorData.message}`;
       }
