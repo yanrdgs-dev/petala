@@ -12,7 +12,10 @@ CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(100) UNIQUE NOT NULL, -- email único
     password_hash VARCHAR(255) NOT NULL, -- senha criptografada
     reset_token VARCHAR(255), -- token de reset de senha
-    reset_token_expiry DATETIME -- data de expiração do token de reset de senha
+    reset_token_expiry DATETIME,-- data de expiração do token de reset de senha
+    email_verification_token VARCHAR(255),
+    email_verify BOOLEAN DEFAULT false,
+    email_expires TIMESTAMP 
 );
 
 -- Logs de acesso (TODO)

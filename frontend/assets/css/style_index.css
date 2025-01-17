@@ -1,0 +1,575 @@
+@font-face{
+    src: url(../fonts/Montserrat-VariableFont_wght.ttf);
+    font-family: Montserrat;
+  }
+html {
+    scroll-behavior:smooth;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Montserrat;
+    font-size: 20px;
+}
+.button-light{
+    margin-right: 4em;
+    padding: 12px 30px;
+    background: #E6E6E6;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    color: #171717;
+    font-weight: 500;
+    font-size: 1em;
+    text-decoration: none;
+    align-content: center;
+}
+.button-dark {
+    position: relative;
+    padding: 0.6em 1.5em;
+    background: #1F1717;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    color: white;
+    font-weight: 500;
+    margin-left: 1em;
+    font-size: 1em;
+    text-decoration: none;
+    align-content: center;
+}
+body{
+    overflow-x: hidden;
+    min-height: 100hv;
+    width: 100%;
+    background: linear-gradient(to bottom, rgb(252, 229, 229), rgb(251, 210, 210), #FAC2C2, #F9A5A5, #603535);
+    background-size: cover;
+    background-position: center;
+   
+}
+
+
+/*______________________________________________________________________*/
+
+
+.header{
+    display: flex;
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    padding: 20px 62px;
+    background: white;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    box-shadow: 0px 7px 7px 0px rgba(0, 0, 0, 0.10);
+    
+}
+.header a {
+    white-space: nowrap
+}
+.Logo {
+    cursor: pointer;
+    height: 4em;
+    /* margin-right: auto; */
+}
+li ,a {
+    text-decoration: none;
+    padding: 0px;
+}
+.nav_link{
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly; 
+    padding: 0;
+    /* border: greenyellow 2px solid; */
+}
+.nav_link li{
+    display: inline-block;
+    padding: 0px 2em;
+    width: auto;
+    border: none;
+}
+.navbar{
+    position: relative;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%); 
+    /* background-color: red; */
+    align-content: center;
+}
+.nav_link li a {
+    position: relative;
+    white-space: nowrap;
+    font-size: 1em;
+    color: #483636;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3 ease 0s;
+    padding: 1.5em 1em;
+    
+}
+.NavBar-extra::before {
+    display: inline-flex;
+    content: '';
+    position: absolute;
+    top: 3em;
+    left: 0;
+    width: 0px;
+    height: 3px;
+    background: #483636;
+    transition: .3s;
+
+}
+.NavBar-extra:hover::before {
+    width: 100%;
+}
+/* .nav_link li a::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0px;
+    height: 2px;
+    background: #483636;
+    transition: .3s;
+}
+
+.nav_link li a:hover::before{
+    width: 100%;
+} */
+
+
+#buttonsep{
+    /* margin-left: auto; */
+    margin: none;
+}
+#bt1{
+    margin: none;
+}
+
+
+/*______________________________________________________________________*/
+
+
+.caixa_de_texto_inicial{
+    position: relative;
+    margin-top: 165px;
+    height: 553px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 40px;
+    margin-bottom: 140px;
+    background-image: url(../images/arvoredecerejeira.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 40px;
+    box-shadow: 0px 7px 7px 0px rgba(0, 0, 0, 0.25);
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+    pointer-events: none;
+    border-radius: 40px;
+  }
+.center-image{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding-top: 3.5em;
+}
+.center-image img {
+    height: 6em;
+}
+.center-text{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#text1{
+    font-weight: 600;
+    margin-top: 65px;
+    font-size: 2em;
+    text-align: center;
+}
+#text2{
+    margin-top: 65px;
+    font-size: 1.6em;
+    text-align: center;
+}
+#text3{
+    font-size: 1.6em;
+    text-align: center;
+}
+
+/*______________________________________________________________________*/
+
+
+
+.line{
+    display: flex;
+    height: 500px;
+    width: 100%;
+    /* border: solid 2px; */
+    margin: auto;
+    margin-top: 70px;
+}
+.Line_left{
+    left: 10%;
+    height: 500px;
+    width: 500px;
+    background: white;
+    border-radius: 50px;
+    padding: 30px;
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    position: absolute;
+}
+.Line_right{
+    right: 10%;
+    height: 500px;
+    width: 500px;
+    background: white;
+    border-radius: 50px;
+    padding: 30px;
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    position: absolute;
+}
+.caixa_texto_linha{
+    position: absolute;
+    top: 50%;
+    transform: translate(0%, -50%);
+    text-align: center;
+    padding: 20px;
+    padding-left: 3em;
+    padding-right: 3em;
+    
+}
+.titulo_linha {
+    line-height: 3em;
+}
+#img_line{
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+}
+#text_line{
+    box-shadow: 0px 7px 7px 0px rgba(0, 0, 0, 0.25);
+    font-size: 1.2em;
+    font-weight: 500;
+    line-height: 36px;
+}
+
+/*______________________________________________________________________*/
+
+
+.barra_final{
+    margin-top: 194px;
+    background: white;
+    height: 267px;
+    width: 100%;
+    padding-top: 14px;
+    text-align: center;
+}
+.caixa_de_texto{
+    width: 100%;
+    height: 151px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin: auto;
+    /*border: solid 2px;*/
+}
+.textos{
+    font-weight: 200;
+}
+#botao-estude-agora{
+    font-size: 1.2em;
+    font-weight: 700;
+    height: 90px;
+    width: 345px;
+    border-radius: 8px;
+    display: inline-flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin: auto;
+    
+
+}
+
+
+/*______________________________________________________________________*/
+
+
+.texto-pre-comentario{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin-top: 264px;
+}
+.comentarios{
+    width: 100%;
+    height: 420px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+.caixa-de-comentario{
+    width: 405px;
+    height: 235px;
+    border-radius: 12px;
+    background: white;
+    padding: 18px;
+}
+#caixa-de-comentario-central{
+    margin-left: 32px;
+    margin-right: 32px;
+}
+
+
+/*______________________________________________________________________*/
+
+
+footer{
+    display: flex;
+    position: relative;
+    margin-bottom: 0px;
+    margin-top: 90px;
+    height: 236px;
+    width: 100%;
+    background: white;
+    align-items: center;
+    
+}
+.petala_rodape{
+    align-items: center;
+    align-items: center;
+    margin-left: 4em;
+}
+.petala-rodape {
+    align-items: center;
+    font-size: 1.7em;
+    font-weight: 700;
+    align-items: center;
+}
+.container{
+    width: 100%;
+    display: flex;
+    justify-content:right;
+}
+
+#bt3{
+    margin-right: 1.2em;
+}
+.icones_contato {
+    position:absolute;
+    display: flex;
+    bottom: 10px;
+    left: 4em;
+    gap: 14px;
+}
+.icones_contato a {
+    font-size: 1.2em; 
+    color: black; 
+    text-decoration: none; 
+}
+.icones_contato a:hover {
+    color: #555; 
+}
+
+
+
+
+
+
+
+
+
+@media (max-width: 1330px) {    /*A navbar Quebra*/
+    *{
+        font-size: 18px;
+    }
+    .line{
+        /* background-color: greenyellow; */
+    }
+}
+
+
+
+@media (max-width: 1281px){     /* Imagens e Textos se sobrepoem */
+    *{
+        font-size: 16px;        /* Tentar aumentar */
+    }
+    .header{
+        padding: 20px 20px;
+    }
+    .line{
+        /* background-color: red; */
+    }
+    #buttonsep{
+        margin-left: 19px;
+    }
+    .Line_left{
+        width: 48%;
+        left: 0%;
+    }
+    .Line_right{
+        right: 0%;
+        width: 48%;
+    }
+}
+
+
+@media (max-width:1056px){
+    *{
+        font-size: 14px;
+    }
+    .nav_link li{
+        display: inline-block;
+        padding: 0px 0.5em;
+    }
+    .NavBar-extra {
+        margin-left: 20px;
+    }
+    .line{
+        /* background-color: blueviolet; */
+    }
+    .Line_left{
+        width: 49.8%;
+    }
+    .Line_right{
+        width: 49.8%;
+    }
+}
+
+@media (max-width:860px){  
+    .nav_link li{
+        padding: 0px 0em;
+    }
+    .nav_link a[href="#contatos"] {
+        display: none;
+      }
+    .line{
+        /* background-color: gold; */
+    }
+    
+}
+
+@media (max-width:710px) {
+    *{
+        font-size: 12px;
+    }
+    .header{
+        padding: 10px 10px;
+    }
+    .header img{
+        height: 40px;
+    }
+    .NavBar-extra {
+        margin-left: 10px;
+    }
+    .button-dark{
+        padding: 9px 22.5px;
+    }
+    .line{
+        /* background-color: #171717; */
+    }
+    .caixa_texto_linha{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .comentarios :not(:first-child) {
+        display: none;
+    }
+
+}
+
+
+@media (max-width: 560px){
+    .header{
+        height: 50px;
+    }
+    .line{
+        /* background-color: chartreuse; */
+    }
+    .caixa_texto_linha{
+        line-height: 3em;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .button-dark{
+        padding: 8px 10px;
+    }
+}
+
+/* Celulares Pequenos */
+
+@media (max-width: 515px){
+    .caixa_texto_linha{
+        line-height: 2em;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .titulo_linha {
+        line-height: 2em;
+    }
+    .navbar-buttons a[href="register.html"] {
+        display: none;
+    }
+}
+/* OU SEM AS IMAGENS */
+@media (max-width:511px){
+    .caixa_texto_linha{
+        line-height: 2em;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .titulo_linha {
+        line-height: 2em;
+    }
+    #text_line {
+        width: 100%;
+    }
+    #img_line {
+        display: none;
+    }
+    .navbar-buttons a[href="register.html"] {
+        display: none;
+    }
+}
+
+
+
+
+/*______________________________________________________________________*/
+.test{
+    margin-top: 73px;
+}
+
+/*
+320px: Smartphones pequenos
+768px: Tablets
+1024px: Laptops
+1200px ou mais: Desktops grandes
+ */

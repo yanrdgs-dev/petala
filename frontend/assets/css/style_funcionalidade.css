@@ -1,0 +1,271 @@
+@font-face{
+    src: url(../fonts/Montserrat-VariableFont_wght.ttf);
+    font-family: Montserrat;
+  }
+html {
+    scroll-behavior:smooth;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Montserrat;
+}
+body{
+    min-height: 100vh;
+    background: linear-gradient(to bottom, rgb(252, 229, 229), rgb(251, 210, 210), #FAC2C2, #F9A5A5, #603535);
+    background-size: cover;
+    background-position: center;
+   
+}
+
+/*------------------------------------*/
+
+.header{
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    padding: 20px 62px;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+.nav_bar_links{
+    position: relative;
+    font-size: 20px;
+    color: #483636;
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: 68px;
+}
+.nav_bar_links::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0px;
+    height: 2px;
+    background: #483636;
+    transition: .3s;
+}
+
+.nav_bar_links:hover::before{
+    width: 100%;
+}
+.button-dark{
+    position: relative;
+    padding: 12px 30px;
+    background: #1F1717;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    color: white;
+    font-weight: 500;
+    margin-left: 19px;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+/*_______________________________________________________*/
+
+.container_funcionalidades{
+    position: relative;
+    margin-top: 165px;
+    height: 553px;
+    width: 1374px;
+    border-radius: 40px;
+    margin-bottom: 140px;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url(../images/arvoredecerejeira.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0px 7px 7px 0px rgba(0, 0, 0, 0.25);
+}
+.background_image{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+    pointer-events: none;
+    border-radius: 40px;
+}
+.logo{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding-top: 73px;
+}
+.enter-text{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: 65px;
+}
+.sub-title{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    white-space: normal;
+    text-align: center;
+    width: 750px;
+    margin: 0 auto;
+    margin-top: 65px;
+}
+/*-----------------------------------*/
+.funcoes {
+    position: relative;
+    width: 100%;
+    height: 3000px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.container_funcao {
+    position: relative;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    height: 620px;
+    width: 1440px;
+    border-radius: 40px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 7px 7px 0px rgba(0, 0, 0, 0.25);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    background-color: white;
+    margin-top: 150px;
+    opacity: 0; 
+}
+
+.container_funcao.animar.left {
+    animation-name: Enter_Screen_Left;
+    animation-duration: .8s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+.container_funcao.animar.right {
+    animation-name: Enter_Screen_Right;
+    animation-duration: .8s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes Enter_Screen_Left {
+    from {
+        transform: translateX(-1200px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes Enter_Screen_Right {
+    from {
+        transform: translateX(1200px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+.imagem_funcao{
+    margin-right: auto;
+}
+.texto_funcao{
+    position: relative;
+    font-size: 32px;
+    font-weight: 500;
+    margin-right: auto;
+    margin-left: auto;
+}
+.imagem_funcao_even{
+    position: relative;
+    margin-left: auto;
+}
+.texto_funcao_even{
+    position: relative;
+    font-size: 32px;
+    font-weight: 500;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/*----------------------------------------*/
+
+footer{
+    display: flex;
+    position: relative;
+    margin-bottom: 0px;
+    margin-top: 90px;
+    height: 236px;
+    width: 100%;
+    background: white;
+    align-items: center;
+
+}
+.petala_rodape{
+    align-items: center;
+    font-size: 34px;
+    font-weight: 700;
+    align-items: center;
+    margin-left: 80px;
+
+}
+.container{
+    width: 100%;
+    display: flex;
+    justify-content:right;
+
+}
+.button-light{
+    margin-right: 80px;
+    padding: 12px 30px;
+    background: #E6E6E6;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    color: #171717;
+    font-weight: 500;
+    font-size: 20px;
+    text-decoration: none;
+}
+#bt3{
+    margin-right: 24px;
+    background: #1F1717;
+    color: white;
+}
+.icones_contato {
+    position:absolute;
+    display: flex;
+    bottom: 10px;
+    left: 80px;
+    gap: 14px;
+}
+.icones_contato a {
+    font-size: 24px; 
+    color: black; 
+    text-decoration: none; 
+}
+.icones_contato a:hover {
+    color: #555; 
+}
+
