@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Petala</title>
+    <link rel="stylesheet" href="../assets/css/Style_CheckList.css">
+    <script
+      src="https://kit.fontawesome.com/28be5bc03d.js"
+      crossorigin="anonymous"
+    ></script>
+</head>
+
+<body>
+    <header>
+        <div class="imagem_navbar">
+            <a href="index.html">
+                <img src="../assets/images/logoSemPetala.png" width="70%" alt="logo" />
+            </a>
+        </div>
+        <div class="header_pos">
+            <nav class="navbar_pos">
+                <a href="#start">Página inicial</a>
+                <a href="#">Rotina</a>
+                <a href="#">Biblioteca</a>
+                <a href="#">Agenda</a>
+            </nav>
+        </div>
+        <div class="side-bar">
+            <input type="checkbox" id="sidebar-active">
+            <label for="sidebar-active" class="open-sidebar-button">
+                <i class="fa-solid fa-bars fa-xl"></i>
+            </label>
+            <div class="link-container">
+                <label for="sidebar-active" class="close-sidebar-button">
+                    <i class="fa-solid fa-xmark fa-xl"></i>
+                </label>
+                <a href="#" id="sidebar-link-1">Início</a>
+                <a href="#">Início</a>
+                <a href="#">Rotina</a>
+                <a href="#">Agenda</a>
+                <a href="#">Desempenho</a>
+                <a href="#">...</a>
+                <a href="#" id="sidebar-link-second-last">Configurações</a>
+                <a href="#">Sair</a>
+            </div>
+        </div>
+    </header>
+
+    <!-------------------------------------------------------------------------------------->
+    <main>
+        <div class="main-container">
+            <div class="header-container">
+                <div class="header-grid">
+                    <div class="header-item">A fazer</div>
+                    <div class="header-item">Em progresso</div>
+                    <div class="header-item">Revisar</div>
+                </div>
+            </div>
+            <div class="container-grid">
+                <!--Coluna 1-->
+                <div class="collumn">
+                    <div class="grid-item">
+                        <input type="text" id="Em-andamento" placeholder="Crie um novo ...">
+                        <button onclick="addItem('lista-em-andamento', 'Em-andamento')">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                    <ul id="lista-em-andamento" class="list"></ul>
+                </div>
+                <!--Coluna 2-->
+                <div class="collumn">
+                    <div class="grid-item">
+                        <input type="text" id="Revisar" placeholder="Crie um novo ...">
+                        <button onclick="addItem('lista-revisar', 'Revisar')">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                    <ul id="lista-revisar" class="list"></ul>
+                </div>
+                <!--Coluna 3-->
+                <div class="collumn">
+                    <div class="grid-item">
+                        <input type="text" id="Concluido" placeholder="Crie um novo ...">
+                        <button onclick="addItem('lista-Concluido', 'Concluido')">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                    <ul id="lista-Concluido" class="list"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="modal-overlay" id="editModal">
+            <div class="modal">
+              <h2>Editar Texto</h2>
+              <textarea id="modalInput" placeholder="Digite o novo texto"></textarea>
+              <div>
+                <button id="saveEdit">Salvar</button>
+                <button id="cancelEdit">Cancelar</button>
+              </div>
+            </div>
+          </div>
+    </main>
+    <!-------------------------------------------------------------------------------------->
+    <footer></footer>
+
+    <script src="../assets/js/CheckList.js"></script>
+</body>
+</html>
