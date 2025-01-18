@@ -16,7 +16,9 @@
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "express-validator": "^7.2.0",
+    "form-data": "^4.0.1",
     "jsonwebtoken": "^9.0.2",
+    "mailgun.js": "^11.1.0",
     "mysql2": "^3.11.4",
     "nodemailer": "^6.9.16",
     "nodemon": "^3.1.7"
