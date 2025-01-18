@@ -1,87 +1,479 @@
+@font-face {
+  src: url(../fonts/Montserrat-VariableFont_wght.ttf);
+  font-family: Montserrat;
+}
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Montserrat;
 }
-body{
-    min-height: 100vh;
-    background-image: url(../images/Fundo_Pos_login.png);
-    background-size: cover;
-    background-position: center;
+body {
+  width: 100%;
+  min-height: 100vh;
+  background-image: url(../images/árvore\ pos\ login.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
-.imagem_navbar{
-    position: fixed;
-    left: -46%;
+header {
+  position: fixed;
+  display: flex;
+  top: 0px;
+  width: 100%;
+  height: 120px;
+  /* background-color: white; */
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+  padding-left: 50px;
+  padding-right: 50px;
 }
-.header_pos{
-    position:fixed;
-    top: 4%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50%;
-    height: 80px;
-    padding: 20px 62px;
-    border-radius: 40px;
-    background: white;
-    display:flex;
-    z-index: 100;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  text-decoration: none;
+}
+.imagem_navbar {
+  position: fixed;
+  left: 50px;
+}
+.header_pos {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 80px;
+  padding: 20px 62px;
+  border-radius: 40px;
+  background: white;
+  display: flex;
+  z-index: 100;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 .navbar_pos {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
 }
 .navbar_pos a {
-    text-align: center;
-    margin:auto;
-    text-decoration: none;
-    color: #1F1717;
-    font-weight: 540;
-    font-size: 1.3em;
+  text-align: center;
+  margin: auto;
+  text-decoration: none;
+  color: #1f1717;
+  font-weight: 540;
+  font-size: 1.3em;
+}
+/* ________________________________________________ */
+
+.side-bar {
+  display: flex;
+  position: relative;
+  margin-left: auto;
+  align-items: center;
+}
+.link-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  align-items: flex-start;
+
+  position: fixed;
+  top: 0px;
+  right: -20%;
+  z-index: 1000;
+  width: 15%;
+
+  transition-duration: 0.55s;
+  transition-delay: 0s;
+  transition-timing-function: ease-out;
+  background-color: white;
+  box-shadow: -5px 0 5px rgba(0, 0, 0, 0.25);
+}
+.side-bar a {
+  box-sizing: border-box;
+  display: block;
+  height: auto;
+  width: 100%;
+  padding: 20px 30px;
+  justify-content: flex-start;
+  text-decoration: none;
+  color: #1f1717;
+}
+.side-bar a:hover {
+  background-color: hsl(343, 87%, 75%);
+}
+#sidebar-active {
+  display: none;
+}
+.open-sidebar-button,
+.close-sidebar-button {
+  padding: 20px;
+  display: block;
+}
+#sidebar-active:checked ~ .link-container {
+  right: 0px;
+}
+#sidebar-link-1 {
+  margin-top: 60px;
+}
+#sidebar-link-second-last {
+  margin-top: auto;
 }
 
 /*__________________________________________*/
+main {
+  display: flex;
+  position: relative;
+  height: 900px;
+  margin-top: 120px;
+  /* border: purple 5px solid; */
+}
 
 .mensagem_inicial {
-    display: flex;
-    justify-content: center;
-    margin-top: 148px;
-    font-size: 30px;
-    font-weight: 700;
+  display: flex;
+  position: absolute;
+  margin-top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 30px;
+  font-weight: 700;
+  /* background-color: green; */
 }
+
+/* ______________________________________________________ */
+
 .visao_geral {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-top: 112px;
+  margin-left: 126px;
+  width: 65%;
+  /* border: red dashed 2px; */
+  height: 100px;
+  flex-wrap: wrap;
+}
+.tarefas_progresso {
+  position: relative;
+  display: flex;
+  height: 100px;
+  width: 205px;
+  padding: 10px 10px 10px 10px;
+  border-radius: 16px;
+  background: #fafafa;
+  box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
+}
+.tarefas_concluidas {
+  position: relative;
+  display: flex;
+  height: 100px;
+  width: 205px;
+  padding: 10px 10px 10px 10px;
+  border-radius: 16px;
+  background: #fafafa;
+  box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
+}
+.tempo_de_foco {
+  position: relative;
+  display: flex;
+  height: 100px;
+  width: 205px;
+  padding: 10px 10px 10px 10px;
+  border-radius: 16px;
+  background: #fafafa;
+  box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
+}
+.provas_futuras {
+  position: relative;
+  display: flex;
+  height: 100px;
+  width: 205px;
+  padding: 10px 10px 10px 10px;
+  border-radius: 16px;
+  background: #fafafa;
+  box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
+}
+
+.visao {
+  position: absolute;
+  margin-top: 86px;
+  margin-left: 126px;
+  font-size: 20px;
+}
+
+/* _______________________________________________________________________ */
+
+.continue_onde_parou {
+  position: absolute;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin-top: 412px;
+  margin-left: 126px;
+  width: 937px;
+  /* border: red dashed 2px; */
+  height: 200px;
+}
+.container_rotina {
+  display: flex;
+  height: 200px;
+  width: 205px;
+  padding: 10px 21px 6px 20px;
+  border-radius: 16px;
+  background: #fafafa;
+  box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
+}
+.container_desempenho {
+  display: flex;
+  height: 200px;
+  width: 205px;
+  padding: 10px 21px 6px 20px;
+  border-radius: 16px;
+  background: #fafafa;
+  box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
+}
+.container_biblioteca {
+  display: flex;
+  height: 200px;
+  width: 205px;
+  padding: 10px 21px 6px 20px;
+  border-radius: 16px;
+  background: #fafafa;
+  box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
+}
+.container_foco {
+  display: flex;
+  height: 200px;
+  width: 205px;
+  padding: 10px 21px 6px 20px;
+  border-radius: 16px;
+  background: #fafafa;
+  box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
+}
+
+.continue {
+  display: flex;
+  position: absolute;
+  margin-top: 386px;
+  margin-left: 126px;
+  font-size: 20px;
+  /* border:deeppink 2px solid; */
+}
+
+/* ___________________________________________________________________-- */
+
+.container_direita {
+  position: absolute;
+  display: flex;
+  right: 126px;
+  top: 86px;
+  height: 680px;
+  width: 205px;
+  flex-wrap: nowrap;
+  /* border: orange 1px solid; */
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.calendario {
+  border-radius: 16px;
+  position: absolute;
+  display: flex;
+  height: 230px;
+  width: 205px;
+  background-color: white;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.button {
+  position: absolute;
+  display: flex;
+  width: 170px;
+  height: 42px;
+  background-color: #1f1717;
+  border-radius: 25px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+  color: #ffffff;
+  justify-content: center;
+  align-items: center;
+}
+.atividade {
+  position: absolute;
+  display: flex;
+  height: 380px;
+  width: 205px;
+  bottom: 0px;
+  border-radius: 16px;
+  background-color: white;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+#button_ver_mais {
+  bottom: 0px;
+}
+#button_Ver_amigos {
+  bottom: 15px;
+}
+
+.tarefas-progresso-texto {
+  display: flex;
+  font-size: medium;
+  height: 28px;
+  /* background-color: #1F1717; */
+}
+
+.tarefas-progresso-variavel {
+  display: flex;
+  bottom: 10px;
+  position: absolute;
+  background-color: purple;
+  height: 42px;
+  width: 185px;
+}
+
+@media (max-width: 768px) {
+  .imagem_navbar {
+    position: static;
+    width: 25%;
+  }
+
+header {
+  padding: 0;
+}
+
+  .header_pos {
+    display: none;
+  }
+
+  body {
+    margin: 0;
+    height: 100vh;
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+
+  .side-bar {
+    display: block;
+    /* background-color: aqua; */
+  }
+
+  .open-sidebar-button {
+    width: 80%;
+    position: absolute;
+    top: -30px;
+    right: 30px;
+    cursor: pointer;
+    display: block;
+  }
+
+  .link-container {
+    width: 50%;
+    right: -50%;
+  }
+
+  #sidebar-active:checked ~ .link-container {
+    right: 0;
+  }
+  main {
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+  }
+
+  .visao{
+    font-size: 15px;
+    margin: 0;
+    margin-top: 156px;
+  }
+
+  .visao_geral {
+    align-items: center;
+    margin: 0;
+    margin-top: 182px;
+    /* margin-left: 126px; */
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 15px 20px;
+    width: 100%;
+    height: auto;
+    /* border: inset blue; */
+  }
+
+  .tarefas_progresso{
+  width: 170px;
+  }
+
+  .tarefas_concluidas{
+    width: 170px;
+  }
+
+  .tempo_de_foco{
+    width: 170px;
+  }
+
+  .provas_futuras{
+    width: 170px;
+  }
+
+  .tarefas-progresso-variavel{
+    width: 90%;
+  }
+
+  .container_direita {
+    left: 0px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    gap: 40px;
+    gap: 20px;
+    width: 100%;
+    top: 750px;
+    /* border: red 2px solid; */
+  }
+  
+  .atividade {
+    top: 0px;
+    right: 0px;
+    width: 50%;
+    position: absolute;
+    display: flex;
+  }
+  .calendario{
+    top: 0px;
+    left: 0px;
+    width: 45%;
+    position: absolute;
+    display: flex;
+  }
+
+  .continue_onde_parou{
+    margin: 0;
+    margin-top: 482px;
+    flex-direction: column;
+  }
+
+  .continue{
+    font-size: 15px;
+    margin: 0;
+    margin-top: 456px;
+  }
+
+  .mensagem_inicial{
+    width: 300px;
+    margin: 0;
     margin-top: 100px;
-    margin-left: 126px;
-    width: 937px;
-    border: green solid 2px;
-    height: 100px;
-}
-.tarefas_progresso {
-    display: flex;
-    height: 100px;
-    width: 205px;
-    padding: 10px 21px 6px 20px;
-    gap: 17px;
-    border-radius: 16px;
-    background: #FAFAFA;
-    box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
-}
-.tarefas_concluidas {
-    display: flex;
-    height: 100px;
-    width: 205px;
-    padding: 10px 21px 6px 20px;
-    gap: 17px;
-    border-radius: 16px;
-    background: #FAFAFA;
-    box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
+    font-size: 15px;
+    align-items: center;
+  }
 }

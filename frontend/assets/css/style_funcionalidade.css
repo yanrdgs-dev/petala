@@ -1,3 +1,7 @@
+@font-face{
+    src: url(../fonts/Montserrat-VariableFont_wght.ttf);
+    font-family: Montserrat;
+  }
 html {
     scroll-behavior:smooth;
 }
@@ -5,6 +9,7 @@ html {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Montserrat;
 }
 body{
     min-height: 100vh;
@@ -51,7 +56,7 @@ body{
 .nav_bar_links:hover::before{
     width: 100%;
 }
-.button{
+.button-dark{
     position: relative;
     padding: 12px 30px;
     background: #1F1717;
@@ -99,7 +104,7 @@ body{
     margin: 0;
     padding-top: 73px;
 }
-.enter_text{
+.enter-text{
     position: relative;
     display: flex;
     justify-content: center;
@@ -108,7 +113,7 @@ body{
     font-weight: bold;
     margin-top: 65px;
 }
-.sub_title{
+.sub-title{
     position: relative;
     display: flex;
     justify-content: center;
@@ -232,7 +237,7 @@ footer{
     justify-content:right;
 
 }
-.btn2{
+.button-light{
     margin-right: 80px;
     padding: 12px 30px;
     background: #E6E6E6;

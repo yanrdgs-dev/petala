@@ -1,0 +1,25 @@
+@media screen and (max-width: 750px){
+    .box{
+        width: 395px;
+    }
+    .line{
+        width: 340px;
+    }
+    .logo{
+        width: 225px;
+        height: 75px;
+        margin: 5px 25px 2px;
+    }
+    .moeda{
+        margin: 5px;
+        height: 150px;
+        width: 161px;
+    }
+    .voltar{
+        height: 52px;
+        width: 94px;
+        font-size: 17px;
+        margin: 27px 47px 30px;
+        padding: 14px 24px;
+    }
+}

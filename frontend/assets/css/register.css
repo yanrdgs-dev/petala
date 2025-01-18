@@ -1,3 +1,10 @@
+@font-face{
+    src: url(../fonts/Montserrat-VariableFont_wght.ttf);
+    font-family: Montserrat;
+  }
+* {
+    font-family: Montserrat;
+}
 .fundo{
     background-color: #FBE2E2;
     padding: 0px;
@@ -155,4 +162,14 @@ input:-webkit-autofill:focus {
 a:link {
     background-color: transparent;
     text-decoration: none;
+}
+
+.error{
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    color: #1F1717;
+    font-size: 16px;
+    width: fit-content;
+    height: fit-content;
 }
