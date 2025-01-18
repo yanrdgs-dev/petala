@@ -84,7 +84,7 @@ router.put("/:id", (req, res) => {
   );
 });
 
-router.delete("./:id", (req, res) => {
+router.delete("/:id", (req, res) => {
   const userId = req.user.id;
   const checklistID = req.params.id;
 
