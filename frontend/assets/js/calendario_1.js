@@ -6,6 +6,7 @@ const modal = document.getElementById("modal");
 const closeModal = document.querySelector(".close");
 const eventoForm = document.getElementById("evento-form");
 const eventoDescricao = document.getElementById("evento-descricao");
+const cancelarEventoBtn = document.getElementById("cancelar-evento");
 
 let dataAtual = new Date();
 let eventos = {}; 
@@ -47,6 +48,7 @@ function carregarCalendario(data) {
 
 function abrirModal(dataChave) {
   modal.style.display = "flex";
+  eventoForm.dataset.dataChave = dataChave;
   eventoForm.onsubmit = (e) => {
     e.preventDefault();
     const descricao = eventoDescricao.value;
@@ -56,7 +58,31 @@ function abrirModal(dataChave) {
     modal.style.display = "none";
     carregarCalendario(dataAtual);
   };
+  const eventosDoDia = eventos[dataChave] || [];
+  const listaEventos = document.createElement("ul");
+  listaEventos.id = "lista-eventos";
+  listaEventos.innerHTML = "";
+
+  eventosDoDia.forEach((evento, index) => {
+    const item = document.createElement("li");
+    item.textContent = `${index + 1}. ${evento}`;
+    listaEventos.appendChild(item);
+  });
+
+  const conteudoModal = document.querySelector(".modal-content");
+  const listaExistente = document.getElementById("lista-eventos");
+  if (listaExistente) listaExistente.remove(); 
+  conteudoModal.appendChild(listaEventos);
 }
+
+function fecharModal() {
+  modal.style.display = "none";
+  eventoDescricao.value = ""; // Limpar o campo de texto
+}
+
+cancelarEventoBtn.addEventListener("click", fecharModal);
+
+closeModal.addEventListener("click", fecharModal);
 
 closeModal.addEventListener("click", () => {
   modal.style.display = "none";
@@ -71,5 +97,16 @@ nextBtn.addEventListener("click", () => {
   dataAtual.setMonth(dataAtual.getMonth() + 1);
   carregarCalendario(dataAtual);
 });
+
+eventoForm.onsubmit = (e) => {
+  e.preventDefault();
+  const descricao = eventoDescricao.value;
+  if (!descricao.trim()) return; // Evita salvar se o texto estiver vazio
+  const dataChave = eventoForm.dataset.dataChave; // Data armazenada ao abrir o modal
+  if (!eventos[dataChave]) eventos[dataChave] = [];
+  eventos[dataChave].push(descricao);
+  fecharModal(); // Fechar modal após salvar
+  carregarCalendario(dataAtual);
+};
 
 carregarCalendario(dataAtual);

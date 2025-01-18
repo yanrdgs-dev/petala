@@ -221,5 +221,55 @@
   border-radius: 5px;
 }
 #evento-form button{
-  font-size: 17px;
+  font-size: 12px;
 }
+
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+#salvar-evento,
+#cancelar-evento {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+#salvar-evento {
+  background-color: gray;
+  color: white;
+}
+
+#salvar-evento:hover {
+  background-color: gray;
+}
+
+#cancelar-evento {
+  background-color: #ddd;
+  color: black;
+}
+
+#cancelar-evento:hover {
+  background-color: #bbb;
+}
+
+#lista-eventos {
+  margin: 15px 0;
+  padding: 0;
+  list-style: none;
+}
+
+#lista-eventos li {
+  margin: 5px 0;
+  padding: 5px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
