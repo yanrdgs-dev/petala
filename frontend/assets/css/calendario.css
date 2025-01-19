@@ -273,3 +273,47 @@
   font-size: 14px;
 }
 
+@media (max-width: 768px) {
+  .imagem_navbar {
+    position: static;
+    width: 25%;
+  }
+
+header {
+  padding: 0;
+}
+
+  .header_pos {
+    display: none;
+  }
+
+  body {
+    margin: 0;
+    height: 100vh;
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+
+  .side-bar {
+    display: block;
+    /* background-color: aqua; */
+  }
+
+  .open-sidebar-button {
+    width: 80%;
+    position: absolute;
+    top: -30px;
+    right: 30px;
+    cursor: pointer;
+    display: block;
+  }
+
+  .link-container {
+    width: 50%;
+    right: -50%;
+  }
+
+  #sidebar-active:checked ~ .link-container {
+    right: 0;
+  }
+}
