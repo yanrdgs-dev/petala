@@ -8,99 +8,227 @@
     box-sizing: border-box;
     font-family: Montserrat;
 }
+
 header{
-    background-color: #ffffff;
-    display: flex;
-    justify-content: space-between;
+    background-color: #FAFAFA;
+    width: 100%;
     height: 100px;
+    display: inline-flex;
+    align-items: center;
+    padding: 19px 0px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);    
 }
+
+.fit-content{
+    width: fit-content;
+    height: fit-content;
+}
+
 .voltar{
     height: 52px;
     width: 94px;
     font-size: 17px;
-    margin: 27px 60px 40px;
     padding: 14px 24px;
     color: #ffffff;
     background-color: #1F1717;
     border-radius: 8px;
 }
+
 .logo{
-    width: 260px;
-    height: 80px;
-    margin: 5px 30px 10px;
+    width: auto;
+    margin-left: 20px;
+    margin-right: auto;
+    display: block;
+    -webkit-filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.25));
 }
 
 body{
     background-color: #FBE2E2;
 }
+
 .flex{
     display: flex;
 }
+
 .column{
     flex-direction: column;
 }
+
 .center-x{
     justify-content: center;
 }
+
 .center-y{
     align-items: center;
 }
 
 .moeda{
-    margin: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     height: 161px;
     width: 171px;
 }
+
 .box{
     display: flex;
     flex-direction: column;
-    height: 400px;
-    width: 467px;
-}
-.card{
-    background-color: #ffffff;
-    padding: 20px 250px 5px;
-    height: 305px;
+    height: fit-content;
+    width: 465px;
+    background-color: #FAFAFA;
     border-radius: 32px;
-    gap: 13px;
-    box-shadow:  0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 42px 10px;
+    margin-bottom: 180px;
 }
 
 input{
-    height: 50px;
-    
-    border-radius: 20px;
-    padding: 20px;
-    font-size: 18px;
     width: 345px;
-    color: #ffffff;
-    background-color: #483636;
-    box-shadow: 1px 1px 1px #888888;
-}
-input:focus{
-    outline-color: black;
-    outline-width: .2px;
-}
-button{
-    background-color: #1F1717;
-    font-size: 20px;
-    color: #ffffff;
-    gap: 60px;
-    width: 287px;
-    height: 54px;
+    height: 50px;
     border-radius: 20px;
-    box-shadow: 2px 5px 4px #000000;
-    margin-top: 20px;
+    background-color: #483636;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
+    margin-top: 10px;
+    padding: 0px 18px;
+    font-size: 16px;
+    color:rgba(250, 250, 250, 0.70);
+    border: 0px;
 }
+
+button{
+    color: #FAFAFA;
+    background-color:  #1F1717;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto; 
+    font-size: 20px;
+    font-weight: 500;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border: 0px;
+}
+
+button:hover {
+    color: rgb(255, 255, 255);
+    background-color: #120d0d;
+    text-decoration: none;
+}
+
+button:active {
+    background-color: #120d0d;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
+    transform: translateY(4px);
+}
+
+.botao-submit {
+    width: 190px;
+    height: 55px;
+    border-radius: 20px;
+}
+
+.botao-voltar {
+    width: 100px;
+    height: 55px;
+    border-radius: 10px;
+}
+
 .first{
     font-size: 27px;
-    white-space: nowrap;
+    text-align: center;
 }
 
 .second{
     font-size: 23px;
-    white-space: nowrap;
-    font-style: italic;
-    margin-bottom: 10px;
-    margin-top: -2px;
+    margin-bottom: 20px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.margin-voltar{
+    margin-right: 40px;
+}
+
+/* isso impede que o autofill do google mude a cor da caixa de texto, então não mexa se não souber uma solução melhor*/
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 0s 600000s, color 0s 600000s !important;
+}
+
+::placeholder{
+    color: #ffffff;
+    opacity: 0.70;
+}
+
+a:link {
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.negrito {
+    font-weight: bold;
+}
+
+.message {
+    color: #ef9898;
+}
+
+.message:link {
+    background-color: transparent;
+    text-decoration: underline !important; 
+}
+
+@media screen and (max-width: 500px){
+    .logo{
+        width: 245px;
+        margin-right: auto;
+    }
+
+    .margin-voltar {
+        margin-right: 20px;
+        margin-left: auto;
+    }
+
+    .botao-voltar {
+        width: 90px;
+        height: 49px;
+    }
+}
+
+@media screen and (max-width: 465px){
+    .box{
+        width: 100%;
+    }
+
+    input{
+        width: 74%;
+    }
+}
+
+@media screen and (max-width: 400px){
+    .logo{
+        width: 165px;
+        margin-right: 10px;
+    }
+
+    .margin-voltar {
+        margin-right: 10px;
+        margin-left: auto;
+    }
+
+    .botao-voltar {
+        width: 80px;
+        height: 45px;
+    }
+
+    .second{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 }
