@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const userRoutes = require("./routes/userRoutes");
 const loginRoutes = require("./routes/loginRoutes");
-const dashboardRoutes = require("./routes/dashboardRoutes");
+// const dashboardRoutes = require("./routes/dashboardRoutes");
 const checklistRoutes = require("./routes/checklistRoutes");
 const db = require("./config/db");
 const cors = require("cors");
@@ -20,7 +20,7 @@ app.use(express.json());
 app.use("/api/users", userRoutes);
 app.use("/login", loginRoutes);
 app.use("/api/checklists", checklistRoutes);
-app.use("/api/dashboard", dashboardRoutes);
+// app.use("/api/dashboard", dashboardRoutes);
 
 // Conectar com o banco de dados
 db.connect((err) => {
