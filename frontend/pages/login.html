@@ -21,17 +21,18 @@
           alt="Árvore de Cerejeira"
         />
         <div class="box">
-          <from class="flex column card center-y">
-            <input type="text" placeholder="E-mail" />
-            <input type="password" placeholder="Senha" />
-            <a href="#">Esqueceu a senha ?</a>
+          <form id="loginForm" class="flex column card center-y">
+            <input type="text" id="email" placeholder="E-mail" />
+            <input type="password" id="password" placeholder="Senha" />
+            <a href="#">Esqueceu a senha?</a>
             <button class="p-button" type="submit">Entrar</button>
             <div class="line"></div>
             <p>Novo por aqui?</p>
-            <button class="s-button" type="button">Criar nova conta</button>
-          </from>
+            <button class="s-button" type="button" id="cadastrarUser">Criar nova conta</button>
+          </form>
         </div>
       </div>
-    </main>
+    </main>    
+    <script src="../assets/js/apiLogin.js"></script>
   </body>
 </html>
