@@ -1,65 +1,144 @@
 <!DOCTYPE html>
-<html lang="PT-BR">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quem somos</title>
-    <link rel="stylesheet" href="../assets/css/somos.css" />
-    <!-- Link do Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+    <title>Pétala - Sobre nós</title>
+    <link rel="icon" href="../assets/images/logoSemPetala.png" />
+    <link rel="stylesheet" href="../assets/css/global_somos.css" />
+    <script
+      src="https://kit.fontawesome.com/28be5bc03d.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
-    <header class="container-nav">
-      <div class="logo-nav">
-        <a class="navbar-brand" href="index.html">
-          <img
-            src="../assets/images/Flor da pétala sombreada.png"
-            alt=""
-            width="75"
-            height="70"
-          />
-        </a>
+    <!-------------------------------------------------------------------------->
+
+    <header>
+      <img
+        class="logoHeader"
+        src="../assets/images/logoSemPetala.png"
+        alt="Logo do Pétala sem texto"
+        style="margin-left: 20px"
+      />
+      <div class="box row sub-header">
+        <a href="Funcionalidade.html" class="nav_bar_links">Funcionalidades</a>
+        <a href="#somos-1" class="nav_bar_links">Quem somos</a>
+        <a href="#contato" class="nav_bar_links">Contato</a>
       </div>
-      <div class="button-nav">
-        <a href="register.html"><button type="button" class="btn btn-dark rounded-2">
-          Cadastre-se
-        </button></a>
-        <a href="#"><button type="button" class="btn btn-dark rounded-2">Entrar</button></a>
+      <a href="index.html" class="caixa-botao-voltar">
+        <button class="darkButton voltar">Voltar</button>
+      </a>
+
+      <!-------------------------------------------------------------------------------------------->
+
+      <div class="side-bar">
+        <input type="checkbox" id="sidebar-active" />
+        <label for="sidebar-active" class="open-sidebar-button">
+          <i class="fa-solid fa-bars fa-xl"></i>
+        </label>
+        <div class="link-container">
+          <label for="sidebar-active" class="close-sidebar-button">
+            <i class="fa-solid fa-xmark fa-xl"></i>
+          </label>
+          <a href="#" id="sidebar-link-1">Início</a>
+          <a href="login.html">Entrar</a>
+          <a href="register.html">Cadastrar-se</a>
+          <a href="Funcionalidade.html">Funcionalidades</a>
+          <a href="somos.html">Quem somos</a>
+          <a href="#">Contato</a>
+          <a href="#">Saiba mais</a>
+          <a href="index.html">Voltar</a>
+        </div>
       </div>
     </header>
 
-    <section>
-      <div class="sla">
-        <!-- <img
-          src="../assets/images/arvore do quem somos - 1.png"
-          alt="Árvore"
-          class="imagem-sla"
-        /> -->
+    <!-------------------------------------------------------------------------->
+
+    <main class="box column" style="gap: 50px">
+      <div class="box column containerMain">
+        <div class="overlay"></div>
+        <img
+          class="logoMain"
+          src="..\assets\images\petala_logo.png"
+          alt="Logo do Pétala por extenso"
+          style="z-index: 1"
+        />
+        <h1 style="z-index: 1">Sobre Nós</h1>
       </div>
 
-      <div class="container-body">
-        <div class="titulo">
-          <h1>Sobre Nós</h1>
-        </div>
-        <div class="container-balao">
-          <div class="balao">
-            <div class="titulo-balao"><h1>Seja bem-vindo ao Pétala</h1></div>
-            <div class="paragrafo-balao">
-              <p>
-                A sua nova plataforma de estudos personalizada. Criada por
-                estudantes do curso de engenharia de software na Universidade de
-                Brasília(UnB). Nosso intuito é fomentar o estudo de uma maneira
-                geral e simplificada, com ferramentas interativas e gamificadas
-              </p>
-            </div>
-          </div>
+      <!-------------------------------------------------------------------------->
+
+      <div class="box row">
+        <div class="box column containerLeft" id="somos-1">
+          <h1>O que é o Pétala?</h1>
+          <h2>
+            O Pétala é um site de estudos gratuito de fácil acesso, uso e aberto
+            para qualquer pessoa usar. Criado como um projeto para a materia de
+            Desenvolvimento de Software do curso de engenharia da Universadide
+            Federal de Brasília (unb), o Pétala surgiu com a ideia de ser um
+            site de estudos simples, dinamico e gamificado, com uma forte
+            indentidade visual e acessibilidade para todos.
+          </h2>
         </div>
       </div>
-    </section>
-    <!-- Script do Bootstrap e dependências -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+      <!-------------------------------------------------------------------------->
+
+      <div class="box row">
+        <div class="box column containerRight">
+          <h1>Por que um site de estudos?</h1>
+          <h2>
+            O Pétala nasceu da vontade de transformar a maneira como aprendemos
+            e compartilhamos conhecimento. Observamos que muitas pessoas
+            enfrentam dificuldades para acessar conteúdos educativos de
+            qualidade, seja por barreiras financeiras, falta de recursos
+            acessíveis ou simplesmente pela falta de motivação diante de métodos
+            tradicionais de ensino.
+          </h2>
+        </div>
+      </div>
+
+      <!-------------------------------------------------------------------------->
+
+      <div class="box row">
+        <div class="box column containerLeft" id="somos-1">
+          <h1>Nossos Objetivos</h1>
+          <h2>
+            Nosso objetivo é ser um espaço acolhedor, acessível e inspirador,
+            onde aprender se torna algo natural e prazeroso. Escolhemos o nome
+            "Pétala" porque, assim como uma flor se abre para o mundo,
+            acreditamos que o aprendizado também floresce quando nutrido com
+            cuidado, inovação e colaboração.
+          </h2>
+        </div>
+      </div>
+
+      <!-------------------------------------------------------------------------->
+
+      <div class="containerCenter">
+        <h1>Nossa equipe</h1>
+      </div>
+
+      <div class="containerTeam"></div>
+    </main>
+    <footer>
+      <div class="sub-footer">
+        <div class="box column">
+          <p class="petala_rodape">Pétala</p>
+          <div class="icones_contato" id="contato">
+            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#"><i class="fa-brands fa-github"></i></a>
+            <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#"><i class="fa-brands fa-telegram"></i></a>
+          </div>
+        </div>
+        <a href="login.html"
+          ><button class="darkButton entrar">Entrar</button></a
+        >
+      </div>
+    </footer>
   </body>
 </html>
