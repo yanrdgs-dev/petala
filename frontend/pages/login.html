@@ -1,17 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pétala</title>
+    <title>Pétala - Login</title>
     <link rel="stylesheet" href="../assets/css/global login.css" />
-    <link rel="stylesheet" href="../assets/css/responsivo_login.css">
-    <link rel="icon" href="../assets/images/LogoCerejeira 1.png" />
+    <link rel="stylesheet" href="../assets/css/responsivo_login.css" />
+    <link rel="icon" href="../assets/images/logoSemPetala.png" />
   </head>
   <body>
-    <header>
-      <img class="logo" src="../assets/images/Frame 12 2.png" alt="Pétala" />
-      <button class="voltar">Voltar</button>
+    <header class="flex row space center-y width-100">
+      <img
+        class="logo"
+        src="../assets/images/petala_logo.png"
+        alt="Logo do Pétala por extenso"
+      />
+      <a href="index.html"><button class="voltar">Voltar</button></a>
     </header>
     <main>
       <div class="flex column center-x center-y">
@@ -20,19 +24,31 @@
           src="../assets/images/LogoCerejeira 1.png"
           alt="Árvore de Cerejeira"
         />
-        <div class="box">
-          <from class="flex column card center-y">
-            <input type="text" placeholder="E-mail" />
-            <input type="password" placeholder="Senha" />
-            <a href="#">Esqueceu a senha ?</a>
+        <div class="box card flex column center-y">
+          <form class="flex column center-y">
+            <input
+              type="text"
+              name="username"
+              id="username"
+              placeholder="Nome de usuário"
+              required
+              maxlength="50"
+            />
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Senha"
+              required
+            />
             <button class="p-button" type="submit">Entrar</button>
-            <div class="line"></div>
-            <p>Novo por aqui?</p>
-            <button class="s-button" type="button">Criar nova conta</button>
-          </from>
+          </form>
+          <a href="#">Esqueceu a senha ?</a>
+          <div class="line"></div>
+          <p>Novo por aqui?</p>
+          <button class="s-button" type="button">Criar nova conta</button>
         </div>
       </div>
     </main>
   </body>
 </html>
-
