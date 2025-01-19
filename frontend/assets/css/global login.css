@@ -1,32 +1,73 @@
+
 @font-face{
     src: url(../fonts/Montserrat-VariableFont_wght.ttf);
     font-family: Montserrat;
   }
+* {
+    font-family: Montserrat;
+}
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
+
+/*------------------------------------*/
+
+.flex{
+    display: flex;
+}
+
+.column{
+    flex-direction: column;
+}
+
+.row{
+    flex-direction: row;
+}
+
+.center-x{
+    justify-content: center;
+}
+
+.center-y{
+    align-items: center;
+}
+
+.space {
+    justify-content: space-between;
+}
+
+
+/*------------------------------------*/
+
 header{
     background-color: #ffffff;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     height: 100px;
+    padding: 20px 0px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
 }
 .voltar{
-    height: 52px;
-    width: 94px;
-    font-size: 17px;
-    margin: 27px 60px 40px;
-    padding: 14px 24px;
+    width: 100px;
+    height: 55px;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2vw;
     color: #ffffff;
     background-color: #1F1717;
-    border-radius: 8px;
+    border-radius: 10px;
+    font-weight: 500 !important;
 }
 .logo{
-    width: 260px;
-    height: 80px;
-    margin: 5px 30px 10px;
+    width: auto;
+    margin-left: 20px;
+    display: block;
+    -webkit-filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.25));
 }
 
 body{
@@ -46,76 +87,124 @@ body{
 }
 
 .moeda{
-    margin: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
     height: 161px;
     width: 171px;
 }
 .box{
     display: flex;
     flex-direction: column;
-    height: 400px;
-    width: 467px;
+    height: fit-content;
+    width: fit-content;
+    margin-top: 5px;
+    margin-bottom: 65px;
 }
 .card{
     background-color: #ffffff;
-    padding: 20px 20px 5px;
-    height: 400px;
-    gap: 13px;
+    width: 465px;
+    height: fit-content;
+    gap: 15px;
     border-radius: 32px;
-    box-shadow:  0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 42px 0px;
 }
 
 input{
+    display: block;
+    width: 381px;
     height: 50px;
     border-radius: 20px;
-    padding: 20px;
-    font-size: 18px;
-    width: 345px;
-    color: #ffffff;
     background-color: #483636;
-    box-shadow: 1px 1px 1px #888888;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    padding: 0px 18px;
+    font-size: 16px;
+    color:rgba(250, 250, 250, 0.70);
+    border: 0px;
 }
 .card a{
     margin-bottom: 3px;
-    font-size: 15px;
+    font-size: 21px;
 }
 a{
     text-decoration: none;
-    color: blue;
+    color: #ef9898;
 }
+
+a:link {
+    background-color: transparent;
+    text-decoration: none;
+}
+
 a:hover{
     text-decoration: underline;
 }
-input:focus{
-    outline-color: black;
-    outline-width: .2px;
-}
+
 button{
-    background-color: #1F1717;
+    color: #FAFAFA;
+    background-color:  #1F1717; 
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto; 
     font-size: 20px;
-    color: #ffffff;
-    width: 287px;
-    height: 54px;
-    border-radius: 20px;
-    box-shadow: 2px 5px 4px #000000;
-    cursor: pointer;
+    font-weight: 500;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border: 0px;
+
 }
+
+button:hover {
+    color: rgb(255, 255, 255);
+    background-color: #120d0d;
+    text-decoration: none;
+}
+
+button:active {
+    background-color: #120d0d;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
+    transform: translateY(4px);
+}
+
 .s-button{
-    margin-top: 2px;
+    margin-top: 3px;
     border-radius: 20px;
     background-color: #1F1717;
-    width: 267px;
-    height: 54px;
+    width: fit-content;
+    padding: 15px;
+    height: 55px;
     font-size: 20px;
     color: #ffffff;
-    box-shadow: 2px 5px 4px #000000;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.p-button{
+    margin-top: 3px;
+    border-radius: 20px;
+    background-color: #1F1717;
+    width: 190px;
+    padding: 15px;
+    height: 55px;
+    font-size: 20px;
+    color: #ffffff;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 .line{
     height: 2px;
-    width: 384px;
-    background-color: #000000;
+    width: 90%;
+    background-color: #1F1717;
     margin: 5px 0;
 }
 p{
-    font-size: 18px;
+    font-size: 20px;
+}
+
+::placeholder{
+    color: #ffffff;
+    opacity: 0.70;
 }

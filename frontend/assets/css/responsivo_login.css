@@ -1,25 +1,52 @@
-@media screen and (max-width: 750px){
-    .box{
-        width: 395px;
-    }
-    .line{
-        width: 340px;
-    }
+@media screen and (max-width: 500px){
     .logo{
-        width: 225px;
-        height: 75px;
-        margin: 5px 25px 2px;
-    }
-    .moeda{
-        margin: 5px;
-        height: 150px;
-        width: 161px;
+        width: 245px;
+        margin-right: auto;
     }
     .voltar{
-        height: 52px;
-        width: 94px;
-        font-size: 17px;
-        margin: 27px 47px 30px;
-        padding: 14px 24px;
+        width: 90px;
+        height: 49px;
+        margin-right: 20px;
+        margin-left: auto;
+    }
+    .p-button, .s-button{
+        width: 210px;
+        height: 65px;
+    }
+    
+    input{
+        width: 315px;
+        height: 60px;
+    }
+}
+
+@media screen and (max-width: 465px){
+    .card{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 400px){
+    .logo{
+        width: 165px;
+        margin-right: 10px;
+    }
+    .voltar{
+        width: 80px;
+        height: 45px;
+        margin-right: 5px;
+    }       
+    .p-button, .s-button{
+        width: 210px;
+        height: 65px;
+    }
+    
+    .line{
+        width: 90%;
+    }
+
+    input{
+        width: 265px;
+        height: 60px;
     }
 }

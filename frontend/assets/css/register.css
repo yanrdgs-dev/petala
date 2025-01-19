@@ -5,6 +5,36 @@
 * {
     font-family: Montserrat;
 }
+
+/*------------------------------------*/
+
+.flex{
+    display: flex;
+}
+
+.column{
+    flex-direction: column;
+}
+
+.row{
+    flex-direction: row;
+}
+
+.center-x{
+    justify-content: center;
+}
+
+.center-y{
+    align-items: center;
+}
+
+.space {
+    justify-content: space-between;
+}
+
+
+/*------------------------------------*/
+
 .fundo{
     background-color: #FBE2E2;
     padding: 0px;
@@ -14,22 +44,23 @@
 .nav-bar{
     background-color: #FAFAFA;
     width: 100%;
-    height: auto;
+    height: 60px;
     display: inline-flex;
     align-items: center;
-    padding: 19px 0px;
+    padding: 20px 0px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);    
 
 } 
 
 .botao{
     color: #FAFAFA;
-    background-color:  #1F1717;
+    background-color:  #1F1717; 
     justify-content: center;
     align-items: center;
     margin-left: auto;
     margin-right: auto; 
-    font-size: 16px;
+    font-size: 20px;
+    font-weight: 500;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     border: 0px;
 
@@ -49,17 +80,19 @@
 
 
 .voltar{
-    width: 100px;
-    height: 55px;
+    width: 100%;
+    height: 100%;
     border-radius: 10px;
     
 }
 
 .logo{
+    width: auto;
     margin-left: 20px;
+    margin-right: auto;
+    display: block;
     -webkit-filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.25));
     filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.25));
-
 }
 
 .caixa-botao-voltar{
@@ -67,7 +100,7 @@
     height: 55px;
     justify-content: center;
     align-items: center;
-    margin-right: 40px;
+    margin-right: 2vw;
     margin-left: auto;
     
 }   
@@ -83,7 +116,7 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 25px;
-    margin-bottom: 180px;
+    margin-bottom: 65px;
     padding: 42px 0px;
     
 }
@@ -93,8 +126,14 @@
     height: 161PX;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 25px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     
+}
+
+.moeda{
+    height: 161px;
+    width: 171px;
 }
 
 .caixa-forms{
@@ -113,12 +152,19 @@
     border: 0px;
 }
 
-.caixa-botao-cadastro, .caixa-botao-login{
+.caixa-botao-cadastro {
     width: 190px;
     height: 55px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 18px;
+}
+
+.caixa-botao-login{
+    width: 190px;
+    height: 55px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* isso impede que o autofill do google mude a cor da caixa de texto, então não mexa se não souber uma solução melhor*/
@@ -140,7 +186,7 @@ input:-webkit-autofill:focus {
 
 .barra-de-separacao{
     display: block;
-    width: 384px;
+    width: 90%;
     height: 2px;
     margin-left: auto;
     margin-right: auto;
@@ -156,10 +202,82 @@ input:-webkit-autofill:focus {
     width: fit-content;
     height: fit-content;
     color: #1F1717;
-    font-size: 16px;
+    font-size: 20px;
 }
 
 a:link {
     background-color: transparent;
     text-decoration: none;
+}
+
+.error{
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    color: #1F1717;
+    font-size: 16px;
+    width: fit-content;
+    height: fit-content;
+}
+
+@media screen and (max-width: 500px){
+    .logo{
+        width: 245px;
+        margin-right: auto;
+    }
+    .caixa-botao-voltar{
+        width: 90px;
+        height: 49px;
+        margin-right: 20px;
+        margin-left: auto;
+    }
+    .cadastro, .login{
+        width: 210px;
+        height: 65px;
+    }
+    
+    .barra-de-separacao{
+        width: 90%;
+    }
+    .caixa-forms{
+        width: 315px;
+        height: 60px;
+    }
+}
+
+@media screen and (max-width: 465px){
+    .caixa-cadastro{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 400px){
+    .logo{
+        width: 165px;
+        margin-right: 10px;
+    }
+    .caixa-botao-voltar{
+        width: 80px;
+        height: 45px;
+        margin-right: 5px;
+        margin-left: 20%;
+    }       
+    .cadastro, .login{
+        width: 210px;
+        height: 65px;
+    }
+    
+    .barra-de-separacao{
+        width: 90%;
+    }
+    .caixa-forms{
+        width: 265px;
+        height: 60px;
+    }
+}
+@media screen and (max-width: 350px){
+    .caixa-botao-voltar{
+        margin-left: 10%;
+        
+    }
 }

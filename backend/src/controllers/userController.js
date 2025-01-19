@@ -2,6 +2,7 @@ const db = require("../config/db");
 require("dotenv").config();
 const bcrypt = require("bcryptjs");
 const { validationResult } = require("express-validator");
+const { sendWelcomeEmail } = require("../services/sendWelcomeEmail");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const { error } = require("console");
@@ -67,6 +68,7 @@ exports.register = (req, res) => {
       });
     },
   );
+  sendWelcomeEmail({ name, email }).catch(console.error);
   // Criando a vericação no email:
 
   db.query(
@@ -141,4 +143,5 @@ exports.tokenVerify = () => {
 //     if (!err) {
 //       res.status(200).json({ message: "Email veificado com sucesso!" });
 //     }
-//   };
+//     sendWelcomeEmail({ name, email }).catch(console.error);
+};
