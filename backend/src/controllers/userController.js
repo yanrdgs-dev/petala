@@ -143,4 +143,5 @@ exports.tokenVerify = () => {
 //     if (!err) {
 //       res.status(200).json({ message: "Email veificado com sucesso!" });
 //     }
-//   };
+//     sendWelcomeEmail({ name, email }).catch(console.error);
+};
