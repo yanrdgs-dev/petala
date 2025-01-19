@@ -4,8 +4,6 @@ const bcrypt = require("bcryptjs");
 const { validationResult } = require("express-validator");
 const { sendWelcomeEmail } = require("../services/sendWelcomeEmail");
 const jwt = require("jsonwebtoken");
-const crypto = require("crypto");
-const { error } = require("console");
 
 exports.register = (req, res) => {
   const errors = validationResult(req);
@@ -15,7 +13,7 @@ exports.register = (req, res) => {
 
   const { username, name, email, password } = req.body;
 
-  //Verifica se o email já existe
+  // Verifica se o e-mail ou username já existe
   db.query(
     "SELECT * FROM users WHERE email = ? OR username = ?",
     [email, username],
@@ -33,6 +31,7 @@ exports.register = (req, res) => {
             .json({ message: "Nome de usuário já existe." });
         }
       }
+
       // Criptografar senha
       bcrypt.hash(password, 10, (err, hashedPassword) => {
         if (err) {
@@ -45,27 +44,34 @@ exports.register = (req, res) => {
         db.query(
           "INSERT INTO users (username, name, email, password_hash) VALUES (?, ?, ?, ?)",
           [username, name, email, hashedPassword],
-          (err) => {
+          (err, insertResult) => {
             if (err) {
               return res
                 .status(500)
                 .json({ message: "Erro ao cadastrar usuário." });
             }
+
+            // Gerar token JWT
             const token = jwt.sign(
-              { id: result.insertId, email, username },
+              { id: insertResult.insertId, email, username },
               process.env.JWT_SECRET,
               {
                 expiresIn: "24h",
-              },
+              }
             );
+
+            // Retornar resposta com sucesso
             res.status(201).json({
               message: "Usuário cadastrado com sucesso.",
               username: username,
               token: token,
             });
-          },
+
+            // (Opcional) Enviar e-mail de boas-vindas
+            sendWelcomeEmail(email, name);
+          }
         );
       });
-    },
+    }
   );
-}
+};
