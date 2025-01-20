@@ -88,7 +88,7 @@ router.delete("/:id", (req, res) => {
   const userId = req.user.id;
   const checklistID = req.params.id;
 
-  const query = `DELETE checklist WHERE user_id = ? AND id = ?`;
+  const query = `DELETE FROM checklist WHERE user_id = ? AND id = ?`;
 
   db.query(query, [userId, checklistID], (err, result) => {
     if (err) {
