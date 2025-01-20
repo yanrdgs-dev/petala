@@ -130,7 +130,7 @@
 #calendario{
   width: 70%;
   margin: 125px auto;
-  border: 5px solid #ffffff5a;
+  border: 4px solid #FBE2E2;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   border-radius: 23px;
   overflow: hidden;
@@ -140,7 +140,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: rosybrown;
+  background-color: #FA9797;
 }
 .nav-btn{
   font-size: 25px;
@@ -174,7 +174,7 @@
 }
 
 .dia:hover{
-  background-color: pink;
+  background-color: #FBE2E2;
 }
 
 .modal{
@@ -207,7 +207,7 @@
   padding: 15px;
   width: 252px;
   height: 32px;
-  background: pink;
+  background: #FBE2E2;
   color: black;
   border: none;
   display: flex;
@@ -216,7 +216,6 @@
 }
 
 #evento-form button:hover{
-  background: gainsboro;
   opacity: 80%;
   border-radius: 5px;
 }
@@ -241,21 +240,21 @@
 }
 
 #salvar-evento {
-  background-color: gray;
+  background-color: #f97777;
   color: white;
 }
 
 #salvar-evento:hover {
-  background-color: gray;
+  background-color: #b15959;
 }
 
 #cancelar-evento {
-  background-color: #ddd;
-  color: black;
+  background-color: #603535;
+  color: white;
 }
 
 #cancelar-evento:hover {
-  background-color: #bbb;
+  background-color: #b15959;
 }
 
 #lista-eventos {
