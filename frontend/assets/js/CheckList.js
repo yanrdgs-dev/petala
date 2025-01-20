@@ -1,75 +1,106 @@
-function addItem(listId, inputId) {
-    const list = document.getElementById(listId);
-    const input = document.getElementById(inputId);
 
-    if (input.value.trim() === "") {
-        alert("O campo de texto não pode estar vazio!");
-        return;
-    }
+const API_URL = "http://localhost:3000/api/checklist";
 
-    const li = document.createElement("li");
 
-    // Div para o texto (esquerda)
-    const divText = document.createElement("div");
-    divText.classList.add("text");
-    divText.textContent = input.value;
+const token = localStorage.getItem("token");
 
-    // Div para os botões (direita)
-    const divButtons = document.createElement("div");
-    divButtons.classList.add("buttons");
 
-    // Botão de edição
-    const editButton = document.createElement("button");
-    editButton.innerHTML = '<i class="fa-solid fa-pen"></i>';
-    editButton.onclick = () => {
-    const modal = document.getElementById("editModal");
-    const modalInput = document.getElementById("modalInput");
-    const saveButton = document.getElementById("saveEdit");
-    const cancelButton = document.getElementById("cancelEdit");
-
-    // Preenche o campo de input com o texto atual
-    modalInput.value = divText.textContent.trim();
-
-    // Exibe o modal
-    modal.style.display = "flex";
-
-    // Salva a edição
-    saveButton.onclick = () => {
-        const newText = modalInput.value.trim();
-        if (newText) {
-            divText.textContent = newText;
-        }
-        modal.style.display = "none"; // Esconde o modal
-    };
-
-    // Cancela a edição
-    cancelButton.onclick = () => {
-        modal.style.display = "none"; // Apenas esconde o modal
-    };
-
-    // Fecha o modal ao clicar fora dele
-    modal.onclick = (e) => {
-        if (e.target === modal) {
-            modal.style.display = "none";
-        }
-    };
+const headers = {
+  "Content-Type": "application/json",
+  Authorization: `Bearer ${token}`,
 };
 
-    // Botão de remoção
-    const deleteButton = document.createElement("button");
-    deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
-    deleteButton.classList.add("delete");
-    deleteButton.onclick = () => li.remove();
 
-    //----
+async function fetchTasks() {
+  try {
+    const response = await fetch(API_URL, { headers });
+    const tasks = await response.json();
 
-    divButtons.appendChild(editButton);
-    divButtons.appendChild(deleteButton);
-
-    li.appendChild(divText);
-    li.appendChild(divButtons);
-
-    list.appendChild(li);
-
-    input.value = "";
+    
+    tasks.forEach((task) => addTaskToUI(task));
+  } catch (error) {
+    console.error("Erro ao buscar tarefas:", error);
+  }
 }
+
+
+async function addTask(listId, inputId) {
+  const titulo = document.getElementById(inputId).value;
+
+  if (!titulo) {
+    alert("Digite um título para a tarefa!");
+    return;
+  }
+
+  try {
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers,
+      body: JSON.stringify({ titulo }),
+    });
+
+    if (response.ok) {
+      const task = await response.json();
+      addTaskToUI(task);
+      document.getElementById(inputId).value = ""; 
+    } else {
+      alert("Erro ao adicionar tarefa!");
+    }
+  } catch (error) {
+    console.error("Erro ao adicionar tarefa:", error);
+  }
+}
+
+
+function addTaskToUI(task) {
+  const list = document.getElementById("lista-em-andamento"); 
+
+  const li = document.createElement("li");
+  li.setAttribute("data-id", task.id);
+  li.innerHTML = `
+    <span>${task.titulo}</span>
+    <button onclick="deleteTask(${task.id})"><i class="fa-solid fa-trash"></i></button>
+  `;
+
+  list.appendChild(li);
+}
+
+
+async function updateTask(id, newTitle) {
+  try {
+    const response = await fetch(`${API_URL}/${id}`, {
+      method: "PUT",
+      headers,
+      body: JSON.stringify({ titulo: newTitle }),
+    });
+
+    if (response.ok) {
+      alert("Tarefa atualizada com sucesso!");
+    } else {
+      alert("Erro ao atualizar tarefa!");
+    }
+  } catch (error) {
+    console.error("Erro ao atualizar tarefa:", error);
+  }
+}
+
+
+async function deleteTask(id) {
+  try {
+    const response = await fetch(`${API_URL}/${id}`, {
+      method: "DELETE",
+      headers,
+    });
+
+    if (response.ok) {
+      document.querySelector(`[data-id="${id}"]`).remove();
+    } else {
+      alert("Erro ao excluir tarefa!");
+    }
+  } catch (error) {
+    console.error("Erro ao excluir tarefa:", error);
+  }
+}
+
+
+document.addEventListener("DOMContentLoaded", fetchTasks);
