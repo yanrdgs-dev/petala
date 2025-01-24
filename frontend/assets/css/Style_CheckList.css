@@ -327,3 +327,12 @@ ul {
   color: white;
   font-weight: 580;
 }
+.move-to-column {
+  background-color: #FFB6B6;
+  color: #1F1717;
+  font-weight: 580;
+}
+
+.move-to-column:hover {
+  background-color: #FF8B8B;
+}
