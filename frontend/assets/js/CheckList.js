@@ -35,7 +35,7 @@ function addItem(listId, inputId) {
         moveToColumnButtons.forEach((button) => {
             const targetColumn = button.dataset.targetColumn;
 
-            // Oculta botões que não fazem sentido para a coluna atual
+            // Oculta o botao da coluna atual
             if (targetColumn === li.dataset.currentColumn) {
                 button.style.display = "none";
             } else {

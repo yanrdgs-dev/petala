@@ -38,9 +38,9 @@ button {
   text-decoration: none;
   cursor: pointer;
 }
-button:hover {
+/* button:hover {
   opacity: 0.8;
-}
+} */
 .imagem_navbar {
   position: fixed;
   left: 50px;
@@ -338,6 +338,7 @@ ul {
 }
 
 .move-to-column:hover {
+  opacity: 90%;
 }
 .modal-actions {
   display: flex;
@@ -361,7 +362,7 @@ ul {
 }
 
 .modal-move button:hover {
-  opacity: 80%;
+  opacity: 90%;
 }
 
 #saveEdit, #cancelEdit {
@@ -382,7 +383,9 @@ ul {
 }
 
 #saveEdit:hover {
+  opacity: 80%;
 }
 
 #cancelEdit:hover {
+  opacity: 90%;
 }
