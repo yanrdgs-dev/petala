@@ -36,13 +36,16 @@ function addItem(listId, inputId) {
             const targetColumn = button.dataset.targetColumn;
 
             // Oculta botões que não fazem sentido para a coluna atual
-            if (targetColumn === listId) {
+            if (targetColumn === li.dataset.currentColumn) {
                 button.style.display = "none";
             } else {
                 button.style.display = "block";
                 button.onclick = () => {
                     // Remove o item da coluna atual
                     li.remove();
+
+                    // Atualiza o dataset para a nova coluna
+                    li.dataset.currentColumn = targetColumn;
 
                     // Adiciona o item na coluna de destino
                     const targetList = document.getElementById(targetColumn);
@@ -90,6 +93,9 @@ function addItem(listId, inputId) {
 
     li.appendChild(divText);
     li.appendChild(divButtons);
+
+    // Define o dataset da coluna atual
+    li.dataset.currentColumn = listId;
 
     list.appendChild(li);
 

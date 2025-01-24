@@ -292,6 +292,10 @@ ul {
   height: auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .modal textarea {
@@ -334,5 +338,51 @@ ul {
 }
 
 .move-to-column:hover {
-  background-color: #FF8B8B;
+}
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Espaço entre os botões */
+}
+.modal-move {
+  display: flex;
+  gap: 10px; /* Espaço entre os botões */
+  justify-content: center;
+}
+
+.modal-move button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #3d0f0f;
+  color: white;
+  cursor: pointer;
+  
+}
+
+.modal-move button:hover {
+  opacity: 80%;
+}
+
+#saveEdit, #cancelEdit {
+  padding: 10px 20px;
+  background-color: #FFA6A6;
+  color: #1F1717;
+  font-weight: 580;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 25%;
+  min-width: 90px;
+}
+
+#cancelEdit {
+  background-color:#1F1717;
+  color: white;
+}
+
+#saveEdit:hover {
+}
+
+#cancelEdit:hover {
 }
