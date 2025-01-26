@@ -20,8 +20,10 @@ const authenticateUser = (req, res, next) => {
 
     next();
   } catch (err) {
-    console.error("Erro na autenticação: ", err);
-    return res.status(401).json({ message: "Token inválido ou expirado." });
+    return res.status(401).json({
+      message: "Token inválido ou expirado.",
+      error: err.message, // Ajuda a entender o erro no frontend.
+    });
   }
 };
 
