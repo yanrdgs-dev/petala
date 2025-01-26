@@ -1,14 +1,18 @@
 
-const API_URL = "http://localhost:3000/api/checklist";
+const API_URL = "http://localhost:3000/api/checklists";
+const token = localStorage.getItem('token');
 
 
-const token = localStorage.getItem("token");
-
+if (!token) {
+  alert('Você precisa estar logado!');
+  window.location.href = './login.html';
+}
 
 const headers = {
   "Content-Type": "application/json",
   Authorization: `Bearer ${token}`,
 };
+
 
 
 async function fetchTasks() {
@@ -58,9 +62,10 @@ function addTaskToUI(task) {
   const li = document.createElement("li");
   li.setAttribute("data-id", task.id);
   li.innerHTML = `
-    <span>${task.titulo}</span>
-    <button onclick="deleteTask(${task.id})"><i class="fa-solid fa-trash"></i></button>
-  `;
+  <span>${task.titulo}</span>
+  <button onclick="deleteTask(${task.id || 'null'})"><i class="fa-solid fa-trash"></i></button>
+`;
+
 
   list.appendChild(li);
 }
