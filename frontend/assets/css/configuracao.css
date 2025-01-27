@@ -159,3 +159,16 @@
     font-weight: 550;
     font-size: 1.6em;
 }
+.box-main {
+    display: flex;
+    grid-row: 4 / 22;
+    grid-column: 5 / 22;
+    background-color: aqua;
+    padding: 5%;
+}
+.profile-picture {
+    width: 280px;
+    height: 280px;
+    border-radius: 280px;
+    background-color: wheat;
+}
