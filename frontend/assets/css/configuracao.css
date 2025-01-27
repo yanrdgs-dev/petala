@@ -168,7 +168,6 @@
     grid-column: 5 / 22;
     background-color: grey;
     padding: 5%;
-    display: none;  /*  Provisório até JS  *//*  Provisório até JS  */
 }
 .profile-picture {
     width: 280px;
@@ -184,7 +183,7 @@
   grid-column: 4 / 17;
   height: auto;
   width: auto;
-  background-color: rgb(129, 8, 8);
+  background-color: rgb(209, 209, 209);
   padding: 4.5%;
   border-radius: 10px;
   font-weight: 500;
@@ -196,7 +195,7 @@
   grid-column: 4 / 17;
   height: auto;
   width: auto;
-  background-color: rgb(129, 8, 8);
+  background-color: rgb(209, 209, 209);
   padding: 4.5%;
   border-radius: 10px;
   font-weight: 500;
@@ -215,7 +214,7 @@
 }
 /* ----------------------------------------- */
 
-.box-main-config {
+.box-main-conta {
   display: grid;
   grid-template-columns:repeat(16, 1fr) ;
   grid-template-rows:repeat(16, 1fr) ;
@@ -223,7 +222,6 @@
   grid-column: 5 / 22;
   background-color: grey;
   padding: 5%;
-  display: none;  /*  Provisório até JS  *//*  Provisório até JS  */
 }
 .opcao-config {
   display: flex;
@@ -246,15 +244,31 @@
   display: flex;
   grid-row: 4 / 22;
   grid-column: 5 / 22;
-  background-color:aliceblue ;
+  background-color:rgb(127, 127, 127) ;
   flex-direction: column;
   justify-content: space-evenly;
   align-items:center;
-  display: none;  /*  Provisório até JS  *//*  Provisório até JS  */
 }
 .opcao-pref {
-  background-color: aquamarine;
+  background-color: rgb(203, 203, 203);
   padding: 5%;
   border-radius: 12px;
   width: 75%;
+}
+
+/* ---------------------------------------------- */
+
+.tab-content {
+  display: none;
+}
+.tab-content.grid.active {
+  display: grid;
+}
+.tab-content.flex.active {
+  display: flex;
+}
+
+button:hover {
+  opacity: 0.8;
+
 }

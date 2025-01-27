@@ -52,25 +52,26 @@
     <div class="grid-1">
       <div class="box-top"></div>
       <div class="box-left">
-        <div class="opcao">Perfil</div>
-        <div class="opcao">Conta</div>
-        <div class="opcao">Preferências</div>
+        <button class="opcao" onclick="showpage('perfil')">Perfil</button>
+        <button class="opcao" onclick="showpage('conta')">Conta</button>
+        <button class="opcao" onclick="showpage('preferencias')">Preferências</button>
       </div> 
-      <div class="box-main-profile">
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <div class="tab-content grid box-main-profile" id="perfil">
         <div class="profile-picture"></div>
         <div class="box-name">Teste de nome de usuario</div>
         <div class="box-email">EmailDeTeste@Teste.com.br</div> 
-        <div class="button-">Alterar dados</div>
+        <div class="button-">Editar dados</div>
       </div>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-      <div class="box-main-config">
+      <div class="tab-content grid box-main-conta" id="conta">
         <div class="opcao-config" id="config-1"></div>
         <div class="opcao-config" id="config-2"></div>
         <div class="opcao-config" id="config-3"></div>
         <div class="opcao-config" id="config-4"></div>
       </div>
-      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-      <div class="box-main-pref">
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <div class="tab-content flex box-main-pref" id="preferencias">
         <div class="opcao-pref">a</div>
         <div class="opcao-pref">a</div>
         <div class="opcao-pref">a</div>
@@ -86,5 +87,6 @@
 <!--------------------------------------------------------------------->
 
   <footer></footer>  
+  <script src="../assets/js/configuracao.js"></script>
 </body>
 </html>
