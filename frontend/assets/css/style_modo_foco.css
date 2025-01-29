@@ -4,6 +4,7 @@
   }
   html {
     scroll-behavior: smooth;
+    overflow: hidden;
   }
   * {
     margin: 0;
@@ -121,12 +122,14 @@
   
   /* _________________________________________________ */
 .main-container {
+  display: flex;
+  width: 100%;
     height: 100vh;
+    align-items: center;
+    justify-content: center;
 }
   .clock {
-    position: relative;/* temporario */
-    justify-self: center;
-    align-content: center;
+    display: flex;
     height: 400px;
     width: 400px;
     border-radius: 400px;
@@ -135,8 +138,9 @@
     color: white;
     font-weight: 600;
     font-size: 38px;
-    top: 200px; /* temporario */
 
+    align-items: center;
+    justify-content: center;
 }
 .timer {
     text-align: center;
@@ -144,12 +148,11 @@
 
 }
 .historico {
-    position: absolute;/* temporario */
+    position: absolute;
     height: 80vh;
     width: 20vw;
     background-color: #1f1717;
     right: 12px;
-    top: 120px; /* temporario */
     border-radius: 12px;
     display: flex;
     flex-direction: column;
@@ -182,6 +185,11 @@
     display: flex;
     width: 100%;
     height: 3em;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    text-align: justify;
+    line-height: 1.5em;
 }
 .modes {
     position: absolute;
