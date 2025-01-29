@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Petala</title>
     <link rel="stylesheet" href="../assets/css/Style_CheckList.css">
     <script
@@ -48,7 +47,6 @@
         </div>
     </header>
 
-    <!-------------------------------------------------------------------------------------->
     <main>
         <div class="main-container">
             <div class="header-container">
@@ -62,62 +60,61 @@
                 <!--Coluna 1-->
                 <div class="collumn">
                     <div class="grid-item">
-                        <input type="text" id="Em-andamento" placeholder="Crie um novo ..." />
+                        <input type="text" id="Em-andamento" placeholder="Crie um novo ...">
                         <button onclick="addTask('lista-em-andamento', 'Em-andamento')">
-                          <i class="fa-solid fa-plus"></i>
+                            <i class="fa-solid fa-plus"></i>
                         </button>
-                      </div>
-                    <ul id="lista-em-andamento" class="list"></ul>
+                    </div>
+                    <ul id="lista-em-andamento" class="list">
+                        <!-- Aqui serão renderizados os itens dinamicamente -->
+                    </ul>
                 </div>
                 <!--Coluna 2-->
                 <div class="collumn">
                     <div class="grid-item">
                         <input type="text" id="Revisar" placeholder="Crie um novo ...">
-                        <button onclick="addItem('lista-revisar', 'Revisar')">
+                        <button onclick="addTask('lista-revisar', 'Revisar')">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
-                    <ul id="lista-revisar" class="list"></ul>
+                    <ul id="lista-revisar" class="list">
+                        <!-- Aqui serão renderizados os itens dinamicamente -->
+                    </ul>
                 </div>
                 <!--Coluna 3-->
                 <div class="collumn">
                     <div class="grid-item">
                         <input type="text" id="Concluido" placeholder="Crie um novo ...">
-                        <button onclick="addItem('lista-Concluido', 'Concluido')">
+                        <button onclick="addTask('lista-Concluido', 'Concluido')">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
-                    <ul id="lista-Concluido" class="list"></ul>
+                    <ul id="lista-Concluido" class="list">
+                        <!-- Aqui serão renderizados os itens dinamicamente -->
+                    </ul>
                 </div>
             </div>
         </div>
 
-<!------------------------------------------------------------------------------------------------>
         <div class="modal-overlay" id="editModal">
             <div class="modal">
                 <h2>Editar Texto</h2>
                 <textarea id="modalInput" placeholder="Digite o novo texto"></textarea>
-                 <div class="modal-move">
+                <div class="modal-move">
                     <button class="move-to-column" data-target-column="lista-em-andamento">Em Progresso</button>
                     <button class="move-to-column" data-target-column="lista-revisar">Revisar</button>
                     <button class="move-to-column" data-target-column="lista-Concluido">Concluído</button>
                 </div>
-                
                 <div class="modal-actions">
                     <button id="cancelEdit">Cancelar</button>
                     <button id="saveEdit">Salvar</button>
-                    
                 </div>
-                
-                <!-- Contêiner para os botões de mover -->
-               
             </div>
         </div>
     </main>
-    <!-------------------------------------------------------------------------------------->
+
     <footer></footer>
 
     <script src="../assets/js/CheckList.js"></script>
 </body>
 </html>
-
