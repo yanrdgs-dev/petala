@@ -134,6 +134,8 @@
     width: 400px;
     border-radius: 400px;
     background-color: #1f1717;
+    border: black 12px;
+    border-style:inset;
 
     color: white;
     font-weight: 600;
@@ -145,7 +147,7 @@
 .timer {
     text-align: center;
     align-content: center;
-
+  
 }
 .historico {
     position: absolute;
@@ -159,6 +161,7 @@
     justify-content: start;
     align-items: center;
     padding: 2%;
+    overflow: hidden;
 }
 .historico-header {
     text-align: center;
