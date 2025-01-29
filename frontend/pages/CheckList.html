@@ -91,16 +91,28 @@
                 </div>
             </div>
         </div>
+
+<!------------------------------------------------------------------------------------------------>
         <div class="modal-overlay" id="editModal">
             <div class="modal">
-              <h2>Editar Texto</h2>
-              <textarea id="modalInput" placeholder="Digite o novo texto"></textarea>
-              <div>
-                <button id="saveEdit">Salvar</button>
-                <button id="cancelEdit">Cancelar</button>
-              </div>
+                <h2>Editar Texto</h2>
+                <textarea id="modalInput" placeholder="Digite o novo texto"></textarea>
+                 <div class="modal-move">
+                    <button class="move-to-column" data-target-column="lista-em-andamento">Em Progresso</button>
+                    <button class="move-to-column" data-target-column="lista-revisar">Revisar</button>
+                    <button class="move-to-column" data-target-column="lista-Concluido">Concluído</button>
+                </div>
+                
+                <div class="modal-actions">
+                    <button id="cancelEdit">Cancelar</button>
+                    <button id="saveEdit">Salvar</button>
+                    
+                </div>
+                
+                <!-- Contêiner para os botões de mover -->
+               
             </div>
-          </div>
+        </div>
     </main>
     <!-------------------------------------------------------------------------------------->
     <footer></footer>

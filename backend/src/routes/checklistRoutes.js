@@ -3,10 +3,10 @@ const router = express.Router();
 const db = require("../config/db");
 const authenticateUser = require("../utils/authenticateUser");
 
-// Autenticar usuário em todas as rotas
+
 router.use(authenticateUser);
 
-// Criar tarefa
+
 router.post("/", (req, res) => {
   const userId = req.user.id;
   const { titulo, descricao, prazo } = req.body;
@@ -27,7 +27,7 @@ router.post("/", (req, res) => {
   });
 });
 
-// Buscar tarefas
+
 router.get("/", (req, res) => {
   const userId = req.user.id;
   const query = `SELECT id, titulo, descricao, status, prazo, created_at, updated_at 
@@ -46,9 +46,14 @@ router.get("/", (req, res) => {
 });
 
 router.put("/:id", (req, res) => {
-  const userId = req.user.id;
-  const checklistID = req.params.id;
+  const userId = req.user.id; 
+  const checklistID = req.params.id; 
+  
   const { titulo, descricao, prazo } = req.body;
+
+  if (!checklistID) {
+    return res.status(400).json({ message: "O ID da tarefa é obrigatório." });
+  }
 
   if (!titulo && !descricao && !prazo) {
     return res.status(400).json({
@@ -100,7 +105,8 @@ router.delete("/:id", (req, res) => {
       return res.status(400).json({ message: "Tarefa não encontrada" });
     }
 
-    return res.status(200).json({ message: "Tarefa excluída com sucesso." });
+    return res.status(200).json({ message: "Tarefa excluída com sucesso.", id: checklistID });
+
   });
 });
 module.exports = router;
