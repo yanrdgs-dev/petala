@@ -37,12 +37,12 @@ async function addTask(listId, inputId) {
   const statusMap = {
     "lista-em-andamento": "pendente",
     "lista-revisar": "revisar",
-    "lista-Concluido": "concluida"
+    "lista-Concluido": "concluida",
   };
 
   const newTask = {
     titulo: taskTitle,
-    status: statusMap[listId] || "pendente" // Define o status correto com base na coluna
+    status: statusMap[listId] || "pendente", // Define o status correto com base na coluna
   };
 
   try {
@@ -66,8 +66,6 @@ async function addTask(listId, inputId) {
     alert("Erro ao criar tarefa.");
   }
 }
-
-
 
 async function deleteTask(taskId) {
   try {
@@ -113,7 +111,9 @@ function renderTasks(tasks) {
     concluida: document.getElementById("lista-Concluido"),
   };
 
-  Object.values(taskContainers).forEach((container) => (container.innerHTML = ""));
+  Object.values(taskContainers).forEach(
+    (container) => (container.innerHTML = "")
+  );
 
   tasks.forEach((task) => {
     const taskElement = document.createElement("li");
@@ -139,7 +139,6 @@ function renderTasks(tasks) {
   });
 }
 
-
 function openEditModal(taskId, currentTitle) {
   const modal = document.getElementById("editModal");
   const modalInput = document.getElementById("modalInput");
@@ -159,19 +158,143 @@ document.getElementById("cancelEdit").onclick = () => {
   document.getElementById("editModal").style.display = "none";
 };
 
-document.querySelectorAll(".move-to-column").forEach((button) => {
-  button.addEventListener("click", async function () {
-    const modal = document.querySelector("#editModal");
-    const taskId = modal.getAttribute("data-task-id");
-    const targetStatus = this.getAttribute("data-target-status");
+document.querySelectorAll(".edit-task-button").forEach(button => {
+  button.addEventListener("click", function () {
+      // Remove a classe de qualquer outra task que já estava selecionada antes
+      document.querySelectorAll(".task-being-edited").forEach(task => {
+          task.classList.remove("task-being-edited");
+      });
 
-    if (taskId && targetStatus) {
-      await saveEdit(taskId, { status: targetStatus });
-      modal.style.display = "none";
-      fetchTasks(); // Atualiza a lista após a mudança de status
-    }
+      // Adiciona a classe à task correta
+      const taskElement = this.closest(".task"); // Supondo que cada task tenha a classe "task"
+      if (taskElement) {
+          taskElement.classList.add("task-being-edited");
+          console.log("Task selecionada para edição:", taskElement);
+      } else {
+          console.warn("Nenhuma task foi selecionada!");
+      }
+
+      // Abre o modal
+      document.getElementById("editModal").style.display = "block";
   });
 });
+
+document.querySelectorAll(".edit-task-button").forEach(button => {
+  button.addEventListener("click", function () {
+      // Remove a marcação de qualquer task que estava sendo editada antes
+      document.querySelectorAll(".task-being-edited").forEach(task => {
+          task.classList.remove("task-being-edited");
+      });
+
+      // Encontra a task correta a partir do botão clicado
+      const taskElement = this.closest(".task");
+
+      if (taskElement) {
+          taskElement.classList.add("task-being-edited");
+          console.log("Task selecionada para edição:", taskElement);
+      } else {
+          console.warn("Nenhuma task foi selecionada!");
+          return; // Evita abrir o modal caso não tenha uma task válida
+      }
+
+      // Abre o modal
+      document.getElementById("editModal").style.display = "block";
+  });
+});
+
+// Função para mover a task ao clicar nos botões dentro do modal
+document.querySelectorAll(".edit-task-button").forEach(button => {
+  button.addEventListener("click", function () {
+      const taskElement = this.closest(".task"); // Pega o elemento da task clicada
+
+      if (!taskElement) {
+          console.warn("Nenhuma task encontrada para edição!");
+          return;
+      }
+
+      const taskId = taskElement.getAttribute("data-task-id");
+      if (!taskId) {
+          console.warn("A task não possui um ID válido!");
+          return;
+      }
+
+      // Armazena o ID da task no modal (para ser usado ao mover)
+      document.getElementById("editModal").setAttribute("data-task-id", taskId);
+
+      console.log("Task selecionada para edição, ID:", taskId);
+
+      // Abre o modal
+      document.getElementById("editModal").style.display = "block";
+  });
+});
+
+// Função para mover a task ao clicar nos botões dentro do modal
+document.querySelectorAll(".move-to-column").forEach(button => {
+  button.addEventListener("click", function () {
+      const targetColumnId = this.getAttribute("data-target-column");
+      const targetColumn = document.getElementById(targetColumnId);
+      const modal = document.getElementById("editModal");
+      const taskId = modal.getAttribute("data-task-id");
+
+      console.log("Botão clicado:", this.innerText);
+
+      if (!taskId) {
+          console.warn("Nenhuma task foi selecionada!");
+          return;
+      }
+
+      // Encontra a task correspondente ao ID
+      const selectedTask = document.querySelector(`.task[data-task-id="${taskId}"]`);
+
+      if (!selectedTask) {
+          console.warn("A task correspondente ao ID não foi encontrada no DOM!");
+          return;
+      }
+
+      if (targetColumn) {
+          targetColumn.appendChild(selectedTask);
+          console.log(`Task ${taskId} movida para:`, targetColumnId);
+
+          // Atualiza o status no banco de dados
+          atualizarStatusNoBanco(taskId, targetColumnId);
+      } else {
+          console.warn("Coluna de destino não encontrada!");
+      }
+
+      // Fecha o modal
+      fecharModal();
+  });
+});
+
+// Fecha o modal e reseta a task editada
+function fecharModal() {
+  document.getElementById("editModal").style.display = "none";
+  document.getElementById("editModal").removeAttribute("data-task-id");
+}
+
+// Atualiza o status no banco de dados via fetch (PUT)
+async function atualizarStatusNoBanco(taskId, novoStatus) {
+  try {
+      const response = await fetch(`/api/checklists/${taskId}`, {
+          method: "PUT",
+          headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`
+          },
+          body: JSON.stringify({ status: novoStatus }),
+      });
+
+      if (response.ok) {
+          console.log("Status atualizado no banco:", novoStatus);
+      } else {
+          console.error("Erro ao atualizar status no banco!");
+      }
+  } catch (error) {
+      console.error("Erro na requisição:", error);
+  }
+}
+
+
 
 
 fetchTasks();

@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-<html lang="PT-BR">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Petala</title>
     <link rel="stylesheet" href="../assets/css/Style_CheckList.css">
-    <script
-      src="https://kit.fontawesome.com/28be5bc03d.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/28be5bc03d.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -47,7 +44,6 @@
         </div>
     </header>
 
-    <!-------------------------------------------------------------------------------------->
     <main>
         <div class="main-container">
             <div class="header-container">
@@ -58,7 +54,7 @@
                 </div>
             </div>
             <div class="container-grid">
-                <!--Coluna 1-->
+                <!--Coluna 1 - A fazer-->
                 <div class="collumn">
                     <div class="grid-item">
                         <input type="text" id="Em-andamento" placeholder="Crie um novo ...">
@@ -67,10 +63,10 @@
                         </button>
                     </div>
                     <ul id="lista-em-andamento" class="list">
-                        <!-- Aqui serão renderizados os itens dinamicamente -->
+                        <!-- Tarefas serão renderizadas dinamicamente aqui -->
                     </ul>
                 </div>
-                <!--Coluna 2-->
+                <!--Coluna 2 - Em Progresso-->
                 <div class="collumn">
                     <div class="grid-item">
                         <input type="text" id="Revisar" placeholder="Crie um novo ...">
@@ -79,10 +75,10 @@
                         </button>
                     </div>
                     <ul id="lista-revisar" class="list">
-                        <!-- Aqui serão renderizados os itens dinamicamente -->
+                        <!-- Tarefas serão renderizadas dinamicamente aqui -->
                     </ul>
                 </div>
-                <!--Coluna 3-->
+                <!--Coluna 3 - Revisar-->
                 <div class="collumn">
                     <div class="grid-item">
                         <input type="text" id="Concluido" placeholder="Crie um novo ...">
@@ -91,23 +87,22 @@
                         </button>
                     </div>
                     <ul id="lista-Concluido" class="list">
-                        <!-- Aqui serão renderizados os itens dinamicamente -->
+                        <!-- Tarefas serão renderizadas dinamicamente aqui -->
                     </ul>
                 </div>
             </div>
         </div>
 
-        <!------------------------------------------------------------------------------------------------>
+        <!-- Modal para edição -->
         <div class="modal-overlay" id="editModal">
             <div class="modal">
                 <h2>Editar Texto</h2>
                 <textarea id="modalInput" placeholder="Digite o novo texto"></textarea>
-                 <div class="modal-move">
+                <div class="modal-move">
                     <button class="move-to-column" data-target-column="lista-em-andamento">Em Progresso</button>
                     <button class="move-to-column" data-target-column="lista-revisar">Revisar</button>
                     <button class="move-to-column" data-target-column="lista-Concluido">Concluído</button>
                 </div>
-                
                 <div class="modal-actions">
                     <button id="cancelEdit">Cancelar</button>
                     <button id="saveEdit">Salvar</button>
@@ -115,7 +110,7 @@
             </div>
         </div>
     </main>
-    <!-------------------------------------------------------------------------------------->
+
     <footer></footer>
 
     <script src="../assets/js/CheckList.js"></script>
