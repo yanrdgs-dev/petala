@@ -22,7 +22,7 @@ body {
   width: 100%;
   min-height: 100vh;
  
-  background-color: #f0f0f0;
+  background-color: #FBE2E2;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -32,6 +32,8 @@ body {
   align-items: center;
   justify-content: center;
   margin: 0;
+
+  transition: background-color 1s ease; 
 }
 
 
@@ -45,6 +47,7 @@ header {
   justify-content: center;
   align-items: center;
   padding: 0 50px;
+  transition: opacity 1s ease-in-out;
 }
 
 .imagem_navbar {
@@ -187,6 +190,7 @@ button {
 
 
 #stopBtn {
+  background-color: rgb(200, 200, 200);
   font-size: 1.8em;
   font-weight: 500;
   padding: 8px 16px;
@@ -208,6 +212,9 @@ button {
   align-items: center;
   padding: 2%;
   overflow: hidden;
+
+  transition: opacity 1s ease-in-out;
+
 }
 
 .historico-header {
@@ -249,7 +256,7 @@ button {
   position: absolute;
   width: 33%;
   height: 7em;
-  background-color: gray;
+  background-color: #3e3e3e;
   left: 50%;
   bottom: -12px;
   transform: translate(-50%, 0);
@@ -313,6 +320,8 @@ input {
   opacity: 0.5;
 }
 .tutorial-box:hover {
+  transition: 0.7s ease-out; 
+
   opacity: 1;
   cursor: pointer;
 }

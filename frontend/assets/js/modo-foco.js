@@ -1,7 +1,8 @@
 let countdownInterval = null;
 let isStudyPhase = true;
 let studyTimeMs, breakTimeMs;
-
+const header = document.querySelector("header");
+const historico = document.querySelectorAll('.historico');
 function handleTimerClick() {
   if (localStorage.getItem("timerRunning") === "true") return;
   startPomodoro();
@@ -35,6 +36,21 @@ function iniciarFase(tempoFaseMs) {
   localStorage.setItem("endTime", endTime);
 
   atualizarDisplay(tempoFaseMs);
+
+  // Estilizacao baseado no tempo
+  if (isStudyPhase) {
+    document.body.style.backgroundColor = "#5D2438"; 
+    header.style.opacity = "0.7";
+    historico.forEach(element => {
+      element.style.opacity = "0.7";
+    });
+  } else {
+    document.body.style.backgroundColor = "#FF8DA9"; 
+    header.style.opacity = "1";
+    historico.forEach(element => {
+      element.style.opacity = "1";
+    });
+  }
 
   if (countdownInterval) clearInterval(countdownInterval);
 
@@ -82,6 +98,14 @@ function stopTimer() {
   document.getElementById("stopBtn").disabled = true;
 
   document.getElementById("timerDisplay").innerText = "00:00";
+
+  document.body.style.backgroundColor = "#FBE2E2";
+  header.style.opacity = "1";
+  historico.forEach(element => {
+    element.style.opacity = "1";
+  });
+
+
 }
 
 window.onload = function () {
