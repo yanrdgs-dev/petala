@@ -48,12 +48,20 @@
         </div>
     </header>
 
-    <!-------------------------------------------------------------------------------------->
+    <!--------------------------------------------------------------/------------------------>
     <main>
         <div class="main-container">
-            <button class="clock">
-                <div class="timer">Start</div>
-            </button>
+            <div class="clock-container">
+                <div class="clock" onclick="handleTimerClick(event)">
+                  <div class="timer">
+                    <span id="timerDisplay" >00:00</span>
+                  </div>
+                </div>
+                <button id="stopBtn" onclick="stopTimer()" disabled>Parar</button>
+              </div>
+
+    <!-------------------------------------------------------------------------------------->
+
             <div class="historico">
                 <div class="historico-header">HISTORICO</div>
                 <div class="hist">
@@ -65,12 +73,29 @@
                     <div class="prev-hist">2horas - estudo <br>1horas - descanso</div>
                 </div>
             </div>
-            <div class="modes">Modo</div>
+
+            <!-------------------------------------------------------------------------------------->
+
+            <div class="modes">
+                <label class="time-input-box">
+                Estudo (min):
+                <input type="number" id="studyTime" value="25" min="1" max="60" class="time-input">
+              </label>
+              
+              <label class="time-input-box">
+                Descanso (min):
+                <input type="number" id="breakTime" value="5" min="1" max="60" class="time-input">
+              </label>
+            </div>
+            
+    <!-------------------------------------------------------------------------------------->
+            <!-- Possivel overlay de tutorial futuro -->
+            <div class="tutorial-box"><i class="fa-solid fa-question fa-lg" style="color: #9a285f;"></i></div>
         </div>
 
     </main>
     <!-------------------------------------------------------------------------------------->
     <footer></footer>
-    
+        <script src="../assets/js/modo-foco.js"></script>
     </body>
 </html>

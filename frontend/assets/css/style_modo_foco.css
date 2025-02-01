@@ -1,212 +1,318 @@
+
 @font-face {
-    src: url(../fonts/Montserrat-VariableFont_wght.ttf);
-    font-family: Montserrat;
-  }
-  html {
-    scroll-behavior: smooth;
-    overflow: hidden;
-  }
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Montserrat;
-  }
-  body {
-    width: 100%;
-    min-height: 100vh;
-    background-color: #DFD3D6;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  header {
-    position: fixed;
-    display: flex;
-    top: 0px;
-    width: 100%;
-    height: 120px;
-    z-index: 100;
-    justify-content: center;
-    align-items: center;
-    padding-left: 50px;
-    padding-right: 50px;
-  }
-  button {
-    margin: 0;
-    padding: 0;
-    border: none;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  /* button:hover {
-    opacity: 0.8;
-  } */
-  .imagem_navbar {
-    position: fixed;
-    left: 50px;
-  }
-  .header_pos {
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50%;
-    height: 80px;
-    padding: 20px 62px;
-    border-radius: 40px;
-    background: white;
-    display: flex;
-    z-index: 100;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  }
-  .navbar_pos {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-  }
-  .navbar_pos a {
-    text-align: center;
-    margin: auto;
-    text-decoration: none;
-    color: #1f1717;
-    font-weight: 540;
-    font-size: 1.3em;
-  }
-  
-  .side-bar {
-    display: flex;
-    position: relative;
-    margin-left: auto;
-    align-items: center;
-  }
-  .link-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    width: 100%;
-    align-items: flex-start;
-    position: fixed;
-    top: 0px;
-    right: -20%;
-    z-index: 1000;
-    width: 15%;
-    transition-duration: 0.55s;
-    background-color: white;
-    box-shadow: -5px 0 5px rgba(0, 0, 0, 0.25);
-  }
-  .side-bar a {
-    box-sizing: border-box;
-    display: block;
-    height: auto;
-    width: 100%;
-    padding: 20px 30px;
-    justify-content: flex-start;
-    text-decoration: none;
-    color: #1f1717;
-  }
-  .side-bar a:hover {
-    background-color: hsl(343, 87%, 75%);
-  }
-  #sidebar-active {
-    display: none;
-  }
-  .open-sidebar-button,
-  .close-sidebar-button {
-    padding: 20px;
-    display: block;
-  }
-  #sidebar-active:checked ~ .link-container {
-    right: 0px;
-  }
-  
-  /* _________________________________________________ */
+  src: url(../fonts/Montserrat-VariableFont_wght.ttf);
+  font-family: Montserrat;
+}
+
+
+html {
+  scroll-behavior: smooth;
+  overflow: hidden;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Montserrat;
+}
+
+
+body {
+  width: 100%;
+  min-height: 100vh;
+ 
+  background-color: #f0f0f0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+
+header {
+  position: fixed;
+  display: flex;
+  top: 0;
+  width: 100%;
+  height: 120px;
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+  padding: 0 50px;
+}
+
+.imagem_navbar {
+  position: fixed;
+  left: 50px;
+}
+
+.header_pos {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 80px;
+  padding: 20px 62px;
+  border-radius: 40px;
+  background: white;
+  display: flex;
+  z-index: 100;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.navbar_pos {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.navbar_pos a {
+  text-align: center;
+  margin: auto;
+  text-decoration: none;
+  color: #1f1717;
+  font-weight: 540;
+  font-size: 1.3em;
+}
+
+.side-bar {
+  display: flex;
+  position: relative;
+  margin-left: auto;
+  align-items: center;
+}
+
+.link-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  align-items: flex-start;
+  position: fixed;
+  top: 0;
+  right: -20%;
+  z-index: 1000;
+  width: 15%;
+  transition-duration: 0.55s;
+  background-color: white;
+  box-shadow: -5px 0 5px rgba(0, 0, 0, 0.25);
+}
+
+.side-bar a {
+  display: block;
+  padding: 20px 30px;
+  width: 100%;
+  text-decoration: none;
+  color: #1f1717;
+}
+
+.side-bar a:hover {
+  background-color: hsl(343, 87%, 75%);
+}
+
+#sidebar-active {
+  display: none;
+}
+
+.open-sidebar-button,
+.close-sidebar-button {
+  padding: 20px;
+  display: block;
+}
+
+#sidebar-active:checked ~ .link-container {
+  right: 0;
+}
+
+
 .main-container {
   display: flex;
   width: 100%;
-    height: 100vh;
-    align-items: center;
-    justify-content: center;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
 }
-  .clock {
-    display: flex;
-    height: 400px;
-    width: 400px;
-    border-radius: 400px;
-    background-color: #1f1717;
-    border: black 12px;
-    border-style:inset;
 
-    color: white;
-    font-weight: 600;
-    font-size: 38px;
 
-    align-items: center;
-    justify-content: center;
+.clock-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; 
 }
+
+button {
+  border: none;
+}
+.clock {
+  display: flex;
+  height: 400px;
+  width: 400px;
+  border-radius: 50%;
+  background-color: #1f1717;
+  border: 12px inset black;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+  font-size: 38px;
+}
+
+
 .timer {
-    text-align: center;
-    align-content: center;
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  font-weight: 600;
+  font-size: 38px;
 }
-.historico {
-    position: absolute;
-    height: 80vh;
-    width: 20vw;
-    background-color: #1f1717;
-    right: 12px;
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    padding: 2%;
-    overflow: hidden;
-}
-.historico-header {
-    text-align: center;
-    color: wheat;
-    font-size: 1.2em;
-    font-weight: 550;
-    width: 100%;
-}
-.hist {
-    margin-top: 35px;
-    text-align: center;
-    color: aliceblue;
-    font-size: 1em;
-    font-weight: 500;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    gap: 2em;
-}
-.prev-hist {
-    display: flex;
-    width: 100%;
-    height: 3em;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    word-break: break-word;
-    text-align: justify;
-    line-height: 1.5em;
-}
-.modes {
-    position: absolute;
-    width: 33%;
-    height: 7em;
-    background-color: gray;
 
-    left: 25%;
-    bottom: -12px;
-    border-radius: 12px;
-    left: 50%; /* Coloca no meio da tela */
-  transform: translate(-50%, 0%); /* Ajusta a posição para o centro exato */
-    text-align: center;
-    padding: 8px;
-    font-weight: 550;
-    color: white;
+
+#timerDisplay {
+  font-size: 48px;
+  margin: 20px 0;
+  width: 200px;
+  height: 80px;
+  cursor: pointer;
+}
+
+
+#stopBtn {
+  font-size: 1.8em;
+  font-weight: 500;
+  padding: 8px 16px;
+  border:  2px solid;
+  border-radius: 8px;
+}
+
+
+.historico {
+  position: absolute;
+  height: 80vh;
+  width: 20vw;
+  background-color: #1f1717;
+  right: 12px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding: 2%;
+  overflow: hidden;
+}
+
+.historico-header {
+  text-align: center;
+  color: wheat;
+  font-size: 1.2em;
+  font-weight: 550;
+  width: 100%;
+}
+
+.hist {
+  margin-top: 35px;
+  text-align: center;
+  color: aliceblue;
+  font-size: 1em;
+  font-weight: 500;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 2em;
+}
+
+.prev-hist {
+  display: flex;
+  width: 100%;
+  height: 3em;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  text-align: justify;
+  line-height: 1.5em;
+}
+
+
+.modes {
+  position: absolute;
+  width: 33%;
+  height: 7em;
+  background-color: gray;
+  left: 50%;
+  bottom: -12px;
+  transform: translate(-50%, 0);
+  text-align: center;
+  padding: 8px;
+  font-weight: 550;
+  border-radius: 12px;
+  color: white;
+  display: flex ;
+  justify-content: space-around;
+}
+
+
+input {
+  font-size: 16px;
+  width: 60px;
+  margin: 5px;
+}
+.time-input-box{
+  display: flex;
+  height: 100%;
+  width: 50%;
+  justify-content: center;
+}
+.time-input {
+  position: absolute;
+  height: 40%;
+  /* background-color: red; */
+  bottom: 12px;
+  justify-items: center;
+  text-align: center;
+  border-radius: 6px;
+}
+
+
+
+
+
+
+
+.time-input::-webkit-inner-spin-button, 
+.time-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* .time-input {
+    -moz-appearance: textfield; / Para Firefox /  ??
+} */
+
+.tutorial-box {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: #1f1717 2px solid;
+  text-align: center;
+  align-content: center;
+  opacity: 0.5;
+}
+.tutorial-box:hover {
+  opacity: 1;
+  cursor: pointer;
 }
