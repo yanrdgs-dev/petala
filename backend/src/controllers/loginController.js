@@ -5,7 +5,6 @@ require("dotenv").config();
 
 // cnsole.log("JWT_SECRET:", process.env.JWT_SECRET);
 
-
 exports.login = (req, res) => {
   const { email, password } = req.body;
 
@@ -15,7 +14,6 @@ exports.login = (req, res) => {
       .json({ message: "E-mail e senha são obrigatórios." });
   }
 
-
   db.query("SELECT * FROM users WHERE email = ?", [email], (err, result) => {
     if (err) {
       return res.status(500).send({ message: "Erro no servidor" });
@@ -24,7 +22,16 @@ exports.login = (req, res) => {
       return res.status(400).send({ message: "E-mail ou senha incorretos." });
     }
 
+
     const usuario = result[0];
+
+    // if (!usuario.is_verified) {
+    //   return res
+    //     .status(403)
+    //     .json({
+    //       message: "Por favor, verifique seu e-mail antes de fazer login.",
+    //     });
+    // }
 
     bcrypt.compare(password, usuario.password_hash, (err, isMatch) => {
       if (err) {
@@ -40,7 +47,7 @@ exports.login = (req, res) => {
       const accessToken = jwt.sign(
         { id: usuario.id, email: usuario.email, username: usuario.username },
         process.env.JWT_SECRET,
-        { expiresIn: "24h" } 
+        { expiresIn: "24h" }
       );
 
       const refreshToken = jwt.sign(
@@ -50,23 +57,31 @@ exports.login = (req, res) => {
       );
 
       // Armazene o refresh token no banco, se necessário
-      db.query("UPDATE users SET refresh_token = ? WHERE id = ?", [refreshToken, usuario.id], (err) => {
-        if (err) {
-          return res.status(500).json({ message: "Erro ao salvar refresh token." });
-        }
+      db.query(
+        "UPDATE users SET refresh_token = ? WHERE id = ?",
+        [refreshToken, usuario.id],
+        (err) => {
+          if (err) {
+            return res
+              .status(500)
+              .json({ message: "Erro ao salvar refresh token." });
+          }
 
-        // res.status(200).json({
-        //   message: "Login efetuado com sucesso.",
-        //   accessToken,
-        //   refreshToken,
-        // });
-        res.status(200).json({ 
-          message:"Login Efetuado com sucesso.",
-          token: accessToken, 
-          // user: userData 
+         if (!usuario.is_verified) {
+      return res
+        .status(403)
+        .json({
+          message: "Por favor, verifique seu e-mail antes de fazer login.",
         });
-        
-      });
+    }
+          
+          res.status(200).json({
+            message: "Login Efetuado com sucesso.",
+            token: accessToken,
+            // user: userData
+          });
+        }
+      );
     });
   });
 };
