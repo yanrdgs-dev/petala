@@ -1,30 +1,64 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pétala</title>
-    <link rel="stylesheet" href="../assets/css/global nova_senha.css"/>
-    <link rel="icon" href="../assets/images/LogoCerejeira 1.png">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pétala - Nova senha</title>
+    <link rel="stylesheet" href="../assets/css/global nova_senha.css" />
+    <link rel="icon" href="../assets/images/logoSemPetala.png" />
+  </head>
+  <body>
     <header>
-        <img class="logo" src="../assets/images/Frame 12 2.png" alt="Pétala">
-        <button class="voltar">Voltar</button>
+      <img class="logo" src="../assets/images/Frame 12 2.png" alt="Pétala" />
+      <button class="voltar">Voltar</button>
     </header>
     <main>
-        <div class="flex column center-x center-y">
-            <img class="moeda" src="../assets/images/LogoCerejeira 1.png" alt="Árvore de Cerejeira">
-            <div class="box">
-                <from class="flex column card center-y">
-                    <p>Agora coloque a sua Nova Senha abaixo!</p>
-                    <input type="text" placeholder="Nova Senha">
-                    <input type="password" placeholder=" Repita a nova Senha">
-                    <button class="p-button" type="submit">Entrar</button>
-                </from>
-            </div>
+      <div class="flex column center-x center-y">
+        <img
+          class="moeda"
+          src="../assets/images/LogoCerejeira 1.png"
+          alt="Árvore de Cerejeira"
+        />
+        <div class="box card flex column center-y">
+          <form
+            id="recoveryForm"
+            style="display: flex"
+            class="flex column center-x center-y"
+          >
+            <p class="first" style="margin-bottom: 20px">
+              Agora coloque a sua Nova Senha abaixo!
+            </p>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Nova Senha"
+              required
+            />
+            <input
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+              placeholder=" Repita a nova Senha"
+              required
+            />
+            <button class="p-button" type="submit">Redefinir senha</button>
+          </form>
+          <div
+            id="successMessage"
+            class="center-x center-y"
+            style="display: none"
+          >
+            <p class="first negrito">Sua senha Foi alterado com sucesso!</p>
+            <p class="second">
+              <a href="login.html" class="message"
+                >Clique aqui para voltar ao login</a
+              >
+            </p>
+          </div>
         </div>
+      </div>
     </main>
-</body>
+    <script src="..\assets\js\nova_senha.js"></script>
+  </body>
 </html>
