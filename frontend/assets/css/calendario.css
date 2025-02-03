@@ -187,16 +187,24 @@
   background-color: rgba(0, 0, 0, 0.5);
   justify-content: center;
   align-items: center;
+  z-index: 100;
 }
 
 .modal-content{
   background: #fff;
   padding: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
   border-radius: 5px;
-  width: 300px;
+  width: 600px;
   text-align: center;
 }
 
+li {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
 .close{
   float: right;
   font-size: 10px;
@@ -205,7 +213,7 @@
 
 #evento-form input{
   padding: 15px;
-  width: 252px;
+  width: 80%;
   height: 32px;
   background: #FBE2E2;
   color: black;
@@ -213,6 +221,9 @@
   display: flex;
   border-radius: 5px;
   cursor: pointer;
+
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #evento-form button:hover{
