@@ -13,6 +13,8 @@ CREATE TABLE IF NOT EXISTS users (
     password_hash VARCHAR(255) NOT NULL, -- senha criptografada
     reset_token VARCHAR(255), -- token de reset de senha
     reset_token_expiry DATETIME,-- data de expiração do token de reset de senha  
+    token VARCHAR(255), -- token
+    refresh_token VARCHAR(255) -- token de refresh
 );
 
 -- Logs de acesso (TODO)
