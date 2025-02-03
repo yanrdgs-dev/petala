@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Pétala - Funcionalidades</title>
     <link rel="stylesheet" href="../assets/css/style_funcionalidade.css" />
+    <link rel="icon" href="../assets/images/logoSemPetala.png" />
     <script
       src="https://kit.fontawesome.com/28be5bc03d.js"
       crossorigin="anonymous"
@@ -14,33 +15,56 @@
   <!-------------------------------------------------------------------------->
 
   <body>
-    <header class="header">
-      <a href="index.html"
-        ><img src="../assets/images/logoSemPetala.png" height="83px"
-      /></a>
-
-      <nav class="navbar">
+    <header class="header row center-x center-y">
+      <a href="index.html">
+        <img src="../assets/images/logoSemPetala.png" class="logo-petala" />
+      </a>
+      <div class="sub-header row center-x center-y">
         <a href="#funcoes" class="nav_bar_links">Funcionalidades</a>
         <a href="somos.html" class="nav_bar_links">Quem somos</a>
         <a href="#contato" class="nav_bar_links">Contato</a>
-        <a href="register.html" class="button-dark" style="margin-left: 150px">Cadastrar-se</a>
+      </div>
+      <div class="hidden-900">
+        <a href="register.html" class="button-dark">Cadastrar-se</a>
         <a href="login.html" class="button-dark">Entrar</a>
-      </nav>
+      </div>
+
+      <!-------------------------------------------------------------------------------------------->
+
+      <div class="side-bar">
+        <input type="checkbox" id="sidebar-active" />
+        <label for="sidebar-active" class="open-sidebar-button">
+          <i class="fa-solid fa-bars fa-xl"></i>
+        </label>
+        <div class="link-container">
+          <label for="sidebar-active" class="close-sidebar-button">
+            <i class="fa-solid fa-xmark fa-xl"></i>
+          </label>
+          <a href="#" id="sidebar-link-1">Início</a>
+          <a href="login.html">Entrar</a>
+          <a href="register.html">Cadastrar-se</a>
+          <a href="Funcionalidade.html">Funcionalidades</a>
+          <a href="somos.html">Quem somos</a>
+          <a href="#">Contato</a>
+          <a href="#">Saiba mais</a>
+          <a href="index.html">Voltar</a>
+        </div>
+      </div>
     </header>
 
     <!-------------------------------------------------------------------------------------------->
 
     <main>
-      <div class="container_funcionalidades">
+      <div class="container_funcionalidades flex column center-x center-y">
         <div class="background_image"></div>
         <div class="logo">
-          <img src="../assets/images/petala_logo.png" style="height: 121px" />
+          <img src="../assets/images/petala_logo.png" style="width: 100%" />
         </div>
         <div class="enter-text">
-          <p>Funções</p>
+          <p>Funcionalidades</p>
         </div>
         <div class="sub-title">
-          <p>[-----------------------------------]</p>
+          <p></p>
         </div>
       </div>
 
@@ -49,7 +73,7 @@
       <div class="funcoes" id="funcoes">
         <div class="container_funcao left">
           <div class="imagem_funcao">
-            <img src="../assets/images/funcao 1.png" style="height: 500px" />
+            <img src="../assets/images/funcao 1.png" style="width: 100%" />
           </div>
           <div class="texto_funcao">
             <p>Aumente sua produtividade<br />com as Rotinas</p>
@@ -61,13 +85,13 @@
             <p>Organize seus estudos e compromissos no Calendário</p>
           </div>
           <div class="imagem_funcao_even">
-            <img src="../assets/images/funcao 2.png" style="height: 500px" />
+            <img src="../assets/images/funcao 2.png" style="width: 100%" />
           </div>
         </div>
 
         <div class="container_funcao left">
           <div class="imagem_funcao">
-            <img src="../assets/images/funcao 3.png" style="height: 500px" />
+            <img src="../assets/images/funcao 3.png" style="width: 100%" />
           </div>
           <div class="texto_funcao">
             <p>Eleve o nível do seu estudo ao<br />usar o Modo Foco</p>
@@ -79,7 +103,7 @@
             <p>Observe sua evolução acessando o seu<br />Desempenho</p>
           </div>
           <div class="imagem_funcao_even">
-            <img src="../assets/images/funcao 4.png" style="height: 500px" />
+            <img src="../assets/images/funcao 4.png" style="width: 100%" />
           </div>
         </div>
       </div>
@@ -88,20 +112,22 @@
     <!------------------------------------------------------------------------------------->
 
     <footer>
-      <div class="petala_rodape" id="contatos">
-        <p>Pétala</p>
-      </div>
-      <div class="container">
-        <a href="login.html" class="button-light" id="bt3">Entrar</a>
-        <a href="somos.html" class="button-light">Saiba mais</a>
-      </div>
-      <div class="icones_contato" id="contato">
-        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-        <a href="#"><i class="fa-brands fa-github"></i></a>
-        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="#"><i class="fa-brands fa-telegram"></i></a>
+      <div class="sub-footer" style="height: 236px">
+        <div class="flex column center-x center-y height-100">
+          <p class="petala_rodape">Pétala</p>
+          <div class="icones_contato" id="contato">
+            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#"><i class="fa-brands fa-github"></i></a>
+            <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#"><i class="fa-brands fa-telegram"></i></a>
+          </div>
+        </div>
+        <div class="sub-sub-footer">
+          <a href="login.html" class="button-light" id="bt3">Entrar</a>
+          <a href="somos.html" class="button-light">Saiba mais</a>
+        </div>
       </div>
     </footer>
 

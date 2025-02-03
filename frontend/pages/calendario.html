@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Petala</title>
+    <link rel="stylesheet" href="../assets/css/calendario.css">
+    <script
+      src="https://kit.fontawesome.com/28be5bc03d.js"
+      crossorigin="anonymous"
+    ></script>
+</head>
+
+<body>
+    <header>
+
+        <div class="imagem_navbar">
+            <a href="index.html"
+              ><img src="../assets/images/logoSemPetala.png" width="70%" alt="logo"
+            /></a>
+          </div>
+    
+          <div class="header_pos">
+            
+            <nav class="navbar_pos">
+              <a href="#start">Página inicial</a>
+              <a href="#">Rotina</a>
+              <a href="#">Biblioteca</a>
+              <a href="#">Agenda</a>
+            </nav>
+          </div>
+          
+          <div class="side-bar">
+            <input type="checkbox" id="sidebar-active">
+            <label for="sidebar-active" class="open-sidebar-button">
+              <i class="fa-solid fa-bars fa-xl"></button></i>
+            </label>
+            <div class="link-container">
+              <label for="sidebar-active" class="close-sidebar-button">
+                <i class="fa-solid fa-xmark fa-xl"></i>
+              </label>
+              <a href="#" id="sidebar-link-1">Início</a>
+              <a href="#">Início</a>
+              <a href="#">Rotina</a>
+              <a href="#">Agenda</a>
+              <a href="#">Desempenho</a>
+              <a href="#">...</a>
+              <a href="#" id="sidebar-link-second-last">Configurações</a>
+              <a href="#">Sair</a>
+            </div>
+          </div>
+
+    </header>
+
+
+    <main>
+        <div id="calendario">
+          <div class="calendario-header">
+          <button id="prev" class="nav-btn"><</button>
+            <div id="mes-ano"></div>
+            <button id="next" class="nav-btn">></button>
+          </div>
+          <div class="calendario-dias">
+            <div class="dia-nome">Dom</div>
+            <div class="dia-nome">Seg</div>            
+            <div class="dia-nome">Ter</div>            
+            <div class="dia-nome">Qua</div>            
+            <div class="dia-nome">Qui</div>            
+            <div class="dia-nome">Sex</div>            
+            <div class="dia-nome">Sab</div>            
+          </div>
+          <div id="dias"></div>
+        </div>
+
+        <div id="modal" class="modal">
+          <div class="modal-content">
+            <span class="close"></span>
+            <h2>Adicionar evento</h2>
+            <form id="evento-form">
+              <div>
+                <label for="evento-descricao">Descrição:</label>
+                <input type="text" id="evento-descricao" required />
+              </div>
+              <button type="submit">Salvar</button>
+              <button type="submit">Cancelar</button>
+            </form>
+          </div>
+        </div>
+    </main>
+    
+
+    <footer></footer>
+    <script src="../assets/js/calendario_1.js"></script>
+    </body>
+</html>

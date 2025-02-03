@@ -84,3 +84,34 @@ exports.register = (req, res) => {
     }
   );
 };
+
+// db.query(
+//   "SELECT * FROM users WHERE email_verification_token = ? AND email_expires > NOW()",
+//   [token],
+//   err
+// ),
+//   (err) => {
+//     if (err) {
+//       res.status(400).json({ message: "Erro no servidor" });
+//     }
+
+//     if (token.length === 0) {
+//       res.status(400).json({ message: "Token inexistente ou expirado" });
+//     }
+//   };
+// db.query(
+//   "UPDATE users SET email_verify = true, email_verification_token = NULL, email_expires = NULL WHERE email_verification_token = ?",
+//   [token],
+//   err
+// ),
+//   (err) => {
+//     if (err) {
+//       res
+//         .status(500)
+//         .json({ message: "Não foi possível verificar seu email" });
+//     }
+//     if (!err) {
+//       res.status(200).json({ message: "Email veificado com sucesso!" });
+//     }
+//     sendWelcomeEmail({ name, email }).catch(console.error)
+// };
