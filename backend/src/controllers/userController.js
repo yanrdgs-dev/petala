@@ -2,7 +2,7 @@ const db = require("../config/db");
 require("dotenv").config();
 const bcrypt = require("bcryptjs");
 const { validationResult } = require("express-validator");
-const { sendWelcomeEmail } = require("../services/sendWelcomeEmail");
+const { sendWelcomeEmail } = require("../controllers/mail");
 const jwt = require("jsonwebtoken");
 
 exports.register = (req, res) => {
@@ -67,8 +67,17 @@ exports.register = (req, res) => {
               token: token,
             });
 
-            // (Opcional) Enviar e-mail de boas-vindas
-            sendWelcomeEmail(email, name);
+       
+            const verificationToken = jwt.sign(
+              { id: insertResult.insertId, email },
+              process.env.JWT_SECRET,
+              { expiresIn: '1h' } 
+            );
+            
+            // Enviar o e-mail com o link de verificação
+            const verificationLink = `http://localhost:3000/verify-email?token=${verificationToken}`;
+            sendWelcomeEmail(email, name, verificationLink);
+            
           }
         );
       });
