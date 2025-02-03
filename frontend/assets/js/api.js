@@ -37,7 +37,7 @@ form.addEventListener("submit", async (event) => {
       const result = await response.json();
       errorMessages.innerHTML = "Cadastro feito com sucesso. Redirecionando...";
       localStorage.setItem("username", result.username);
-      window.location.href = "./dashboard.html";
+      window.location.href = "./login.html";
     } else {
       const errorData = await response.json();
       if (

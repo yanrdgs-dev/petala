@@ -2,10 +2,8 @@ const db = require("../config/db");
 require("dotenv").config();
 const bcrypt = require("bcryptjs");
 const { validationResult } = require("express-validator");
-const { sendWelcomeEmail } = require("../services/sendWelcomeEmail");
+const { sendWelcomeEmail } = require("../controllers/mail");
 const jwt = require("jsonwebtoken");
-const crypto = require("crypto");
-const { error } = require("console");
 
 exports.register = (req, res) => {
   const errors = validationResult(req);
@@ -15,7 +13,7 @@ exports.register = (req, res) => {
 
   const { username, name, email, password } = req.body;
 
-  //Verifica se o email já existe
+  // Verifica se o e-mail ou username já existe
   db.query(
     "SELECT * FROM users WHERE email = ? OR username = ?",
     [email, username],
@@ -33,6 +31,7 @@ exports.register = (req, res) => {
             .json({ message: "Nome de usuário já existe." });
         }
       }
+
       // Criptografar senha
       bcrypt.hash(password, 10, (err, hashedPassword) => {
         if (err) {
@@ -45,74 +44,45 @@ exports.register = (req, res) => {
         db.query(
           "INSERT INTO users (username, name, email, password_hash) VALUES (?, ?, ?, ?)",
           [username, name, email, hashedPassword],
-          (err) => {
+          (err, insertResult) => {
             if (err) {
               return res
                 .status(500)
                 .json({ message: "Erro ao cadastrar usuário." });
             }
+
+            // Gerar token JWT
             const token = jwt.sign(
-              { id: result.insertId, email, username },
+              { id: insertResult.insertId, email, username },
               process.env.JWT_SECRET,
               {
                 expiresIn: "24h",
-              },
+              }
             );
+
+            // Retornar resposta com sucesso
             res.status(201).json({
               message: "Usuário cadastrado com sucesso.",
               username: username,
               token: token,
             });
-          },
+
+       
+            const verificationToken = jwt.sign(
+              { id: insertResult.insertId, email },
+              process.env.JWT_SECRET,
+              { expiresIn: '1h' } 
+            );
+            
+            // Enviar o e-mail com o link de verificação
+            const verificationLink = `http://localhost:3000/verify-email?token=${verificationToken}`;
+            sendWelcomeEmail(email, name, verificationLink);
+            
+          }
         );
       });
-    },
+    }
   );
-  sendWelcomeEmail({ name, email }).catch(console.error);
-  // Criando a vericação no email:
-
-  db.query(
-    "INSERT INTO users (username, name, email, password_hash, email_verification_token,  email_expires) VALUES (?,?,?,?,?,?)",
-    [username, name, email, hashedPassword, emailToken, emailExpires],
-    err,
-  ),
-    (err) => {
-      if (err) {
-        return res.status(500).json({ message: "Erro ao cadastrar usuário" });
-      }
-      res.status(200).json({
-        message:
-          "Usuário cadastrado com sucesso! Veifique seu email para validar.",
-        verificationToken: emailToken,
-      });
-    };
-};
-
-// FIM DO ESCOPO DO REGISTER
-
-const emailToken = crypto.randomBytes(32).toString("hex");
-const emailExpires = new Date();
-emailExpires.setHours(emailExpires.getHours() + 9);
-
-exports.tokenVerify = () => {
-  const { token } = req.query;
-
-  if (!token) {
-    res.status(400).json({ message: "O token é obrigatório" });
-  }
-
-  db.query(
-    "SELECT * FROM users WHERE email_verification_token = ? AND email_expires > NOW()",
-    [token],
-  ),
-    (err) => {
-      if (err) {
-        res.status(40).json({ message: "Erro no servidor" });
-      }
-    };
-  if (token.length == 0) {
-    res.status(400).json({ message: "Token expirado ou inexistente" });
-  }
 };
 
 // db.query(
@@ -143,5 +113,5 @@ exports.tokenVerify = () => {
 //     if (!err) {
 //       res.status(200).json({ message: "Email veificado com sucesso!" });
 //     }
-//     sendWelcomeEmail({ name, email }).catch(console.error);
-};
+//     sendWelcomeEmail({ name, email }).catch(console.error)
+// };
