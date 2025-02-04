@@ -24,31 +24,19 @@
           src="../assets/images/LogoCerejeira 1.png"
           alt="Árvore de Cerejeira"
         />
-        <div class="box card flex column center-y">
-          <form class="flex column center-y">
-            <input
-              type="text"
-              name="username"
-              id="username"
-              placeholder="Nome de usuário"
-              required
-              maxlength="50"
-            />
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Senha"
-              required
-            />
+        <div class="box">
+          <form id="loginForm" class="flex column card center-y">
+            <input type="text" id="email" placeholder="E-mail" />
+            <input type="password" id="password" placeholder="Senha" />
+            <a href="#">Esqueceu a senha?</a>
             <button class="p-button" type="submit">Entrar</button>
+            <div class="line"></div>
+            <p>Novo por aqui?</p>
+            <button class="s-button" type="button" id="cadastrarUser">Criar nova conta</button>
           </form>
-          <a href="#">Esqueceu a senha ?</a>
-          <div class="line"></div>
-          <p>Novo por aqui?</p>
-          <button class="s-button" type="button">Criar nova conta</button>
         </div>
       </div>
-    </main>
+    </main>    
+    <script src="../assets/js/apiLogin.js"></script>
   </body>
 </html>
