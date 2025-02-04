@@ -104,40 +104,60 @@ async function saveEdit(taskId, updatedData) {
   }
 }
 
-function renderTasks(tasks) {
-  const taskContainers = {
-    pendente: document.getElementById("lista-em-andamento"),
-    revisar: document.getElementById("lista-revisar"),
-    concluida: document.getElementById("lista-Concluido"),
-  };
-
-  Object.values(taskContainers).forEach(
-    (container) => (container.innerHTML = "")
-  );
-
-  tasks.forEach((task) => {
-    const taskElement = document.createElement("li");
-    taskElement.textContent = task.titulo;
-    taskElement.setAttribute("data-id", task.id);
-
-    const editButton = document.createElement("button");
-    editButton.innerHTML = "<i class='fa-solid fa-pen'></i>";
-    editButton.onclick = () => openEditModal(task.id, task.titulo);
-
-    const deleteButton = document.createElement("button");
-    deleteButton.innerHTML = "<i class='fa-solid fa-trash'></i>";
-    deleteButton.onclick = () => deleteTask(task.id);
-
-    taskElement.appendChild(editButton);
-    taskElement.appendChild(deleteButton);
-
-    if (taskContainers[task.status]) {
-      taskContainers[task.status].appendChild(taskElement);
-    } else {
-      console.warn(`Status desconhecido: ${task.status}`);
-    }
-  });
-}
+function renderTasks(tasks) { 
+    const taskContainers = {
+      pendente: document.getElementById("lista-em-andamento"),
+      revisar: document.getElementById("lista-revisar"),
+      concluida: document.getElementById("lista-Concluido"),
+    };
+  
+    // Limpa os containers antes de renderizar as tasks
+    Object.values(taskContainers).forEach(
+      (container) => (container.innerHTML = "")
+    );
+  
+    tasks.forEach((task) => {
+      // Cria o elemento <li> e define seu atributo data-id
+      const taskElement = document.createElement("li");
+      taskElement.setAttribute("data-id", task.id);
+  
+      // Cria a div para o texto
+      const divText = document.createElement("div");
+      divText.classList.add("text");
+      divText.textContent = task.titulo;
+  
+      // Cria a div para os botões (ícones)
+      const divButtons = document.createElement("div");
+      divButtons.classList.add("buttons");
+  
+      // Botão de edição
+      const editButton = document.createElement("button");
+      editButton.innerHTML = "<i class='fa-solid fa-pen'></i>";
+      editButton.onclick = () => openEditModal(task.id, task.titulo);
+  
+      // Botão de remoção
+      const deleteButton = document.createElement("button");
+      deleteButton.innerHTML = "<i class='fa-solid fa-trash'></i>";
+      deleteButton.onclick = () => deleteTask(task.id);
+      deleteButton.classList.add("delete");
+  
+      // Adiciona os botões na div de botões
+      divButtons.appendChild(editButton);
+      divButtons.appendChild(deleteButton);
+  
+      // Adiciona as duas divs dentro do <li>
+      taskElement.appendChild(divText);
+      taskElement.appendChild(divButtons);
+  
+      // Adiciona o <li> no container correspondente ao status da task
+      if (taskContainers[task.status]) {
+        taskContainers[task.status].appendChild(taskElement);
+      } else {
+        console.warn(`Status desconhecido: ${task.status}`);
+      }
+    });
+  }
+  
 
 function openEditModal(taskId, currentTitle) {
   const modal = document.getElementById("editModal");
