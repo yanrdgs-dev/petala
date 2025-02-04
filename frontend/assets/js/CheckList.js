@@ -142,17 +142,21 @@ function renderTasks(tasks) {
 function openEditModal(taskId, currentTitle) {
   const modal = document.getElementById("editModal");
   const modalInput = document.getElementById("modalInput");
-  const saveButton = document.getElementById("saveEdit");
-
+ 
+  modal.setAttribute("data-task-id", taskId);
   modalInput.value = currentTitle;
   modal.style.display = "flex";
 
+  
+  const saveButton = document.getElementById("saveEdit");
   saveButton.onclick = () => {
     const updatedData = { titulo: modalInput.value.trim() };
     saveEdit(taskId, updatedData);
     modal.style.display = "none";
+    modal.removeAttribute("data-task-id");
   };
 }
+
 
 document.getElementById("cancelEdit").onclick = () => {
   document.getElementById("editModal").style.display = "none";
@@ -160,7 +164,7 @@ document.getElementById("cancelEdit").onclick = () => {
 
 document.querySelectorAll(".edit-task-button").forEach(button => {
   button.addEventListener("click", function () {
-      // Remove a classe de qualquer outra task que já estava selecionada antes
+    
       document.querySelectorAll(".task-being-edited").forEach(task => {
           task.classList.remove("task-being-edited");
       });
@@ -181,12 +185,12 @@ document.querySelectorAll(".edit-task-button").forEach(button => {
 
 document.querySelectorAll(".edit-task-button").forEach(button => {
   button.addEventListener("click", function () {
-      // Remove a marcação de qualquer task que estava sendo editada antes
+    
       document.querySelectorAll(".task-being-edited").forEach(task => {
           task.classList.remove("task-being-edited");
       });
 
-      // Encontra a task correta a partir do botão clicado
+  
       const taskElement = this.closest(".task");
 
       if (taskElement) {
@@ -194,18 +198,18 @@ document.querySelectorAll(".edit-task-button").forEach(button => {
           console.log("Task selecionada para edição:", taskElement);
       } else {
           console.warn("Nenhuma task foi selecionada!");
-          return; // Evita abrir o modal caso não tenha uma task válida
+          return; 
       }
 
-      // Abre o modal
+  
       document.getElementById("editModal").style.display = "block";
   });
 });
 
-// Função para mover a task ao clicar nos botões dentro do modal
+
 document.querySelectorAll(".edit-task-button").forEach(button => {
   button.addEventListener("click", function () {
-      const taskElement = this.closest(".task"); // Pega o elemento da task clicada
+      const taskElement = this.closest(".task"); 
 
       if (!taskElement) {
           console.warn("Nenhuma task encontrada para edição!");
@@ -218,80 +222,76 @@ document.querySelectorAll(".edit-task-button").forEach(button => {
           return;
       }
 
-      // Armazena o ID da task no modal (para ser usado ao mover)
+      
       document.getElementById("editModal").setAttribute("data-task-id", taskId);
 
       console.log("Task selecionada para edição, ID:", taskId);
 
-      // Abre o modal
+    
       document.getElementById("editModal").style.display = "block";
   });
 });
 
-// Função para mover a task ao clicar nos botões dentro do modal
-document.querySelectorAll(".move-to-column").forEach(button => {
+
+const columnStatusMap = {
+  "lista-em-andamento": "pendente",
+  "lista-revisar": "revisar",
+  "lista-Concluido": "concluida",
+};
+
+
+async function updateTaskStatus(taskId, newStatus) {
+  try {
+    const response = await fetch(`${API_URL}/${taskId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ status: newStatus }),
+    });
+
+    if (!response.ok) throw new Error("Erro ao atualizar o status da tarefa.");
+
+    fetchTasks(); 
+  } catch (error) {
+    console.error(error);
+    alert("Erro ao atualizar o status da tarefa.");
+  }
+}
+
+document.querySelectorAll(".move-to-column").forEach((button) => {
   button.addEventListener("click", function () {
-      const targetColumnId = this.getAttribute("data-target-column");
-      const targetColumn = document.getElementById(targetColumnId);
-      const modal = document.getElementById("editModal");
-      const taskId = modal.getAttribute("data-task-id");
+    
+    const targetColumn = button.getAttribute("data-target-column");
+    const newStatus = columnStatusMap[targetColumn];
+    if (!newStatus) {
+      alert("Status inválido!");
+      return;
+    }
 
-      console.log("Botão clicado:", this.innerText);
+    
+    const modal = document.getElementById("editModal");
+    const taskId = modal.getAttribute("data-task-id");
+    if (!taskId) {
+      alert("Tarefa não definida.");
+      return;
+    }
 
-      if (!taskId) {
-          console.warn("Nenhuma task foi selecionada!");
-          return;
-      }
+    
+    updateTaskStatus(taskId, newStatus);
 
-      // Encontra a task correspondente ao ID
-      const selectedTask = document.querySelector(`.task[data-task-id="${taskId}"]`);
-
-      if (!selectedTask) {
-          console.warn("A task correspondente ao ID não foi encontrada no DOM!");
-          return;
-      }
-
-      if (targetColumn) {
-          targetColumn.appendChild(selectedTask);
-          console.log(`Task ${taskId} movida para:`, targetColumnId);
-
-          // Atualiza o status no banco de dados
-          atualizarStatusNoBanco(taskId, targetColumnId);
-      } else {
-          console.warn("Coluna de destino não encontrada!");
-      }
-
-      // Fecha o modal
-      fecharModal();
+  
+    modal.style.display = "none";
+    modal.removeAttribute("data-task-id");
   });
 });
 
-// Fecha o modal e reseta a task editada
+
+
 function fecharModal() {
   document.getElementById("editModal").style.display = "none";
   document.getElementById("editModal").removeAttribute("data-task-id");
-}
-
-// Atualiza o status no banco de dados via fetch (PUT)
-async function atualizarStatusNoBanco(taskId, novoStatus) {
-  try {
-      const response = await fetch(`/api/checklists/${taskId}`, {
-          method: "PUT",
-          headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`
-          },
-          body: JSON.stringify({ status: novoStatus }),
-      });
-
-      if (response.ok) {
-          console.log("Status atualizado no banco:", novoStatus);
-      } else {
-          console.error("Erro ao atualizar status no banco!");
-      }
-  } catch (error) {
-      console.error("Erro na requisição:", error);
-  }
 }
 
 
