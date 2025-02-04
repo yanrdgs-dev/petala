@@ -1,6 +1,20 @@
 const API_URL = "http://localhost:3000/api/checklists";
 const token = localStorage.getItem("token");
 
+// Mapeia o ID do container para o status esperado pelo backend
+const statusMap = {
+  "lista-em-andamento": "pendente",
+  "lista-revisar": "revisar",
+  "lista-Concluido": "concluida",
+};
+
+// Se necessário, usamos o mesmo mapa para converter o ID da coluna para o status
+const columnStatusMap = {
+  "lista-em-andamento": "pendente",
+  "lista-revisar": "revisar",
+  "lista-Concluido": "concluida",
+};
+
 async function fetchTasks() {
   try {
     const response = await fetch(API_URL, {
@@ -10,9 +24,7 @@ async function fetchTasks() {
         Authorization: `Bearer ${token}`,
       },
     });
-
     if (!response.ok) throw new Error("Erro ao buscar tarefas.");
-
     const tasks = await response.json();
     renderTasks(tasks);
   } catch (error) {
@@ -27,24 +39,15 @@ async function addTask(listId, inputId) {
     console.error(`Elemento de input não encontrado: ${inputId}`);
     return;
   }
-
   const taskTitle = inputElement.value.trim();
   if (!taskTitle) {
     alert("O título da tarefa é obrigatório.");
     return;
   }
-
-  const statusMap = {
-    "lista-em-andamento": "pendente",
-    "lista-revisar": "revisar",
-    "lista-Concluido": "concluida",
-  };
-
   const newTask = {
     titulo: taskTitle,
-    status: statusMap[listId] || "pendente", // Define o status correto com base na coluna
+    status: statusMap[listId] || "pendente",
   };
-
   try {
     const response = await fetch(API_URL, {
       method: "POST",
@@ -54,11 +57,9 @@ async function addTask(listId, inputId) {
       },
       body: JSON.stringify(newTask),
     });
-
     if (!response.ok) {
       throw new Error("Erro ao criar tarefa.");
     }
-
     inputElement.value = ""; // Limpa o campo de entrada
     fetchTasks(); // Atualiza a lista de tarefas
   } catch (error) {
@@ -73,9 +74,7 @@ async function deleteTask(taskId) {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });
-
     if (!response.ok) throw new Error("Erro ao excluir a tarefa.");
-
     fetchTasks();
     alert("Tarefa excluída com sucesso!");
   } catch (error) {
@@ -94,9 +93,7 @@ async function saveEdit(taskId, updatedData) {
       },
       body: JSON.stringify(updatedData),
     });
-
     if (!response.ok) throw new Error("Erro ao atualizar tarefa.");
-
     fetchTasks();
   } catch (error) {
     console.error(error);
@@ -104,193 +101,114 @@ async function saveEdit(taskId, updatedData) {
   }
 }
 
-function renderTasks(tasks) { 
-    const taskContainers = {
-      pendente: document.getElementById("lista-em-andamento"),
-      revisar: document.getElementById("lista-revisar"),
-      concluida: document.getElementById("lista-Concluido"),
-    };
-  
-    // Limpa os containers antes de renderizar as tasks
-    Object.values(taskContainers).forEach(
-      (container) => (container.innerHTML = "")
-    );
-  
-    tasks.forEach((task) => {
-      // Cria o elemento <li> e define seu atributo data-id
-      const taskElement = document.createElement("li");
-      taskElement.setAttribute("data-id", task.id);
-  
-      // Cria a div para o texto
-      const divText = document.createElement("div");
-      divText.classList.add("text");
-      divText.textContent = task.titulo;
-  
-      // Cria a div para os botões (ícones)
-      const divButtons = document.createElement("div");
-      divButtons.classList.add("buttons");
-  
-      // Botão de edição
-      const editButton = document.createElement("button");
-      editButton.innerHTML = "<i class='fa-solid fa-pen'></i>";
-      editButton.onclick = () => openEditModal(task.id, task.titulo);
-  
-      // Botão de remoção
-      const deleteButton = document.createElement("button");
-      deleteButton.innerHTML = "<i class='fa-solid fa-trash'></i>";
-      deleteButton.onclick = () => deleteTask(task.id);
-      deleteButton.classList.add("delete");
-  
-      // Adiciona os botões na div de botões
-      divButtons.appendChild(editButton);
-      divButtons.appendChild(deleteButton);
-  
-      // Adiciona as duas divs dentro do <li>
-      taskElement.appendChild(divText);
-      taskElement.appendChild(divButtons);
-  
-      // Adiciona o <li> no container correspondente ao status da task
-      if (taskContainers[task.status]) {
-        taskContainers[task.status].appendChild(taskElement);
-      } else {
-        console.warn(`Status desconhecido: ${task.status}`);
-      }
-    });
-  }
-  
+/* Renderiza as tasks nos containers correspondentes.  
+   Cada task é criada com:
+   - <li class="task" data-task-id="...">
+   - Duas divs: uma para o texto e outra para os botões de edição e exclusão.
+*/
+function renderTasks(tasks) {
+  const taskContainers = {
+    pendente: document.getElementById("lista-em-andamento"),
+    revisar: document.getElementById("lista-revisar"),
+    concluida: document.getElementById("lista-Concluido"),
+  };
 
+  // Limpa os containers antes de renderizar as tasks
+  Object.values(taskContainers).forEach(container => {
+    container.innerHTML = "";
+  });
+
+  tasks.forEach(task => {
+    // Cria o elemento <li> com a classe "task" e atribui data-task-id
+    const taskElement = document.createElement("li");
+    taskElement.classList.add("task");
+    taskElement.setAttribute("data-task-id", task.id);
+
+    // Div para o texto
+    const divText = document.createElement("div");
+    divText.classList.add("text");
+    divText.textContent = task.titulo;
+
+    // Div para os botões
+    const divButtons = document.createElement("div");
+    divButtons.classList.add("buttons");
+
+    // Botão de edição
+    const editButton = document.createElement("button");
+    editButton.innerHTML = "<i class='fa-solid fa-pen'></i>";
+    // Ao editar, abre o modal passando o ID, título e (opcionalmente) a coluna atual
+    editButton.onclick = () => openEditModal(task.id, task.titulo);
+
+    // Botão de remoção
+    const deleteButton = document.createElement("button");
+    deleteButton.innerHTML = "<i class='fa-solid fa-trash'></i>";
+    deleteButton.onclick = () => deleteTask(task.id);
+    deleteButton.classList.add("delete");
+
+    divButtons.appendChild(editButton);
+    divButtons.appendChild(deleteButton);
+
+    taskElement.appendChild(divText);
+    taskElement.appendChild(divButtons);
+
+    // Coloca a task no container correspondente ao seu status
+    if (taskContainers[task.status]) {
+      taskContainers[task.status].appendChild(taskElement);
+    } else {
+      console.warn(`Status desconhecido: ${task.status}`);
+    }
+  });
+}
+
+/* Abre o modal de edição/movimentação.
+   Este modal é usado tanto para editar o título quanto para mover a tarefa.
+   Ele armazena o ID da task em data-task-id.
+*/
 function openEditModal(taskId, currentTitle) {
   const modal = document.getElementById("editModal");
   const modalInput = document.getElementById("modalInput");
- 
+  const saveButton = document.getElementById("saveEdit");
+
+  // Define o atributo com o ID da task para uso posterior
   modal.setAttribute("data-task-id", taskId);
   modalInput.value = currentTitle;
   modal.style.display = "flex";
 
-  
-  const saveButton = document.getElementById("saveEdit");
+  // Configura o clique para salvar a edição do título
   saveButton.onclick = () => {
     const updatedData = { titulo: modalInput.value.trim() };
     saveEdit(taskId, updatedData);
-    modal.style.display = "none";
-    modal.removeAttribute("data-task-id");
+    fecharModal();
   };
 }
 
-
-document.getElementById("cancelEdit").onclick = () => {
-  document.getElementById("editModal").style.display = "none";
-};
-
-document.querySelectorAll(".edit-task-button").forEach(button => {
-  button.addEventListener("click", function () {
-    
-      document.querySelectorAll(".task-being-edited").forEach(task => {
-          task.classList.remove("task-being-edited");
-      });
-
-      // Adiciona a classe à task correta
-      const taskElement = this.closest(".task"); // Supondo que cada task tenha a classe "task"
-      if (taskElement) {
-          taskElement.classList.add("task-being-edited");
-          console.log("Task selecionada para edição:", taskElement);
-      } else {
-          console.warn("Nenhuma task foi selecionada!");
-      }
-
-      // Abre o modal
-      document.getElementById("editModal").style.display = "block";
-  });
-});
-
-document.querySelectorAll(".edit-task-button").forEach(button => {
-  button.addEventListener("click", function () {
-    
-      document.querySelectorAll(".task-being-edited").forEach(task => {
-          task.classList.remove("task-being-edited");
-      });
-
-  
-      const taskElement = this.closest(".task");
-
-      if (taskElement) {
-          taskElement.classList.add("task-being-edited");
-          console.log("Task selecionada para edição:", taskElement);
-      } else {
-          console.warn("Nenhuma task foi selecionada!");
-          return; 
-      }
-
-  
-      document.getElementById("editModal").style.display = "block";
-  });
-});
-
-
-document.querySelectorAll(".edit-task-button").forEach(button => {
-  button.addEventListener("click", function () {
-      const taskElement = this.closest(".task"); 
-
-      if (!taskElement) {
-          console.warn("Nenhuma task encontrada para edição!");
-          return;
-      }
-
-      const taskId = taskElement.getAttribute("data-task-id");
-      if (!taskId) {
-          console.warn("A task não possui um ID válido!");
-          return;
-      }
-
-      
-      document.getElementById("editModal").setAttribute("data-task-id", taskId);
-
-      console.log("Task selecionada para edição, ID:", taskId);
-
-    
-      document.getElementById("editModal").style.display = "block";
-  });
-});
-
-
-const columnStatusMap = {
-  "lista-em-andamento": "pendente",
-  "lista-revisar": "revisar",
-  "lista-Concluido": "concluida",
-};
-
-
-async function updateTaskStatus(taskId, newStatus) {
-  try {
-    const response = await fetch(`${API_URL}/${taskId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ status: newStatus }),
-    });
-
-    if (!response.ok) throw new Error("Erro ao atualizar o status da tarefa.");
-
-    fetchTasks(); 
-  } catch (error) {
-    console.error(error);
-    alert("Erro ao atualizar o status da tarefa.");
-  }
+// Fecha o modal e remove o atributo com o ID da task
+function fecharModal() {
+  const modal = document.getElementById("editModal");
+  modal.style.display = "none";
+  modal.removeAttribute("data-task-id");
 }
 
-document.querySelectorAll(".move-to-column").forEach((button) => {
+document.getElementById("cancelEdit").onclick = () => {
+  fecharModal();
+};
+
+/* 
+   Event listener para mover a tarefa.  
+   Os botões que movem a task devem ter a classe "move-to-column" e
+   um atributo data-target-column com o ID do container (ex.: "lista-em-andamento").
+*/
+document.querySelectorAll(".move-to-column").forEach(button => {
   button.addEventListener("click", function () {
-    
-    const targetColumn = button.getAttribute("data-target-column");
-    const newStatus = columnStatusMap[targetColumn];
+    // Obtém o ID do container destino a partir do atributo data-target-column
+    const targetColumnId = this.getAttribute("data-target-column");
+    // Usa o mapa para converter o ID da coluna para o status correspondente
+    const newStatus = columnStatusMap[targetColumnId];
     if (!newStatus) {
       alert("Status inválido!");
       return;
     }
 
-    
     const modal = document.getElementById("editModal");
     const taskId = modal.getAttribute("data-task-id");
     if (!taskId) {
@@ -298,23 +216,32 @@ document.querySelectorAll(".move-to-column").forEach((button) => {
       return;
     }
 
-    
+    // Atualiza o status no backend
     updateTaskStatus(taskId, newStatus);
-
-  
-    modal.style.display = "none";
-    modal.removeAttribute("data-task-id");
+    fecharModal();
   });
 });
 
-
-
-function fecharModal() {
-  document.getElementById("editModal").style.display = "none";
-  document.getElementById("editModal").removeAttribute("data-task-id");
+/* Atualiza o status da tarefa no banco via PUT */
+async function updateTaskStatus(taskId, newStatus) {
+  try {
+    const response = await fetch(`${API_URL}/${taskId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({ status: newStatus }),
+    });
+    if (response.ok) {
+      console.log("Status atualizado no banco:", newStatus);
+      fetchTasks(); // Atualiza a lista após a mudança
+    } else {
+      console.error("Erro ao atualizar status no banco!");
+    }
+  } catch (error) {
+    console.error("Erro na requisição:", error);
+  }
 }
-
-
-
 
 fetchTasks();
