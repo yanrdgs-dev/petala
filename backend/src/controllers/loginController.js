@@ -22,7 +22,6 @@ exports.login = (req, res) => {
       return res.status(400).send({ message: "E-mail ou senha incorretos." });
     }
 
-
     const usuario = result[0];
 
     // if (!usuario.is_verified) {
@@ -47,13 +46,13 @@ exports.login = (req, res) => {
       const accessToken = jwt.sign(
         { id: usuario.id, email: usuario.email, username: usuario.username },
         process.env.JWT_SECRET,
-        { expiresIn: "24h" }
+        { expiresIn: "24h" },
       );
 
       const refreshToken = jwt.sign(
         { id: usuario.id },
         process.env.JWT_REFRESH_SECRET,
-        { expiresIn: "7d" } // Refresh token expira em 7 dias
+        { expiresIn: "7d" }, // Refresh token expira em 7 dias
       );
 
       // Armazene o refresh token no banco, se necessário
@@ -67,20 +66,20 @@ exports.login = (req, res) => {
               .json({ message: "Erro ao salvar refresh token." });
           }
 
-         if (!usuario.is_verified) {
-      return res
-        .status(403)
-        .json({
-          message: "Por favor, verifique seu e-mail antes de fazer login.",
-        });
-    }
-          
+          //         if (!usuario.is_verified) {
+          //      return res
+          //        .status(403)
+          //        .json({
+          //          message: "Por favor, verifique seu e-mail antes de fazer login.",
+          //        });
+          //    }
+
           res.status(200).json({
             message: "Login Efetuado com sucesso.",
             token: accessToken,
             // user: userData
           });
-        }
+        },
       );
     });
   });
