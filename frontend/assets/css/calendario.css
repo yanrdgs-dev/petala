@@ -311,7 +311,7 @@ li {
 #lista-eventos li:hover {
   opacity: 0.6;
 }
-.ViewEventTittle {
+.ViewEventTitle {
   /* background-color: red; */
 }
 .ViewEventDescription {
