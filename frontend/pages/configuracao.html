@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Petala</title>
     <link rel="stylesheet" href="../assets/css/configuracao.css">
+    <link rel="stylesheet" href="../assets/css/responsivo_config.css">
     <script
       src="https://kit.fontawesome.com/28be5bc03d.js"
       crossorigin="anonymous"
@@ -35,7 +36,6 @@
             <i class="fa-solid fa-xmark fa-xl"></i>
         </label>
         <a href="#" id="sidebar-link-1">Início</a>
-        <a href="#">Início</a>
         <a href="#">Rotina</a>
         <a href="#">Agenda</a>
         <a href="#">Desempenho</a>
@@ -54,7 +54,7 @@
       <div class="box-left">
         <button class="opcao" onclick="showpage('perfil')">Perfil</button>
         <button class="opcao" onclick="showpage('conta')">Conta</button>
-        <button class="opcao" onclick="showpage('preferencias')">Preferências</button>
+        <button class="opcao" id="pref" onclick="showpage('preferencias')">Preferências</button>
       </div> 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <div class="tab-content grid box-main-profile" id="perfil">

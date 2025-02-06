@@ -150,7 +150,7 @@
     justify-content: space-evenly;
 }
 .opcao {
-    padding: 15px;
+    padding: 0px;
     width: 100%;
     height: 150px;
     background-color: rgb(162, 160, 160);
@@ -179,7 +179,7 @@
 }
 .box-name {
   position: relative;
-  grid-row: 3 / auto;
+  grid-row: 4 / auto;
   grid-column: 4 / 17;
   height: auto;
   width: auto;
