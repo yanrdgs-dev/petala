@@ -119,14 +119,7 @@ button {
   right: 0px;
 }
 /*-----------------------------------------------------*/
-.box-1 {
-  margin-top: 120px;
-  height: 1200px;
-  width: 100%;
-  background-color: pink;
 
-  
-}
 .grid-1 {
   display: grid;
   /* margin-top: 120px; */
@@ -154,25 +147,8 @@ button {
   grid-row: 1 / 4;
   grid-column: 1 / 22;
   justify-content: center;
+  font-weight: 600;
 
-}
-
-.opcao {
-  padding: 0px;
-  width: 50%;
-  height: 50px;
-  background-color: pink;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-border-radius: 10px;
-  text-align: center;
-  align-content: center;
-  font-weight: 550;
-  font-size: 1.6em;
-  transition: background-color 0.3s;
-}
-
-.opcao.active {
-  background-color: rgb(163, 21, 21); 
 }
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - */
 .main-grid {
@@ -241,11 +217,6 @@ border-radius: 10px;
   outline: none;
 }
 
-.box-status:focus {
-  border-color: #555; 
-  background-color: #1F1717;
-}
-
 .button- {
   position: relative;
   grid-row: 11 / auto;
@@ -262,16 +233,6 @@ border-radius: 10px;
 /* ----------------------------------------- */
 
 /* ---------------------------------------------- */
-
-.tab-content {
-  display: none;
-}
-.tab-content.grid.active {
-  display: grid;
-}
-.tab-content.flex.active {
-  display: flex;
-}
 
 button:hover {
   opacity: 0.8;
