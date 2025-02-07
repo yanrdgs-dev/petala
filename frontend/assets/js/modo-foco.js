@@ -1,150 +1,200 @@
-let countdownInterval = null;
-let isStudyPhase = true;
-let studyTimeMs, breakTimeMs;
+const timerDisplay = document.getElementById("timerDisplay");
+const stopBtn = document.getElementById("stopBtn");
+const pauseBtn = document.getElementById("pauseBtn");
+const studyTimeInput = document.getElementById("studyTime");
+const breakTimeInput = document.getElementById("breakTime");
 const header = document.querySelector("header");
-const historico = document.querySelectorAll('.historico');
-function handleTimerClick() {
-  if (localStorage.getItem("timerRunning") === "true") return;
-  startPomodoro();
+const historicoContainer = document.querySelector(".historico");
+
+let studyTimer = null;
+let totalSeconds = 0;
+let elapsedSeconds = 0;
+let remainingSeconds = 0;
+let sessionRecorded = false;
+let isPaused = false;
+
+function formatTime(seconds) {
+  const mins = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
 }
 
-function startPomodoro() {
-  const studyMinutes = parseInt(document.getElementById("studyTime").value, 10);
-  const breakMinutes = parseInt(document.getElementById("breakTime").value, 10);
+function darkenPage() {
+  document.body.style.backgroundColor = "#5D2438";
+  header.style.opacity = "0.7";
+  historicoContainer.style.opacity = "0.7";
+}
 
-  if (isNaN(studyMinutes) || isNaN(breakMinutes) || studyMinutes <= 0 || breakMinutes <= 0) {
-    alert("Por favor, defina tempos válidos para estudo e descanso.");
+function revertPage() {
+  document.body.style.backgroundColor = "#FBE2E2";
+  header.style.opacity = "1";
+  historicoContainer.style.opacity = "1";
+}
+
+function startTimer() {
+  const studyMinutes = parseInt(studyTimeInput.value, 10);
+  if (isNaN(studyMinutes) || studyMinutes <= 0) {
+    alert("Informe um tempo de estudo válido!");
     return;
   }
+  totalSeconds = studyMinutes * 60;
+  elapsedSeconds = 0;
+  remainingSeconds = totalSeconds;
+  sessionRecorded = false;
+  isPaused = false;
+  timerDisplay.textContent = formatTime(totalSeconds);
+  stopBtn.disabled = false;
+  pauseBtn.disabled = false;
+  pauseBtn.textContent = "Pausar";
 
-  studyTimeMs = studyMinutes * 60 * 1000;
-  breakTimeMs = breakMinutes * 60 * 1000;
+  darkenPage();
 
-  document.getElementById("studyTime").disabled = true;
-  document.getElementById("breakTime").disabled = true;
-  document.getElementById("stopBtn").disabled = false;
+  studyTimer = setInterval(() => {
+    if (!isPaused) {
+      elapsedSeconds++;
+      remainingSeconds--;
+      timerDisplay.textContent = formatTime(remainingSeconds);
+      if (remainingSeconds <= 0) {
+        clearInterval(studyTimer);
+        studyTimer = null;
+        stopBtn.disabled = true;
+        pauseBtn.disabled = true;
+        recordFocusSessionOnce();
 
-  isStudyPhase = true;
-  localStorage.setItem("timerRunning", "true");
-  localStorage.setItem("isStudyPhase", isStudyPhase);
-
-  iniciarFase(studyTimeMs);
-}
-
-function iniciarFase(tempoFaseMs) {
-  const endTime = Date.now() + tempoFaseMs;
-  localStorage.setItem("endTime", endTime);
-
-  atualizarDisplay(tempoFaseMs);
-
-  // Estilizacao baseado no tempo
-  if (isStudyPhase) {
-    document.body.style.backgroundColor = "#5D2438"; 
-    header.style.opacity = "0.7";
-    historico.forEach(element => {
-      element.style.opacity = "0.7";
-    });
-  } else {
-    document.body.style.backgroundColor = "#FF8DA9"; 
-    header.style.opacity = "1";
-    historico.forEach(element => {
-      element.style.opacity = "1";
-    });
-  }
-
-  if (countdownInterval) clearInterval(countdownInterval);
-
-  countdownInterval = setInterval(() => {
-    const now = Date.now();
-    const remaining = parseInt(localStorage.getItem("endTime"), 10) - now;
-
-    if (remaining <= 0 || isNaN(remaining)) {
-      clearInterval(countdownInterval);
-      atualizarDisplay(0);
-      
-      if (isStudyPhase) {
-        // alert("Fim do tempo de estudo!");    DEVE TER ALGO PARA SIMBOLIZAR O FIM DO TEMPO DE ESTUDO (SOM E COR)
-        isStudyPhase = false;
-        localStorage.setItem("isStudyPhase", isStudyPhase);
-        iniciarFase(breakTimeMs);
-      } else {
-        // alert("Fim do tempo de descanso!");  DEVE TER ALGO PARA SIMBOLIZAR O FIM DO TEMPO DE ESTUDO (SOM E COR)
-        isStudyPhase = true;
-        localStorage.setItem("isStudyPhase", isStudyPhase);
-        iniciarFase(studyTimeMs);
+        revertPage();
       }
-    } else {
-      atualizarDisplay(remaining);
     }
   }, 1000);
 }
 
-function atualizarDisplay(tempoMs) {
-  const totalSeconds = Math.floor(tempoMs / 1000);
-  const minutes = Math.floor(totalSeconds / 60);
-  const seconds = totalSeconds % 60;
-  document.getElementById("timerDisplay").innerText =
-    String(minutes).padStart(2, "0") + ":" + String(seconds).padStart(2, "0");
+function togglePause() {
+  if (!studyTimer) return;
+  if (isPaused) {
+    isPaused = false;
+    pauseBtn.textContent = "Pausar";
+  } else {
+    isPaused = true;
+    pauseBtn.textContent = "Continuar";
+  }
+
+  pauseBtn.classList.add("active");
+  setTimeout(() => pauseBtn.classList.remove("active"), 200);
 }
 
 function stopTimer() {
-  if (countdownInterval) clearInterval(countdownInterval);
-  localStorage.removeItem("endTime");
-  localStorage.removeItem("timerRunning");
-  localStorage.removeItem("isStudyPhase");
-
-  document.getElementById("studyTime").disabled = false;
-  document.getElementById("breakTime").disabled = false;
-  document.getElementById("stopBtn").disabled = true;
-
-  document.getElementById("timerDisplay").innerText = "00:00";
-
-  document.body.style.backgroundColor = "#FBE2E2";
-  header.style.opacity = "1";
-  historico.forEach(element => {
-    element.style.opacity = "1";
-  });
-
-
+  if (studyTimer) {
+    clearInterval(studyTimer);
+    studyTimer = null;
+  }
+  stopBtn.disabled = true;
+  pauseBtn.disabled = true;
+  recordFocusSessionOnce();
+  revertPage();
 }
 
-window.onload = function () {
-  // Recuperar valores dos inputs salvos no navegador
-  const savedStudyTime = localStorage.getItem("studyTime");
-  const savedBreakTime = localStorage.getItem("breakTime");
-
-  if (savedStudyTime) {
-    document.getElementById("studyTime").value = savedStudyTime;
+function recordFocusSessionOnce() {
+  if (!sessionRecorded) {
+    sessionRecorded = true;
+    recordFocusSession();
   }
+}
 
-  if (savedBreakTime) {
-    document.getElementById("breakTime").value = savedBreakTime;
+function recordFocusSession() {
+  const studyMinutes = parseInt(studyTimeInput.value, 10);
+  const plannedStudySeconds = studyMinutes * 60;
+  const breakMinutes = parseInt(breakTimeInput.value, 10);
+  const plannedBreakSeconds = breakMinutes * 60;
+
+  const data = {
+    studyTime: plannedStudySeconds,
+    breakTime: plannedBreakSeconds,
+    actualStudyDuration: elapsedSeconds,
+  };
+
+  const token = localStorage.getItem("token");
+  fetch("http://localhost:3000/focus", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      if (!response.ok) throw new Error("Erro ao registrar a sessão.");
+      return response.json();
+    })
+    .then((session) => {
+      console.log("Sessão registrada:", session);
+      updateHistory();
+    })
+    .catch((error) => {
+      console.error("Erro:", error);
+    });
+}
+
+function updateHistory() {
+  const token = localStorage.getItem("token");
+  fetch("http://localhost:3000/focus", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => response.json())
+    .then((sessions) => {
+      const histContainer = document.querySelector(".hist");
+      histContainer.innerHTML = "";
+      sessions.forEach((session) => {
+        const div = document.createElement("div");
+        div.classList.add("prev-hist");
+        const formattedStudy = formatTime(session.actualStudyDuration);
+        const formattedBreak = formatTime(session.breakTime);
+        div.innerHTML = `
+          ${formattedStudy} de estudo<br>
+          ${formattedBreak} de descanso
+        `;
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Excluir";
+        deleteBtn.classList.add("delete-session-btn");
+        deleteBtn.addEventListener("click", () => {
+          if (confirm("Tem certeza que deseja excluir essa sessão?")) {
+            deleteSession(session.id);
+          }
+        });
+        div.appendChild(deleteBtn);
+        histContainer.appendChild(div);
+      });
+    })
+    .catch((error) => console.error("Erro ao carregar histórico:", error));
+}
+
+function deleteSession(sessionId) {
+  const token = localStorage.getItem("token");
+  fetch(`http://localhost:3000/focus/${sessionId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      if (!response.ok) throw new Error("Erro ao deletar a sessão.");
+      return response.json();
+    })
+    .then((data) => {
+      console.log("Sessão deletada com sucesso:", data);
+      updateHistory();
+    })
+    .catch((error) => console.error("Erro ao deletar a sessão:", error));
+}
+
+function handleTimerClick(event) {
+  if (!studyTimer) {
+    startTimer();
   }
+}
 
-  if (localStorage.getItem("timerRunning") === "true") {
-    const storedEndTime = parseInt(localStorage.getItem("endTime"), 10);
-    isStudyPhase = localStorage.getItem("isStudyPhase") === "true";
+document.querySelector(".clock").addEventListener("click", handleTimerClick);
+stopBtn.addEventListener("click", stopTimer);
+pauseBtn.addEventListener("click", togglePause);
 
-    document.getElementById("studyTime").disabled = true;
-    document.getElementById("breakTime").disabled = true;
-    document.getElementById("stopBtn").disabled = false;
-
-    const remaining = storedEndTime - Date.now();
-    if (remaining > 0) {
-      atualizarDisplay(remaining);
-      iniciarFase(remaining);
-    } else {
-      stopTimer();
-    }
-  }
-};
-
-// Salva o input do tempo de estudo e descanso no navegador
-document.getElementById("studyTime").addEventListener("input", function () {
-  localStorage.setItem("studyTime", this.value);
-});
-
-document.getElementById("breakTime").addEventListener("input", function () {
-  localStorage.setItem("breakTime", this.value);
-});
-
+updateHistory();
