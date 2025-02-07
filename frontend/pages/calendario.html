@@ -93,9 +93,9 @@
               <input type="text" id="evento-hora" placeholder="12:00 - 13:50" maxlength="13" />
 
             </div>
-            <div>
-              <button type="submit" id="salvar-evento">Salvar</button>
+            <div class="cancel-save">
               <button type="button" id="cancelar-evento" onclick="fecharModal()">Cancelar</button>
+              <button type="submit" id="salvar-evento">Salvar</button>
             </div>
           </form>
         </div>
@@ -127,7 +127,11 @@
       </div>
   
       <div class="modal-actions">
-        <button id="closeViewBtn" type="button">Close</button>
+        <button id="cancelEditBtn" type="button">Cancelar</button>
+        <button id="confirmEditBtn" type="button">Salvar Alterações</button>
+        <button id="deleteEventBtn" type="button">Apagar Evento</button>
+
+
       </div>
   
     </div>

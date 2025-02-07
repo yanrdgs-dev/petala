@@ -18,7 +18,9 @@ const CreateBtn = document.getElementById("criar-evento");
 const closeBtn = document.getElementById("fechar-modal");
 
 const viewEventModal = document.getElementById("viewEventModal");
-const closeViewBtn = document.getElementById("closeViewBtn");
+const confirmEditBtn = document.getElementById("confirmEditBtn");
+const cancelEditBtn = document.getElementById("cancelEditBtn");
+
 
 let dataAtual = new Date();
 
@@ -64,9 +66,6 @@ function carregarCalendario(data) {
     diasContainer.appendChild(diaElemento);
   }
 }
-closeViewBtn.addEventListener("click", () => {
-  viewEventModal.style.display = "none";
-});
 
 // Abre a lista de eventos do dia
 function openEventModal(dataChave) {
@@ -91,6 +90,7 @@ function openEventModal(dataChave) {
     li.style.cursor = "pointer";
     li.addEventListener("click", () => {
       openViewEventModal(dataChave, index);
+
     });
     ul.appendChild(li);
   });
@@ -100,9 +100,13 @@ function openEventModal(dataChave) {
 
 // Abre o modal "create event" 
 function openCreateModal() {
-  modalOverlay.style.display = "none";
+  modalOverlay.style.display = "none"; 
   modalCreate.style.display = "flex";
+
+  // Garante que a data do evento está armazenada no formulário
+  eventoForm.dataset.dataChave = eventoForm.dataset.dataChave || new Date().toISOString().split("T")[0];
 }
+
 
 // funcionalidade do botão"Cancel" 
 cancelarEventoBtn.addEventListener("click", fecharModal);
@@ -193,62 +197,180 @@ function createEditableDiv(className, initialText, updateCallback) {
   return div;
 }
 
+// --- FUNÇÃO openViewEventModal ---
+// --- Function openViewEventModal ---
+// Helper function to format a time string to "HH:MM - HH:MM"
+function formatTime(text) {
+  let digits = text.replace(/\D/g, "");
+  if (digits.length === 0) return "";
+  if (digits.length > 8) {
+    digits = digits.slice(0, 8);
+  }
+  if (digits.length >= 5) {
+    let startHour = digits.slice(0, 2);
+    let startMin = digits.slice(2, 4);
+    let endHour = digits.slice(4, 6);
+    let endMin = digits.slice(6, 8);
+    let formatted = startHour + ":" + startMin + " - " + endHour;
+    if (endMin) {
+      formatted += ":" + endMin;
+    }
+    return formatted;
+  } else if (digits.length >= 3) {
+    return digits.slice(0, 2) + ":" + digits.slice(2);
+  } else {
+    return digits;
+  }
+}
+
+// Enhanced makeEditable function that stops propagation on click
+// and applies an optional formatter on blur.
+function makeEditable(el, updateCallback, validate = null, formatter = null) {
+  function enableEditing(e) {
+    e.stopPropagation();
+    el.contentEditable = "true";
+    el.focus();
+  }
+  el.addEventListener("click", enableEditing);
+
+  el.addEventListener("blur", () => {
+    let newText = el.textContent.trim();
+    if (formatter) {
+      newText = formatter(newText);
+      el.textContent = newText;
+    }
+    if (validate && newText !== "" && !validate(newText)) {
+      alert("Formato inválido! Use HH:MM - HH:MM.");
+      el.textContent = updateCallback(); // Restore current value if invalid.
+    } else {
+      updateCallback(newText);
+    }
+    el.contentEditable = "false";
+  });
+
+  el.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      el.blur();
+    }
+  });
+}
+
+// Function openViewEventModal: opens the view/edit modal for a given event.
 function openViewEventModal(dataChave, index) {
+  // Close the initial event list overlay.
+  modalOverlay.style.display = "none";
+
+  if (!eventos[dataChave] || !eventos[dataChave][index]) {
+    console.error("Evento não encontrado!");
+    return;
+  }
   const evento = eventos[dataChave][index];
 
+  // Store original values to allow restoration if the user cancels.
+  const original = {
+    titulo: evento.titulo,
+    descricao: evento.descricao,
+    hora: evento.hora,
+  };
+
+  // Get references to the existing elements in the view modal.
   const viewTitleEl = document.getElementById("viewTitle");
   const viewDescriptionEl = document.getElementById("viewDescription");
   const viewTimeEl = document.getElementById("viewTime");
 
+  // Update the elements with the current event data.
   viewTitleEl.textContent = evento.titulo || " ";
   viewDescriptionEl.textContent = evento.descricao || " ";
   viewTimeEl.textContent = evento.hora || " ";
 
-  // Função para permitir edição inline
-  function makeEditable(el, updateCallback, validate = null) {
-    el.addEventListener("click", function enableEditing() {
-      el.contentEditable = "true";
-      el.focus();
-      el.removeEventListener("click", enableEditing);
-    });
-
-    el.addEventListener("blur", () => {
-      let newText = el.textContent.trim();
-      if (validate && !validate(newText) && newText !== "") {
-        alert("Formato inválido! Use HH:MM - HH:MM.");
-        el.textContent = updateCallback(); // Restaura o valor anterior se for inválido
-      } else {
-        updateCallback(newText);
-      }
-      el.contentEditable = "false";
-      el.addEventListener("click", enableEditing);
-    });
-
-    el.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        el.blur();
-      }
-    });
-  }
-
+  // Regex to validate the time format "HH:MM - HH:MM"
   const regexHora = /^([01]\d|2[0-3]):([0-5]\d) - ([01]\d|2[0-3]):([0-5]\d)$/;
 
-  makeEditable(viewTitleEl, (newText) => evento.titulo = newText);
-  makeEditable(viewDescriptionEl, (newText) => evento.descricao = newText);
-  makeEditable(viewTimeEl, (newText) => {
-    if (newText === "" || regexHora.test(newText)) {
-      evento.hora = newText || " ";
-      return newText || " ";
-    }
-    return evento.hora; // Restaura valor antigo se for inválido
-  }, (text) => regexHora.test(text));
+  deleteEventBtn.dataset.dataChave = dataChave;
+  deleteEventBtn.dataset.index = index;
 
+  // Enable inline editing for the title.
+  makeEditable(viewTitleEl, (newText) => {
+    evento.titulo = newText;
+    return evento.titulo;
+  });
+
+  // Enable inline editing for the description.
+  makeEditable(viewDescriptionEl, (newText) => {
+    evento.descricao = newText;
+    return evento.descricao;
+  });
+
+  // Enable inline editing for the time, applying the formatter.
+  makeEditable(
+    viewTimeEl,
+    (newText) => {
+      evento.hora = newText || " ";
+      return evento.hora;
+    },
+    (newText) => regexHora.test(newText),
+    formatTime
+  );
+
+  // Get the confirm and cancel buttons from the HTML.
+  const confirmEditBtn = document.getElementById("confirmEditBtn");
+  const cancelEditBtn = document.getElementById("cancelEditBtn");
+
+  // When confirming, simply close the view modal and update the calendar.
+  confirmEditBtn.onclick = () => {
+    viewEventModal.style.display = "none";
+    carregarCalendario(dataAtual);
+  };
+
+  // When canceling, restore original values and close the view modal.
+  cancelEditBtn.onclick = () => {
+    evento.titulo = original.titulo;
+    evento.descricao = original.descricao;
+    evento.hora = original.hora;
+
+    viewTitleEl.textContent = original.titulo;
+    viewDescriptionEl.textContent = original.descricao;
+    viewTimeEl.textContent = original.hora;
+    viewEventModal.style.display = "none";
+  };
+
+  // Finally, display the view event modal.
   viewEventModal.style.display = "flex";
 }
 
+// Function to close the event list modal.
+function closeEventList() {
+  document.getElementById("modal-exibir").style.display = "none";
+}
+
+// Selecionar o botão de apagar
+const deleteEventBtn = document.getElementById("deleteEventBtn");
+
+// Função para apagar o evento
+function deleteEvent(dataChave, index) {
+  if (confirm("Tem certeza que deseja apagar este evento?")) {
+    eventos[dataChave].splice(index, 1); // Remove o evento da lista
+
+    // Se não houver mais eventos nesse dia, remover a chave do objeto
+    if (eventos[dataChave].length === 0) {
+      delete eventos[dataChave];
+    }
+
+    // Fechar modal e atualizar o calendário
+    viewEventModal.style.display = "none";
+    carregarCalendario(dataAtual);
+  }
+}
+
+// Adicionar evento de clique ao botão
+deleteEventBtn.addEventListener("click", () => {
+  const dataChave = deleteEventBtn.dataset.dataChave;
+  const index = parseInt(deleteEventBtn.dataset.index, 10);
+  deleteEvent(dataChave, index);
+});
 
 
-
-// Carrega o calendário
+// Finally, load the calendar.
 carregarCalendario(dataAtual);
+
