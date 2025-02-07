@@ -321,6 +321,8 @@ function openViewEventModal(dataChave, index) {
   confirmEditBtn.onclick = () => {
     viewEventModal.style.display = "none";
     carregarCalendario(dataAtual);
+    openEventModal(dataChave);
+
   };
 
   // When canceling, restore original values and close the view modal.
@@ -333,6 +335,7 @@ function openViewEventModal(dataChave, index) {
     viewDescriptionEl.textContent = original.descricao;
     viewTimeEl.textContent = original.hora;
     viewEventModal.style.display = "none";
+    openEventModal(dataChave);
   };
 
   // Finally, display the view event modal.
@@ -360,6 +363,8 @@ function deleteEvent(dataChave, index) {
     // Fechar modal e atualizar o calendário
     viewEventModal.style.display = "none";
     carregarCalendario(dataAtual);
+    openEventModal(dataChave);
+
   }
 }
 
