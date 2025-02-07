@@ -15,7 +15,7 @@ form.addEventListener("submit", async (event) => {
 
   try {
     const response = await fetch(
-      "http://localhost:3000/api/users/reset-password",
+      "http://localhost:3000/reset-password",
       {
         method: "POST",
         headers: {
