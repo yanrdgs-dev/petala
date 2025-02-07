@@ -198,6 +198,20 @@ button {
   border-radius: 8px;
 }
 
+#pauseBtn{
+  background-color: rgb(200, 200, 200);
+  font-size: 1.8em;
+  font-weight: 500;
+  padding: 8px 16px;
+  border:  2px solid;
+  border-radius: 8px;
+}
+
+.control-buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
 
 .historico {
   position: absolute;
