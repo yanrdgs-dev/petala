@@ -1,101 +1,102 @@
 <!DOCTYPE html>
 <html lang="PT-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Petala</title>
-    <link rel="stylesheet" href="../assets/css/style_modo_foco.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Petala - Modo Foco</title>
+    <link rel="stylesheet" href="../assets/css/style_modo_foco.css" />
     <script
       src="https://kit.fontawesome.com/28be5bc03d.js"
-      crossorigin="anonymous"
-    ></script>
-</head>
-
-<body>
+      crossorigin="anonymous"></script>
+  </head>
+  <body>
     <header>
-        <div class="imagem_navbar">
-            <a href="index.html">
-                <img src="../assets/images/logoSemPetala.png" width="70%" alt="logo" />
-            </a>
+      <div class="imagem_navbar">
+        <a href="index.html">
+          <img
+            src="../assets/images/logoSemPetala.png"
+            width="70%"
+            alt="logo" />
+        </a>
+      </div>
+      <div class="header_pos">
+        <nav class="navbar_pos">
+          <a href="#start">Página inicial</a>
+          <a href="#">Rotina</a>
+          <a href="#">Biblioteca</a>
+          <a href="#">Agenda</a>
+        </nav>
+      </div>
+      <div class="side-bar">
+        <input type="checkbox" id="sidebar-active" />
+        <label for="sidebar-active" class="open-sidebar-button">
+          <i class="fa-solid fa-bars fa-xl"></i>
+        </label>
+        <div class="link-container">
+          <label for="sidebar-active" class="close-sidebar-button">
+            <i class="fa-solid fa-xmark fa-xl"></i>
+          </label>
+          <a href="#" id="sidebar-link-1">Início</a>
+          <a href="#">Início</a>
+          <a href="#">Rotina</a>
+          <a href="#">Agenda</a>
+          <a href="#">Desempenho</a>
+          <a href="#">...</a>
+          <a href="#" id="sidebar-link-second-last">Configurações</a>
+          <a href="#">Sair</a>
         </div>
-        <div class="header_pos">
-            <nav class="navbar_pos">
-                <a href="#start">Página inicial</a>
-                <a href="#">Rotina</a>
-                <a href="#">Biblioteca</a>
-                <a href="#">Agenda</a>
-            </nav>
-        </div>
-        <div class="side-bar">
-            <input type="checkbox" id="sidebar-active">
-            <label for="sidebar-active" class="open-sidebar-button">
-                <i class="fa-solid fa-bars fa-xl"></i>
-            </label>
-            <div class="link-container">
-                <label for="sidebar-active" class="close-sidebar-button">
-                    <i class="fa-solid fa-xmark fa-xl"></i>
-                </label>
-                <a href="#" id="sidebar-link-1">Início</a>
-                <a href="#">Início</a>
-                <a href="#">Rotina</a>
-                <a href="#">Agenda</a>
-                <a href="#">Desempenho</a>
-                <a href="#">...</a>
-                <a href="#" id="sidebar-link-second-last">Configurações</a>
-                <a href="#">Sair</a>
-            </div>
-        </div>
+      </div>
     </header>
 
-    <!--------------------------------------------------------------/------------------------>
     <main>
-        <div class="main-container">
-            <div class="clock-container">
-                <div class="clock" onclick="handleTimerClick(event)">
-                  <div class="timer">
-                    <span id="timerDisplay" >00:00</span>
-                  </div>
-                </div>
-                <button id="stopBtn" onclick="stopTimer()" disabled>Parar</button>
-              </div>
-
-    <!-------------------------------------------------------------------------------------->
-
-            <div class="historico">
-                <div class="historico-header">HISTORICO</div>
-                <div class="hist">
-                    <div class="prev-hist">2,45horas - estudo <br>1horas - descanso</div>
-                    <div class="prev-hist">4horas - estudo <br>2horas - descanso</div>
-                    <div class="prev-hist">2horas - estudo <br>1horas - descanso</div>
-                    <div class="prev-hist">2horas - estudo <br>1horas - descanso</div>
-                    <div class="prev-hist">2horas - estudo <br>1horas - descanso</div>
-                    <div class="prev-hist">2horas - estudo <br>1horas - descanso</div>
-                </div>
+      <div class="main-container">
+        <div class="clock-container">
+          <div class="clock" onclick="handleTimerClick(event)">
+            <div class="timer">
+              <span id="timerDisplay">00:00</span>
             </div>
-
-            <!-------------------------------------------------------------------------------------->
-
-            <div class="modes">
-                <label class="time-input-box">
-                Estudo (min):
-                <input type="number" id="studyTime" value="25" min="1" max="60" class="time-input">
-              </label>
-              
-              <label class="time-input-box">
-                Descanso (min):
-                <input type="number" id="breakTime" value="5" min="1" max="60" class="time-input">
-              </label>
-            </div>
-            
-    <!-------------------------------------------------------------------------------------->
-            <!-- Possivel overlay de tutorial futuro -->
-            <div class="tutorial-box"><i class="fa-solid fa-question fa-lg" style="color: #9a285f;"></i></div>
+          </div>
+          <div class="control-buttons">
+            <button id="stopBtn" onclick="stopTimer()" disabled>Parar</button>
+            <button id="pauseBtn" disabled>Pausar</button>
+          </div>
         </div>
 
+        <div class="historico">
+          <div class="historico-header">HISTÓRICO</div>
+          <div class="hist"></div>
+        </div>
+
+        <div class="modes">
+          <label class="time-input-box">
+            Estudo (min):
+            <input
+              type="number"
+              id="studyTime"
+              value="25"
+              min="1"
+              max="60"
+              class="time-input" />
+          </label>
+          <label class="time-input-box">
+            Descanso (min):
+            <input
+              type="number"
+              id="breakTime"
+              value="5"
+              min="1"
+              max="60"
+              class="time-input" />
+          </label>
+        </div>
+
+        <div class="tutorial-box">
+          <i class="fa-solid fa-question fa-lg" style="color: red"></i>
+        </div>
+      </div>
     </main>
-    <!-------------------------------------------------------------------------------------->
+
     <footer></footer>
-        <script src="../assets/js/modo-foco.js"></script>
-    </body>
+    <script src="../assets/js/modo-foco.js"></script>
+  </body>
 </html>
