@@ -70,7 +70,7 @@
     <div class="modal-overlay-exibir" id="modal-exibir">
       <div class="modal">
         <h2>Eventos</h2>
-        <div class="modal-actions">
+        <div class="modal-action1">
           <button id="fechar-modal" type="button" onclick="closeEventList()">Cancelar</button>
           <button id="criar-evento" type="button" onclick="openCreateModal()">Criar evento</button>
         </div>
@@ -127,10 +127,15 @@
       </div>
   
       <div class="modal-actions">
-        <button id="cancelEditBtn" type="button">Cancelar</button>
-        <button id="confirmEditBtn" type="button">Salvar Alterações</button>
-        <button id="deleteEventBtn" type="button">Apagar Evento</button>
-
+        <div class="space"></div>
+        
+        <div class="main-buttons">
+          <button id="cancelEditBtn" type="button">Cancelar</button>
+          <button id="confirmEditBtn" type="button">Salvar Alterações</button>
+        </div>
+        <div class="side-button">
+          <button id="deleteEventBtn" type="button"><i class='fa-solid fa-trash'></i></button>
+        </div>
 
       </div>
   
