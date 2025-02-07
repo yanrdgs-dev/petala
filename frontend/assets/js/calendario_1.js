@@ -155,6 +155,14 @@ eventoForm.onsubmit = (e) => {
   carregarCalendario(dataAtual);
 };
 
+document.getElementById("evento-hora").addEventListener("input", function (e) {
+  let value = e.target.value.replace(/\D/g, ""); // Remove caracteres não numéricos
+  if (value.length > 4) value = value.slice(0, 4) + " - " + value.slice(4);
+  if (value.length > 2) value = value.slice(0, 2) + ":" + value.slice(2);
+  if (value.length > 10) value = value.slice(0, 10) + ":" + value.slice(10);
+  e.target.value = value;
+});
+
 // --- função do modal VIEW EVENT  ---
 
 // Cria divs 
