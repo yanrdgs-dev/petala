@@ -1,12 +1,11 @@
 document.getElementById('loginForm').addEventListener('submit', async function (event) {
-  event.preventDefault(); // Evita o recarregamento da página
+  event.preventDefault(); 
 
-  // Captura os valores dos campos
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
 
   try {
-    // Faz a requisição ao backend
+    
     const response = await fetch('http://localhost:3000/login', {
       method: 'POST',
       headers: {
@@ -18,11 +17,11 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     const data = await response.json();
 
     if (response.status === 200) {
-      // Salva o token no localStorage
+    
       localStorage.setItem('token', data.token);
 
       alert('Login efetuado com sucesso!');
-      // Redireciona o usuário para a página pós-login
+      
       window.location.href = './Pos_Login.html';
     } else {
       alert(data.message || 'Erro no login!');
@@ -33,7 +32,11 @@ document.getElementById('loginForm').addEventListener('submit', async function (
   }
 });
 
-// Botão para redirecionar para a página de cadastro
+const resetPassword = document.getElementById('resetPasswordBtn');
+
+resetPassword.addEventListener('click', () => {
+  window.location.href = './email.html';
+  })
 document.getElementById('cadastrarUser').addEventListener('click', () => {
   window.location.href = './register.html';
 });
