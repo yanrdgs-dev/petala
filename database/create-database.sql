@@ -14,6 +14,8 @@ CREATE TABLE IF NOT EXISTS users (
     is_verified BOOLEAN DEFAULT 0, -- usuário verificado
     reset_token VARCHAR(255), -- token de reset de senha
     reset_token_expiry DATETIME,-- data de expiração do token de reset de senha  
+    token VARCHAR(255), -- token
+    refresh_token VARCHAR(255) -- token de refresh
 );
 
 
