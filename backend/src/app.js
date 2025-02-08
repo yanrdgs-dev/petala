@@ -2,6 +2,7 @@ const express = require("express");
 const userRoutes = require("./routes/userRoutes");
 const loginRoutes = require("./routes/loginRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
+const configRoutes = require("./routes/configRoutes");
 const db = require("./config/db");
 const cors = require("cors");
 
@@ -18,7 +19,7 @@ app.use(express.json());
 app.use("/api/users", userRoutes);
 app.use("/login", loginRoutes);
 app.use("/api/dashboard", dashboardRoutes);
-
+app.use("/profile_picture", configRoutes);
 // Conectar com o banco de dados
 db.connect((err) => {
   if (err) {

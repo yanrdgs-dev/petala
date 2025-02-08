@@ -61,8 +61,11 @@
         <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
         <!-- <div class="tab-content grid box-main-profile" id="perfil"> -->
           <div class="main-grid">
-            <button class="profile-picture"><i class="fa-solid fa-pen fa-2xl"></i></button> 
-            <div class="box-name"> <i class="fa-solid fa-user fa-lg"></i>  Nome de usuario</div>
+            <label for="profilePictureInput" class="profile-picture">
+              <img id="profileImage" src="/uploads/default.png" alt="Foto de perfil">
+              <i class="fa-solid fa-pen fa-2xl edit-icon"></i>
+          </label>
+          <input type="file" id="profilePictureInput" name="profilePicture" accept="image/*" style="display: none;">            <div class="box-name"> <i class="fa-solid fa-user fa-lg"></i>  Nome de usuario</div>
             <div class="box-email">  <i class="fa-solid fa-envelope fa-lg"></i> Teste@Teste.com.br</div>
             <input class="box-status" placeholder=  "Digite seu status..." ></input>
             <input class="box-meta" placeholder=  "Seja leve como uma pétala..." ></input>
