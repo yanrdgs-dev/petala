@@ -14,7 +14,6 @@ exports.requestPasswordReset = async (req, res) => {
     if (result.length === 0)
       return res.status(404).json({ message: "E-mail não cadastrado." });
 
-    // Gerar token aleatório e definir expiração para 1 hora
     const token = crypto.randomBytes(32).toString("hex");
     const tokenExpiry = new Date(Date.now() + 3600000); // 1 hora
 
