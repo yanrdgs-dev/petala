@@ -143,7 +143,6 @@ main {
   position: relative;
   height: 900px;
   margin-top: 120px;
-  /* border: purple 5px solid; */
 }
 
 .mensagem_inicial {
@@ -154,7 +153,6 @@ main {
   transform: translateX(-50%);
   font-size: 30px;
   font-weight: 700;
-  /* background-color: green; */
 }
 
 /* ______________________________________________________ */
@@ -167,7 +165,6 @@ main {
   margin-top: 112px;
   margin-left: 126px;
   width: 65%;
-  /* border: red dashed 2px; */
   height: 100px;
   flex-wrap: wrap;
 }
@@ -348,7 +345,6 @@ main {
   display: flex;
   bottom: 10px;
   position: absolute;
-  background-color: purple;
   height: 42px;
   width: 185px;
 }
