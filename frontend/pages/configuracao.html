@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Petala</title>
+    <link rel="stylesheet" href="../assets/css/configuracao.css" />
+    <link rel="stylesheet" href="../assets/css/responsivo_config.css" />
+    <script
+      src="https://kit.fontawesome.com/28be5bc03d.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <!--------------------------------------------------------->
+    <header>
+      <div class="imagem_navbar">
+        <a href="index.html">
+          <img
+            src="../assets/images/logoSemPetala.png"
+            width="70%"
+            alt="logo"
+          />
+        </a>
+      </div>
+      <div class="header_pos">
+        <nav class="navbar_pos">
+          <a href="#start">Página inicial</a>
+          <a href="#">Rotina</a>
+          <a href="#">Biblioteca</a>
+          <a href="#">Agenda</a>
+        </nav>
+      </div>
+      <div class="side-bar">
+        <input type="checkbox" id="sidebar-active" />
+        <label for="sidebar-active" class="open-sidebar-button">
+          <i class="fa-solid fa-bars fa-xl"></i>
+        </label>
+        <div class="link-container">
+          <label for="sidebar-active" class="close-sidebar-button">
+            <i class="fa-solid fa-xmark fa-xl"></i>
+          </label>
+          <a href="#" id="sidebar-link-1">Início</a>
+          <a href="#">Rotina</a>
+          <a href="#">Agenda</a>
+          <a href="#">Desempenho</a>
+          <a href="#">...</a>
+          <a href="#" id="sidebar-link-second-last">Configurações</a>
+          <a href="#">Sair</a>
+        </div>
+      </div>
+    </header>
+
+    <!--------------------------------------------------------------------->
+
+    <main>
+      <div class="grid-1">
+        <div class="box-top">"Assim como uma pétala solta ao vento, cada pequeno passo pode levar você a lugares inesperados e belos. Confie no seu caminho."</div> 
+        <!-- <div class="box-left">
+        </div> -->
+        <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <!-- <div class="tab-content grid box-main-profile" id="perfil"> -->
+          <div class="main-grid">
+            <label for="profilePictureInput" class="profile-picture">
+              <img id="profileImage" src="/uploads/default.png" alt="Foto de perfil">
+              <i class="fa-solid fa-pen fa-2xl edit-icon"></i>
+          </label>
+          <input type="file" id="profilePictureInput" name="profilePicture" accept="image/*" style="display: none;">            <div class="box-name"> <i class="fa-solid fa-user fa-lg"></i>  Nome de usuario</div>
+            <div class="box-email">  <i class="fa-solid fa-envelope fa-lg"></i> Teste@Teste.com.br</div>
+            <input class="box-status" placeholder=  "Digite seu status..." ></input>
+            <input class="box-meta" placeholder=  "Seja leve como uma pétala..." ></input>
+            <button class="button-">  <i class="fa-solid fa-lock fa-sm"></i>  Alterar senha</button> 
+          </div>
+        <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        
+        <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        
+      </div>
+    </main>
+
+    <!--------------------------------------------------------------------->
+
+    <footer></footer>
+    <script src="../assets/js/configuracao.js"></script>
+  </body>
+</html>
