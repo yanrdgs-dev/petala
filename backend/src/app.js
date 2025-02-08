@@ -8,7 +8,7 @@ const db = require("./config/db");
 const cors = require("cors");
 const emailRoutes = require("./routes/mailRoutes")
 const verifyEmail = require("./routes/verifyEmailRoutes")
-
+const passwordResetRoutes = require("./routes/passwordResetRoutes");
 const app = express();
 
 app.use(cors());
@@ -25,7 +25,7 @@ app.use("/api/checklists", checklistRoutes);
 // app.use("/api/dashboard", dashboardRoutes);
 app.use('/send-email', emailRoutes)
 app.use('/verify-email', verifyEmail )
-
+app.use("/password-reset", passwordResetRoutes);
 // Conectar com o banco de dados
 db.connect((err) => {
   if (err) {
