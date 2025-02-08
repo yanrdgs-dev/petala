@@ -17,6 +17,9 @@ let remainingSeconds = 0;
 let sessionRecorded = false;
 let isPaused = false;
 
+let isStudyPhase = true;
+
+
 function formatTime(seconds) {
   const mins = Math.floor(seconds / 60);
   const secs = seconds % 60;
