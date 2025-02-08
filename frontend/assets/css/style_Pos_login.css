@@ -71,6 +71,12 @@ button {
 }
 /* ________________________________________________ */
 
+.mode-switch {
+  position: absolute;
+  right: 120px;
+}
+
+
 .side-bar {
   display: flex;
   position: relative;
