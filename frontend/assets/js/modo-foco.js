@@ -6,6 +6,10 @@ const breakTimeInput = document.getElementById("breakTime");
 const header = document.querySelector("header");
 const historicoContainer = document.querySelector(".historico");
 
+const modalOverlay = document.getElementById("modalOverlay");
+const modalConfirmBtn = document.getElementById("modalConfirmBtn");
+const modalCancelBtn = document.getElementById("modalCancelBtn");
+
 let studyTimer = null;
 let totalSeconds = 0;
 let elapsedSeconds = 0;
