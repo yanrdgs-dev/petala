@@ -43,7 +43,7 @@ header {
   width: 100%;
   height: 120px;
   /* background-color: white; */
-  z-index: 2;
+  z-index: 5;
   justify-content: center;
   align-items: center;
   padding-left: 50px;
@@ -69,7 +69,7 @@ button {
   border-radius: 40px;
   background: var(--color1);
   display: flex;
-  z-index: 2;
+  z-index: 6;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 .navbar_pos {
@@ -111,7 +111,7 @@ button {
   position: fixed;
   top: 0px;
   right: -20%;
-  z-index: 3;
+  z-index: 7;
   width: 15%;
 
   transition-duration: 0.55s;
@@ -172,6 +172,7 @@ main {
   height: 900px;
   margin-top: 120px;
   /* border: purple 5px solid; */
+  z-index: 1;
 }
 
 .mensagem_inicial {
@@ -183,6 +184,7 @@ main {
   font-size: 30px;
   font-weight: 700;
   /* background-color: green; */
+  z-index: 6;
 }
 
 /* ______________________________________________________ */
@@ -381,6 +383,23 @@ main {
   height: 42px;
   width: 185px;
 }
+#dark-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Ajuste a opacidade conforme necessário */
+  pointer-events: none; /* Para não interferir nos cliques */
+  opacity: 0;
+  z-index: 3;
+  transition: opacity 0.3s ease-in-out;
+}
+
+
+.darkmode #dark-overlay {
+  opacity: 1;
+}
 
 @media (max-width: 768px) {
   .imagem_navbar {
@@ -519,21 +538,4 @@ header {
 i {
   cursor: pointer;
   background-color: transparent;
-}
-#dark-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Ajuste a opacidade conforme necessário */
-  pointer-events: none; /* Para não interferir nos cliques */
-  opacity: 0;
-  z-index: 5;
-  transition: opacity 0.3s ease-in-out;
-}
-
-
-.darkmode #dark-overlay {
-  opacity: 1;
 }
