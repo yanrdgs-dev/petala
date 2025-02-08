@@ -43,7 +43,7 @@ header {
   width: 100%;
   height: 120px;
   /* background-color: white; */
-  z-index: 100;
+  z-index: 2;
   justify-content: center;
   align-items: center;
   padding-left: 50px;
@@ -69,7 +69,7 @@ button {
   border-radius: 40px;
   background: var(--color1);
   display: flex;
-  z-index: 100;
+  z-index: 2;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 .navbar_pos {
@@ -111,7 +111,7 @@ button {
   position: fixed;
   top: 0px;
   right: -20%;
-  z-index: 1000;
+  z-index: 3;
   width: 15%;
 
   transition-duration: 0.55s;
@@ -146,7 +146,12 @@ button {
   padding: 20px;
   display: block;
 }
-
+.fa-xmark {
+  color: var(--color5);
+}
+#theme-switch {
+  background-color: transparent;
+}
 #sidebar-active:checked ~ .link-container {
   right: 0px;
 }
@@ -524,7 +529,7 @@ i {
   background: rgba(0, 0, 0, 0.5); /* Ajuste a opacidade conforme necessário */
   pointer-events: none; /* Para não interferir nos cliques */
   opacity: 0;
-  z-index: 3;
+  z-index: 5;
   transition: opacity 0.3s ease-in-out;
 }
 
