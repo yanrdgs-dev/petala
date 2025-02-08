@@ -15,4 +15,4 @@ CREATE TABLE dashboard (
 );
 
 -- Mensagem de sucesso
-SELECT "Tabela de informações do dashboard criada com sucesso.";
+SELECT "Tabela do dashboard criada com sucesso.";
