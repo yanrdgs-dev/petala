@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../config/db"); 
+const db = require("../config/db");
 const authenticateUser = require("../utils/authenticateUser");
 
 // Autenticar usuário em todas as rotas
@@ -27,14 +27,15 @@ router.post("/", (req, res) => {
   });
 });
 
-
 // Buscar tarefas
 router.get("/", (req, res) => {
   const userId = req.user.id;
-  const query = `SELECT data, id, titulo, descricao, horario 
-                 FROM agenda 
-                 WHERE user_id = ? 
-                 ORDER BY data`;
+  const query = `
+  SELECT data, id, titulo, descricao, horario 
+  FROM agenda 
+  WHERE user_id = ? 
+  ORDER BY data
+`;
 
   db.query(query, [userId], (err, results) => {
     if (err) {
@@ -59,20 +60,25 @@ router.put("/:id", (req, res) => {
 
   const query = `UPDATE agenda SET titulo = COALESCE(?, titulo), descricao = COALESCE(?, descricao), horario = COALESCE(?, horario) WHERE user_id = ? AND id = ?`;
 
-  db.query(query, [titulo, descricao, horario, userId, agendaID], (err, result) => {
-    if (err) {
-      console.error("Erro ao atualizar evento: ", err);
-      return res.status(500).json({ message: "Erro ao atualizar evento: ", err });
-    }
+  db.query(
+    query,
+    [titulo, descricao, horario, userId, agendaID],
+    (err, result) => {
+      if (err) {
+        console.error("Erro ao atualizar evento: ", err);
+        return res
+          .status(500)
+          .json({ message: "Erro ao atualizar evento: ", err });
+      }
 
-    if (result.affectedRows === 0) {
-      return res.status(404).json({ message: "Evento não encontrado." });
-    }
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ message: "Evento não encontrado." });
+      }
 
-    res.status(200).json({ message: "Evento atualizado com sucesso." });
-  });
+      res.status(200).json({ message: "Evento atualizado com sucesso." });
+    }
+  );
 });
-
 
 router.delete("/:id", (req, res) => {
   const userId = req.user.id;
@@ -94,4 +100,3 @@ router.delete("/:id", (req, res) => {
   });
 });
 module.exports = router;
-
