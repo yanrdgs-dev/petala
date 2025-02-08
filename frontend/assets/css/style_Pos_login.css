@@ -15,7 +15,7 @@
   --color1: black;
   --color2: white;
   --color3: #1f1717;
-  --color4: hsl(343, 87%, 75%);
+  --color4: hsl(343, 54%, 46%);
   --color5: white;
 }
 /* ________________________________________________ */
@@ -135,6 +135,9 @@ button {
 
 .side-bar a:hover {
   background-color: var(--color4);
+  transition-duration: 0.30s;
+  transition-delay: 0s;
+  transition-timing-function:ease-out;
 }
 
 #sidebar-active {
