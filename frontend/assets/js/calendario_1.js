@@ -137,11 +137,11 @@ function fecharModal() {
 }
 
 prevBtn.addEventListener("click", () => {
-  dataAtual.setMonth(dataAtual.getMonth() - 1);
+  dataAtual.setMonth(dataAtual.getMonth() );
   carregarCalendario(dataAtual);
 });
 nextBtn.addEventListener("click", () => {
-  dataAtual.setMonth(dataAtual.getMonth() + 1);
+  dataAtual.setMonth(dataAtual.getMonth() );
   carregarCalendario(dataAtual);
 });
 
