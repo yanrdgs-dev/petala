@@ -2,6 +2,25 @@
   src: url(../fonts/Montserrat-VariableFont_wght.ttf);
   font-family: Montserrat;
 }
+
+:root{
+  --color1: white;
+  --color2: #1f1717;
+  --color3: #fafafa;
+  --color4: hsl(343, 87%, 75%);
+  --color5: black;
+}
+
+.darkmode{
+  --color1: black;
+  --color2: white;
+  --color3: #1f1717;
+  --color4: hsl(343, 87%, 75%);
+  --color5: white;
+}
+
+/* ________________________________________________________________ */
+
 html {
   scroll-behavior: smooth;
 }
@@ -26,7 +45,7 @@ header {
   width: 100%;
   height: 120px;
   /* background-color: white; */
-  z-index: 100;
+  z-index: 5;
   justify-content: center;
   align-items: center;
   padding-left: 50px;
@@ -50,9 +69,9 @@ button {
   height: 80px;
   padding: 20px 62px;
   border-radius: 40px;
-  background: white;
+  background: var(--color1);
   display: flex;
-  z-index: 100;
+  z-index: 6;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 .navbar_pos {
@@ -65,12 +84,17 @@ button {
   text-align: center;
   margin: auto;
   text-decoration: none;
-  color: #1f1717;
+  color: var(--color2);
   font-weight: 540;
   font-size: 1.3em;
 }
 /* ________________________________________________ */
+.mode-switch {
+  position: absolute;
+  right: 120px;
+}
 
+/* ________________________________________________ */
 .side-bar {
   display: flex;
   position: relative;
@@ -88,13 +112,13 @@ button {
   position: fixed;
   top: 0px;
   right: -20%;
-  z-index: 1000;
+  z-index: 7;
   width: 15%;
 
   transition-duration: 0.55s;
   transition-delay: 0s;
   transition-timing-function: ease-out;
-  background-color: white;
+  background-color: var(--color1);
   box-shadow: -5px 0 5px rgba(0, 0, 0, 0.25);
 }
 
@@ -106,22 +130,28 @@ button {
   padding: 20px 30px;
   justify-content: flex-start;
   text-decoration: none;
-  color: #1f1717;
+  color: var(--color2);
 }
 
 
 .side-bar a:hover {
-  background-color: hsl(343, 87%, 75%);
+  background-color: var(--color4);
 }
 
 #sidebar-active {
   display: none;
 }
-
 .open-sidebar-button,
 .close-sidebar-button {
   padding: 20px;
   display: block;
+}
+
+.fa-xmark {
+  color: var(--color5);
+}
+#theme-switch {
+  background-color: transparent;
 }
 
 #sidebar-active:checked ~ .link-container {
@@ -144,6 +174,7 @@ main {
   height: 900px;
   margin-top: 120px;
   /* border: purple 5px solid; */
+  z-index: 1;
 }
 
 .mensagem_inicial {
@@ -155,6 +186,7 @@ main {
   font-size: 30px;
   font-weight: 700;
   /* background-color: green; */
+  z-index: 6;
 }
 
 /* ______________________________________________________ */
@@ -170,6 +202,7 @@ main {
   /* border: red dashed 2px; */
   height: 100px;
   flex-wrap: wrap;
+  color: var(--color2);
 }
 .tarefas_progresso {
   position: relative;
@@ -178,7 +211,7 @@ main {
   width: 205px;
   padding: 10px 10px 10px 10px;
   border-radius: 16px;
-  background: #fafafa;
+  background: var(--color3);
   box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
 }
 .tarefas_concluidas {
@@ -188,7 +221,7 @@ main {
   width: 205px;
   padding: 10px 10px 10px 10px;
   border-radius: 16px;
-  background: #fafafa;
+  background: var(--color3);
   box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
 }
 .tempo_de_foco {
@@ -198,7 +231,7 @@ main {
   width: 205px;
   padding: 10px 10px 10px 10px;
   border-radius: 16px;
-  background: #fafafa;
+  background: var(--color3);
   box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
 }
 .provas_futuras {
@@ -208,7 +241,7 @@ main {
   width: 205px;
   padding: 10px 10px 10px 10px;
   border-radius: 16px;
-  background: #fafafa;
+  background: var(--color3);
   box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
 }
 
@@ -239,7 +272,7 @@ main {
   width: 205px;
   padding: 10px 21px 6px 20px;
   border-radius: 16px;
-  background: #fafafa;
+  background: var(--color3);
   box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
 }
 .container_desempenho {
@@ -248,7 +281,7 @@ main {
   width: 205px;
   padding: 10px 21px 6px 20px;
   border-radius: 16px;
-  background: #fafafa;
+  background: var(--color3);
   box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
 }
 .container_biblioteca {
@@ -257,7 +290,7 @@ main {
   width: 205px;
   padding: 10px 21px 6px 20px;
   border-radius: 16px;
-  background: #fafafa;
+  background: var(--color3);
   box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
 }
 .container_foco {
@@ -266,7 +299,7 @@ main {
   width: 205px;
   padding: 10px 21px 6px 20px;
   border-radius: 16px;
-  background: #fafafa;
+  background: var(--color3);
   box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
 }
 
@@ -301,7 +334,7 @@ main {
   display: flex;
   height: 230px;
   width: 205px;
-  background-color: white;
+  background-color: var(--color1);
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
@@ -311,10 +344,10 @@ main {
   display: flex;
   width: 170px;
   height: 42px;
-  background-color: #1f1717;
+  background-color: var(--color2);
   border-radius: 25px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
-  color: #ffffff;
+  color: var(--color1);
   justify-content: center;
   align-items: center;
 }
@@ -325,7 +358,7 @@ main {
   width: 205px;
   bottom: 0px;
   border-radius: 16px;
-  background-color: white;
+  background-color: var(--color1);
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
@@ -348,10 +381,28 @@ main {
   display: flex;
   bottom: 10px;
   position: absolute;
-  background-color: purple;
+  /* background-color: purple; */
   height: 42px;
   width: 185px;
 }
+
+#dark-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Ajuste a opacidade conforme necessário */
+  pointer-events: none; /* Para não interferir nos cliques */
+  opacity: 0;
+  z-index: 3;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.darkmode #dark-overlay {
+  opacity: 1;
+}
+
 
 @media (max-width: 768px) {
   .imagem_navbar {
@@ -486,4 +537,9 @@ header {
     font-size: 15px;
     align-items: center;
   }
+}
+
+i {
+  cursor: pointer;
+  background-color: transparent;
 }

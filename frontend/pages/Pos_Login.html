@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Petala</title>
     <link rel="stylesheet" href="../assets/css/style_Pos_login.css" />
+    <script type="text/javascript" src="../assets/js/darkmode.js" defer></script>
     <script
       src="https://kit.fontawesome.com/28be5bc03d.js"
       crossorigin="anonymous"
@@ -32,6 +33,11 @@
     
 <!-- _________________________________________________________________________________ -->
       
+      <div class="mode-switch">
+        <button id="theme-switch"><i class="fa-solid fa-sun fa-xl"></i></button>
+      </div>
+
+<!-- _____________________________________________________________________________ -->
       <div class="side-bar">
         <input type="checkbox" id="sidebar-active">
         <label for="sidebar-active" class="open-sidebar-button">
@@ -58,6 +64,7 @@
 <!-- _________________________________________________________________________________ -->
 
     <main>
+      <div class="overlay"></div>
       <div class="mensagem_inicial" id="start" aria-label="Mensagem de boas vindas">Bem vindo, Sérgio! Vamos estudar?</div>
       
       <div class="visao">
@@ -117,6 +124,9 @@
     </main>
 
     <footer></footer>
+
+    <div id="dark-overlay"></div>
+
   </body>
   <script src="../assets/js/dashboard.js"></script>
 </html>
