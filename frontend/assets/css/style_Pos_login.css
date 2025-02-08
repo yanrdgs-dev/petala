@@ -2,6 +2,23 @@
   src: url(../fonts/Montserrat-VariableFont_wght.ttf);
   font-family: Montserrat;
 }
+:root{
+  --color1: white;
+  --color2: #1f1717;
+  --color3: #fafafa;
+  --color4: hsl(343, 87%, 75%);
+  --color5: black;
+}
+
+
+.darkmode{
+  --color1: black;
+  --color2: white;
+  --color3: #1f1717;
+  --color4: hsl(343, 87%, 75%);
+  --color5: white;
+}
+/* ________________________________________________ */
 html {
   scroll-behavior: smooth;
 }
@@ -492,4 +509,25 @@ header {
     font-size: 15px;
     align-items: center;
   }
+}
+i {
+  cursor: pointer;
+  background-color: transparent;
+}
+#dark-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Ajuste a opacidade conforme necessário */
+  pointer-events: none; /* Para não interferir nos cliques */
+  opacity: 0;
+  z-index: 3;
+  transition: opacity 0.3s ease-in-out;
+}
+
+
+.darkmode #dark-overlay {
+  opacity: 1;
 }
