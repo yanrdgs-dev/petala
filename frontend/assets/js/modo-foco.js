@@ -1,3 +1,4 @@
+// Seleção dos elementos da interface
 const timerDisplay = document.getElementById("timerDisplay");
 const stopBtn = document.getElementById("stopBtn");
 const pauseBtn = document.getElementById("pauseBtn");
@@ -10,35 +11,66 @@ const modalOverlay = document.getElementById("modalOverlay");
 const modalConfirmBtn = document.getElementById("modalConfirmBtn");
 const modalCancelBtn = document.getElementById("modalCancelBtn");
 
+// Variáveis de controle do timer e da sessão
 let studyTimer = null;
 let totalSeconds = 0;
 let elapsedSeconds = 0;
 let remainingSeconds = 0;
 let sessionRecorded = false;
 let isPaused = false;
+let isStudyPhase = true; // Por padrão, inicia na fase de estudo
 
-let isStudyPhase = true;
-
-
+// Formata um valor em segundos para o formato MM:SS
 function formatTime(seconds) {
   const mins = Math.floor(seconds / 60);
   const secs = seconds % 60;
   return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
 }
 
-function darkenPage() {
-  document.body.style.backgroundColor = "#5D2438";
+// Define os estilos para a fase de estudo
+function styleStudyPhase() {
+  document.body.style.backgroundColor = "#5D2438"; // Fundo escuro
   header.style.opacity = "0.7";
   historicoContainer.style.opacity = "0.7";
 }
 
+// Define os estilos para a fase de descanso (break)
+function styleBreakPhase() {
+  document.body.style.backgroundColor = "#FF8DA9"; // Fundo com tom mais claro/pink
+  header.style.opacity = "1";
+  historicoContainer.style.opacity = "1";
+}
+
+// Reverte os estilos para o estado neutro (após parar o timer)
 function revertPage() {
   document.body.style.backgroundColor = "#FBE2E2";
   header.style.opacity = "1";
   historicoContainer.style.opacity = "1";
 }
 
-function startTimer() {
+// Função executada a cada segundo durante o timer
+function timerTick() {
+  if (!isPaused) {
+    elapsedSeconds++;
+    remainingSeconds--;
+    timerDisplay.textContent = formatTime(remainingSeconds);
+    if (remainingSeconds <= 0) {
+      clearInterval(studyTimer);
+      studyTimer = null;
+      stopBtn.disabled = true;
+      pauseBtn.disabled = true;
+      // Registra a sessão apenas se for a fase de estudo
+      if (isStudyPhase) {
+        recordFocusSessionOnce();
+      }
+      openSwitchModal();
+    }
+  }
+}
+
+// Inicia a fase de estudo
+function startStudyPhase() {
+  isStudyPhase = true;
   const studyMinutes = parseInt(studyTimeInput.value, 10);
   if (isNaN(studyMinutes) || studyMinutes <= 0) {
     alert("Informe um tempo de estudo válido!");
@@ -47,57 +79,62 @@ function startTimer() {
   totalSeconds = studyMinutes * 60;
   elapsedSeconds = 0;
   remainingSeconds = totalSeconds;
-  sessionRecorded = false;
-  isPaused = false;
   timerDisplay.textContent = formatTime(totalSeconds);
   stopBtn.disabled = false;
   pauseBtn.disabled = false;
   pauseBtn.textContent = "Pausar";
-
-  darkenPage();
-
-  studyTimer = setInterval(() => {
-    if (!isPaused) {
-      elapsedSeconds++;
-      remainingSeconds--;
-      timerDisplay.textContent = formatTime(remainingSeconds);
-      if (remainingSeconds <= 0) {
-        clearInterval(studyTimer);
-        studyTimer = null;
-        stopBtn.disabled = true;
-        pauseBtn.disabled = true;
-        recordFocusSessionOnce();
-
-        openSwitchModal();
-
-        revertPage();
-      }
-    }
-  }, 1000);
+  isPaused = false;
+  styleStudyPhase();
+  if (studyTimer) clearInterval(studyTimer);
+  studyTimer = setInterval(timerTick, 1000);
+  sessionRecorded = false; // Permite o registro de uma nova sessão
 }
 
+// Inicia a fase de descanso (break)
+function startBreakPhase() {
+  isStudyPhase = false;
+  const breakMinutes = parseInt(breakTimeInput.value, 10);
+  if (isNaN(breakMinutes) || breakMinutes <= 0) {
+    alert("Informe um tempo de descanso válido!");
+    return;
+  }
+  totalSeconds = breakMinutes * 60;
+  elapsedSeconds = 0;
+  remainingSeconds = totalSeconds;
+  timerDisplay.textContent = formatTime(totalSeconds);
+  stopBtn.disabled = false;
+  pauseBtn.disabled = false;
+  pauseBtn.textContent = "Pausar";
+  isPaused = false;
+  styleBreakPhase();
+  if (studyTimer) clearInterval(studyTimer);
+  studyTimer = setInterval(timerTick, 1000);
+  // Não registramos a sessão de descanso
+}
+
+// Abre o modal para troca de fase
 function openSwitchModal() {
-  modalOverlay.style.display = "flex"; 
+  modalOverlay.style.display = "flex";
 }
 
+// Fecha o modal
 function closeSwitchModal() {
   modalOverlay.style.display = "none";
 }
+
+// Ao confirmar a troca de fase, inicia a fase oposta
 function confirmSwitchMode() {
   closeSwitchModal();
   if (isStudyPhase) {
-    // alert("Fim do estudo");
-    isStudyPhase = false;
-    localStorage.setItem("isStudyPhase", isStudyPhase);
-    iniciarFase(breakTimeMs);
+    // Se terminou o estudo, inicia o descanso
+    startBreakPhase();
   } else {
-    // alert("Fim do descanso");
-    isStudyPhase = true;
-    localStorage.setItem("isStudyPhase", isStudyPhase);
-    iniciarFase(studyTimeMs);
+    // Se terminou o descanso, inicia o estudo
+    startStudyPhase();
   }
 }
 
+// Se o usuário cancelar, apenas fecha o modal
 function cancelSwitchMode() {
   closeSwitchModal();
 }
@@ -105,21 +142,16 @@ function cancelSwitchMode() {
 modalConfirmBtn.addEventListener("click", confirmSwitchMode);
 modalCancelBtn.addEventListener("click", cancelSwitchMode);
 
-
+// Alterna entre pausar e retomar o timer
 function togglePause() {
   if (!studyTimer) return;
-  if (isPaused) {
-    isPaused = false;
-    pauseBtn.textContent = "Pausar";
-  } else {
-    isPaused = true;
-    pauseBtn.textContent = "Continuar";
-  }
-
+  isPaused = !isPaused;
+  pauseBtn.textContent = isPaused ? "Continuar" : "Pausar";
   pauseBtn.classList.add("active");
   setTimeout(() => pauseBtn.classList.remove("active"), 200);
 }
 
+// Para o timer e, se for a fase de estudo, registra a sessão
 function stopTimer() {
   if (studyTimer) {
     clearInterval(studyTimer);
@@ -127,10 +159,13 @@ function stopTimer() {
   }
   stopBtn.disabled = true;
   pauseBtn.disabled = true;
-  recordFocusSessionOnce();
+  if (isStudyPhase) {
+    recordFocusSessionOnce();
+  }
   revertPage();
 }
 
+// Garante que a sessão de foco seja registrada apenas uma vez
 function recordFocusSessionOnce() {
   if (!sessionRecorded) {
     sessionRecorded = true;
@@ -138,6 +173,7 @@ function recordFocusSessionOnce() {
   }
 }
 
+// Envia os dados da sessão para o backend
 function recordFocusSession() {
   const studyMinutes = parseInt(studyTimeInput.value, 10);
   const plannedStudySeconds = studyMinutes * 60;
@@ -172,6 +208,7 @@ function recordFocusSession() {
     });
 }
 
+// Atualiza o histórico das sessões
 function updateHistory() {
   const token = localStorage.getItem("token");
   fetch("http://localhost:3000/focus", {
@@ -207,6 +244,7 @@ function updateHistory() {
     .catch((error) => console.error("Erro ao carregar histórico:", error));
 }
 
+// Deleta uma sessão do histórico
 function deleteSession(sessionId) {
   const token = localStorage.getItem("token");
   fetch(`http://localhost:3000/focus/${sessionId}`, {
@@ -226,9 +264,14 @@ function deleteSession(sessionId) {
     .catch((error) => console.error("Erro ao deletar a sessão:", error));
 }
 
+// Ao clicar no elemento com a classe "clock", inicia o timer conforme a fase atual
 function handleTimerClick(event) {
   if (!studyTimer) {
-    startTimer();
+    if (isStudyPhase) {
+      startStudyPhase();
+    } else {
+      startBreakPhase();
+    }
   }
 }
 
@@ -236,4 +279,5 @@ document.querySelector(".clock").addEventListener("click", handleTimerClick);
 stopBtn.addEventListener("click", stopTimer);
 pauseBtn.addEventListener("click", togglePause);
 
+// Atualiza o histórico logo ao carregar a página
 updateHistory();
