@@ -1,4 +1,3 @@
-// 
 const diasContainer = document.getElementById("dias");
 const mesAno = document.getElementById("mes-ano");
 const prevBtn = document.getElementById("prev");
@@ -20,19 +19,37 @@ const closeBtn = document.getElementById("fechar-modal");
 const viewEventModal = document.getElementById("viewEventModal");
 const confirmEditBtn = document.getElementById("confirmEditBtn");
 const cancelEditBtn = document.getElementById("cancelEditBtn");
-
+const deleteEventBtn = document.getElementById("deleteEventBtn");
+const API_URL = "http://localhost:3000/api/agenda";
+const token = localStorage.getItem("token");
 
 let dataAtual = new Date();
-
-
-//explicação ???
-// Events are stored as an object where each key is a date string (e.g., "2025-2-15")
-// and its value is an array of event objects { titulo, descricao, hora }
 let eventos = {};
 
-// --- Funções ---
+// Funções
 
-// Criação do calendario
+// Função para carregar os eventos do backend
+async function carregarEventos() {
+  try {
+    const response = await fetch(API_URL, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    });
+
+    if (response.ok) {
+      eventos = await response.json();
+      carregarCalendario(dataAtual);
+    } else {
+      console.error("Erro ao carregar eventos.");
+    }
+  } catch (error) {
+    console.error("Erro ao carregar eventos: ", error);
+  }
+}
+
+// Criação do calendário
 function carregarCalendario(data) {
   const mes = data.getMonth();
   const ano = data.getFullYear();
@@ -61,7 +78,6 @@ function carregarCalendario(data) {
       diaElemento.appendChild(eventoBadge);
     }
 
-    // função de cickar no dia do calendario
     diaElemento.addEventListener("click", () => openEventModal(dataChave));
     diasContainer.appendChild(diaElemento);
   }
@@ -78,19 +94,16 @@ function openEventModal(dataChave) {
     listaExistente.remove();
   }
 
-  // Cria a lista de eventos
   const eventosDoDia = eventos[dataChave] || [];
   const ul = document.createElement("ul");
   ul.id = "lista-eventos";
 
-  // cada <li> é um botão
   eventosDoDia.forEach((evento, index) => {
     const li = document.createElement("li");
     li.textContent = `${evento.titulo}`;
     li.style.cursor = "pointer";
     li.addEventListener("click", () => {
       openViewEventModal(dataChave, index);
-
     });
     ul.appendChild(li);
   });
@@ -98,17 +111,15 @@ function openEventModal(dataChave) {
   modalContent.appendChild(ul);
 }
 
-// Abre o modal "create event" 
+// Abre o modal "create event"
 function openCreateModal() {
-  modalOverlay.style.display = "none"; 
+  modalOverlay.style.display = "none";
   modalCreate.style.display = "flex";
 
-  // Garante que a data do evento está armazenada no formulário
   eventoForm.dataset.dataChave = eventoForm.dataset.dataChave || new Date().toISOString().split("T")[0];
 }
 
-
-// funcionalidade do botão"Cancel" 
+// Funcionalidade do botão "Cancel"
 cancelarEventoBtn.addEventListener("click", fecharModal);
 closeBtn.addEventListener("click", fecharModal);
 function fecharModal() {
@@ -119,7 +130,7 @@ function fecharModal() {
   eventoHora.value = "";
 }
 
-// Trocar mes
+// Trocar mês
 prevBtn.addEventListener("click", () => {
   dataAtual.setMonth(dataAtual.getMonth() - 1);
   carregarCalendario(dataAtual);
@@ -131,17 +142,15 @@ nextBtn.addEventListener("click", () => {
 });
 
 // Criação de evento
-eventoForm.onsubmit = (e) => {
+eventoForm.onsubmit = async (e) => {
   e.preventDefault();
 
   const titulo = eventoTitulo.value.trim();
   const descricao = eventoDescricao.value.trim();
-  const hora = eventoHora.value.trim();  
+  const hora = eventoHora.value.trim();
 
-  // Verifica se o título está vazio 
   if (!titulo) return;
 
-  // Se o usuário digitou algo no horário, testa para o formato o formato
   const regexHora = /^([01]\d|2[0-3]):([0-5]\d) - ([01]\d|2[0-3]):([0-5]\d)$/;
   if (hora && !regexHora.test(hora)) {
     alert("Por favor, insira um horário válido no formato HH:MM - HH:MM.");
@@ -149,29 +158,49 @@ eventoForm.onsubmit = (e) => {
   }
 
   const dataChave = eventoForm.dataset.dataChave;
-  if (!eventos[dataChave]) {
-    eventos[dataChave] = [];
+  const [ano, mes, dia] = dataChave.split("-");
+  const data = new Date(ano, mes - 1, dia);
+  const horario = hora.split(" - ")[0];
+
+  try {
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        titulo,
+        descricao,
+        horario,
+        data: data.toISOString().split("T")[0]
+      }),
+    });
+
+    if (response.ok) {
+      if (!eventos[dataChave]) {
+        eventos[dataChave] = [];
+      }
+      eventos[dataChave].push({ titulo, descricao, hora });
+      fecharModal();
+      carregarCalendario(dataAtual);
+    } else {
+      alert("Erro ao criar evento.");
+    }
+  } catch (error) {
+    console.error("Erro ao criar evento: ", error);
   }
-
-  eventos[dataChave].push({ titulo, descricao, hora: hora || " " });
-
-  fecharModal();
-  carregarCalendario(dataAtual);
 };
 
 document.getElementById("evento-hora").addEventListener("input", function (e) {
-  let value = e.target.value.replace(/\D/g, ""); // Remove caracteres não numéricos
+  let value = e.target.value.replace(/\D/g, "");
   if (value.length > 4) value = value.slice(0, 4) + " - " + value.slice(4);
   if (value.length > 2) value = value.slice(0, 2) + ":" + value.slice(2);
   if (value.length > 10) value = value.slice(0, 10) + ":" + value.slice(10);
   e.target.value = value;
 });
 
-// --- função do modal VIEW EVENT  ---
-
-// Cria divs 
-// A div é editavel
-// A edição é atualizada
+// Função do modal VIEW EVENT
 function createEditableDiv(className, initialText, updateCallback) {
   const div = document.createElement("div");
   div.classList.add(className);
@@ -197,9 +226,6 @@ function createEditableDiv(className, initialText, updateCallback) {
   return div;
 }
 
-// --- FUNÇÃO openViewEventModal ---
-// --- Function openViewEventModal ---
-// Helper function to format a time string to "HH:MM - HH:MM"
 function formatTime(text) {
   let digits = text.replace(/\D/g, "");
   if (digits.length === 0) return "";
@@ -223,8 +249,6 @@ function formatTime(text) {
   }
 }
 
-// Enhanced makeEditable function that stops propagation on click
-// and applies an optional formatter on blur.
 function makeEditable(el, updateCallback, validate = null, formatter = null) {
   function enableEditing(e) {
     e.stopPropagation();
@@ -241,7 +265,7 @@ function makeEditable(el, updateCallback, validate = null, formatter = null) {
     }
     if (validate && newText !== "" && !validate(newText)) {
       alert("Formato inválido! Use HH:MM - HH:MM.");
-      el.textContent = updateCallback(); // Restore current value if invalid.
+      el.textContent = updateCallback();
     } else {
       updateCallback(newText);
     }
@@ -256,9 +280,7 @@ function makeEditable(el, updateCallback, validate = null, formatter = null) {
   });
 }
 
-// Function openViewEventModal: opens the view/edit modal for a given event.
 function openViewEventModal(dataChave, index) {
-  // Close the initial event list overlay.
   modalOverlay.style.display = "none";
 
   if (!eventos[dataChave] || !eventos[dataChave][index]) {
@@ -267,42 +289,35 @@ function openViewEventModal(dataChave, index) {
   }
   const evento = eventos[dataChave][index];
 
-  // Store original values to allow restoration if the user cancels.
   const original = {
     titulo: evento.titulo,
     descricao: evento.descricao,
     hora: evento.hora,
   };
 
-  // Get references to the existing elements in the view modal.
   const viewTitleEl = document.getElementById("viewTitle");
   const viewDescriptionEl = document.getElementById("viewDescription");
   const viewTimeEl = document.getElementById("viewTime");
 
-  // Update the elements with the current event data.
   viewTitleEl.textContent = evento.titulo || " ";
   viewDescriptionEl.textContent = evento.descricao || " ";
   viewTimeEl.textContent = evento.hora || " ";
 
-  // Regex to validate the time format "HH:MM - HH:MM"
   const regexHora = /^([01]\d|2[0-3]):([0-5]\d) - ([01]\d|2[0-3]):([0-5]\d)$/;
 
   deleteEventBtn.dataset.dataChave = dataChave;
   deleteEventBtn.dataset.index = index;
 
-  // Enable inline editing for the title.
   makeEditable(viewTitleEl, (newText) => {
     evento.titulo = newText;
     return evento.titulo;
   });
 
-  // Enable inline editing for the description.
   makeEditable(viewDescriptionEl, (newText) => {
     evento.descricao = newText;
     return evento.descricao;
   });
 
-  // Enable inline editing for the time, applying the formatter.
   makeEditable(
     viewTimeEl,
     (newText) => {
@@ -313,19 +328,34 @@ function openViewEventModal(dataChave, index) {
     formatTime
   );
 
-  // Get the confirm and cancel buttons from the HTML.
-  const confirmEditBtn = document.getElementById("confirmEditBtn");
-  const cancelEditBtn = document.getElementById("cancelEditBtn");
+  confirmEditBtn.onclick = async () => { //Desgraçaaaaaaa
+    try {
+      const response = await fetch(`${API_URL}/${index}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          titulo: evento.titulo,
+          descricao: evento.descricao,
+          horario: evento.hora.split(" - ")[0],
+          data: dataChave
+        })
+      });
 
-  // When confirming, simply close the view modal and update the calendar.
-  confirmEditBtn.onclick = () => {
-    viewEventModal.style.display = "none";
-    carregarCalendario(dataAtual);
-    openEventModal(dataChave);
-
+      if (response.ok) {
+        viewEventModal.style.display = "none";
+        carregarCalendario(dataAtual);
+        openEventModal(dataChave);
+      } else {
+        alert("Erro ao atualizar evento.");
+      }
+    } catch (error) {
+      console.error("Erro ao atualizar evento: ", error);
+    }
   };
 
-  // When canceling, restore original values and close the view modal.
   cancelEditBtn.onclick = () => {
     evento.titulo = original.titulo;
     evento.descricao = original.descricao;
@@ -338,44 +368,41 @@ function openViewEventModal(dataChave, index) {
     openEventModal(dataChave);
   };
 
-  // Finally, display the view event modal.
   viewEventModal.style.display = "flex";
 }
 
-// Function to close the event list modal.
 function closeEventList() {
   document.getElementById("modal-exibir").style.display = "none";
 }
 
-// Selecionar o botão de apagar
-const deleteEventBtn = document.getElementById("deleteEventBtn");
-
-// Função para apagar o evento
-function deleteEvent(dataChave, index) {
-  if (confirm("Tem certeza que deseja apagar este evento?")) {
-    eventos[dataChave].splice(index, 1); // Remove o evento da lista
-
-    // Se não houver mais eventos nesse dia, remover a chave do objeto
-    if (eventos[dataChave].length === 0) {
-      delete eventos[dataChave];
-    }
-
-    // Fechar modal e atualizar o calendário
-    viewEventModal.style.display = "none";
-    carregarCalendario(dataAtual);
-    openEventModal(dataChave);
-
-  }
-}
-
-// Adicionar evento de clique ao botão
-deleteEventBtn.addEventListener("click", () => {
+deleteEventBtn.addEventListener("click", async () => { // Desgraçaaaaaaaaa
   const dataChave = deleteEventBtn.dataset.dataChave;
   const index = parseInt(deleteEventBtn.dataset.index, 10);
-  deleteEvent(dataChave, index);
+
+  try {
+    const response = await fetch(`${API_URL}/${index}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+    });
+
+    if (response.ok) {
+      eventos[dataChave].splice(index, 1);
+      if (eventos[dataChave].length === 0) {
+        delete eventos[dataChave];
+      }
+      viewEventModal.style.display = "none";
+      carregarCalendario(dataAtual);
+      openEventModal(dataChave);
+    } else {
+      alert("Erro ao deletar evento.");
+    }
+  } catch (error) {
+    console.error("Erro ao deletar evento: ", error);
+  }
 });
 
-
-// Finally, load the calendar.
+carregarEventos();
 carregarCalendario(dataAtual);
-
