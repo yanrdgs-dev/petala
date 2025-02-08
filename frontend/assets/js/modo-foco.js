@@ -80,7 +80,27 @@ function openSwitchModal() {
 function closeSwitchModal() {
   modalOverlay.style.display = "none";
 }
+function confirmSwitchMode() {
+  closeSwitchModal();
+  if (isStudyPhase) {
+    // alert("Fim do estudo");
+    isStudyPhase = false;
+    localStorage.setItem("isStudyPhase", isStudyPhase);
+    iniciarFase(breakTimeMs);
+  } else {
+    // alert("Fim do descanso");
+    isStudyPhase = true;
+    localStorage.setItem("isStudyPhase", isStudyPhase);
+    iniciarFase(studyTimeMs);
+  }
+}
 
+function cancelSwitchMode() {
+  closeSwitchModal();
+}
+
+modalConfirmBtn.addEventListener("click", confirmSwitchMode);
+modalCancelBtn.addEventListener("click", cancelSwitchMode);
 
 
 function togglePause() {
