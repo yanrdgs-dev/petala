@@ -73,6 +73,16 @@ function startTimer() {
   }, 1000);
 }
 
+function openSwitchModal() {
+  modalOverlay.style.display = "flex"; 
+}
+
+function closeSwitchModal() {
+  modalOverlay.style.display = "none";
+}
+
+
+
 function togglePause() {
   if (!studyTimer) return;
   if (isPaused) {
