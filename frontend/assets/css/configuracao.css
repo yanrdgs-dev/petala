@@ -128,10 +128,8 @@ button {
   background-color: #eee;
   grid-template-columns: repeat(21, 1fr);
   grid-template-rows: repeat(21, 1fr);
-
   grid-row: 4 / 22;
   grid-column: 15 / 22;
-  
   padding: 5%;
   background: url(../images/árvore\ pos\ login.png) no-repeat center center;
   background-size:cover;
@@ -146,10 +144,9 @@ button {
   height: 100%;
   font-size: 1.8em;
   display: flex;
-  grid-row: 1 / 4;
+  grid-row: 3 / 4;
   grid-column: 1 / 22;
   justify-content: center;
-
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -158,20 +155,22 @@ button {
   grid-template-columns: repeat(16, 1fr);
   grid-template-rows: repeat(16, 1fr);
   grid-row: 3 / 22;
-  grid-column: 1 / 22;
+  grid-column: 1 / 20;
   background-color: transparent;
   padding: 5%;
 
 }
 .profile-picture {
-  
+  background: url(../images/Logo_cerejeira.png) no-repeat center center;
+  background-size:cover;
+  position: relative;
   width: 280px;
   height: 280px;
   border-radius: 280px;
-  grid-row: 1 / 6;
+  grid-row: 1 / 7;
   grid-column: 1 / auto;
-  background-color: #FFA6A6;
 }
+
 .box-name {
   position: relative;
   grid-row: 4 / auto;
