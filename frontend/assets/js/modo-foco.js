@@ -65,6 +65,8 @@ function startTimer() {
         pauseBtn.disabled = true;
         recordFocusSessionOnce();
 
+        openSwitchModal();
+
         revertPage();
       }
     }
