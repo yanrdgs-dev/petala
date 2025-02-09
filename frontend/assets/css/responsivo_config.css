@@ -1,90 +1,68 @@
 @media (max-width: 1000px) {
-    .imagem_navbar {
-      position: static;
-      width: 25%;
-    }
-  header {
-    padding: 0;
+  .imagem_navbar {
+    position: static;
+    width: 25%;
   }
-    .header_pos {
-      display: none;
-    }
-    body {
-      margin: 0;
-      height: 100vh;
-      background-attachment: fixed;
-      overflow-x: hidden;
-    }
-    .side-bar {
+header {
+  padding: 0;
+}
+  .header_pos {
+    display: none;
+  }
+  body {
+    margin: 0;
+    height: 100vh;
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+  .side-bar {
+    display: block;
+    /* background-color: aqua; */
+  }
+  .open-sidebar-button {
+      width: 80%;
+      position: absolute;
+      top: -30px;
+      right: 30px;
+      cursor: pointer;
       display: block;
-      /* background-color: aqua; */
     }
-    .open-sidebar-button {
-        width: 80%;
-        position: absolute;
-        top: -30px;
-        right: 30px;
-        cursor: pointer;
-        display: block;
-      }
-    .link-container {
-        width: 50%;
-        right: -50%;
-      }
-    #sidebar-active:checked ~ .link-container {
-      right: 0;
+  .link-container {
+      width: 50%;
+      right: -50%;
     }
-    /******Cabeçalho//header************/
+  #sidebar-active:checked ~ .link-container {
+    right: 0;
   }
+  /******Cabeçalho//header************/
+}
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - */
 @media (max-width: 820px) {
-    .box-left{
-        width: 150%;
-        
-    }
-    .box-main-profile {
-        grid-column: 7 / 22;
-    }
-
-    .profile-picture {
-        grid-row: 1 / 7;
-        grid-column: 7 / auto;
-        width: 200px;
-        height: 200px;
-    }
-    .box-name{
-        grid-row: 5 / auto;
-        grid-column: 1/17;
-    }
-    .box-email{
-        grid-row: 7 / 8;
-        grid-column: 1/17;
-    }
-    .button-{
-        grid-row: 15 / 17;
-        grid-column: 1 / 17;
-
-    }
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - */  
-    .box-main-conta{
-        grid-template-columns:repeat(12, 1fr) ;
-        grid-template-rows:repeat(12, 1fr) ;
-        grid-column: 7 / 22;
-    }
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - */
-    .box-main-pref {
-        grid-column: 7 / 22;
-    }
-    .opcao-pref{
-        height: 5%;
-    }
+  .profile-picture {
+      grid-row: 1 / 7;
+      grid-column: 9 / auto;
+      width: 200px;
+      height: 200px;
+      margin: 225px 0px;
+  }
+  .box-name{
+      height: 79px;
+      grid-row: 5 / auto;
+      grid-column: 3/17;
+  }
+  .box-email{
+      height: 79px;
+      grid-row: 6 / 8;
+      grid-column: 3/17;
+  }
+  .box-status{
+    height: 55px;
+    grid-row: 7 / 8;
+    grid-column: 3/17;
+  
+  }
+  .button-{
+      grid-row: 15 / 17;
+      grid-column: 3 / 17;
+  }
 }
-
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - */
-@media (max-width: 480px) {
-    #pref{
-        font-size: 1em;
-    }
-}
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - */
-
