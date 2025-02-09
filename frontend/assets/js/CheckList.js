@@ -1,6 +1,20 @@
 const API_URL = "http://localhost:3000/api/checklists";
 const token = localStorage.getItem("token");
 
+// Mapeia o ID do container para o status esperado pelo backend
+const statusMap = {
+  "lista-em-andamento": "pendente",
+  "lista-revisar": "revisar",
+  "lista-Concluido": "concluida",
+};
+
+// Se necessário, usamos o mesmo mapa para converter o ID da coluna para o status
+const columnStatusMap = {
+  "lista-em-andamento": "pendente",
+  "lista-revisar": "revisar",
+  "lista-Concluido": "concluida",
+};
+
 async function fetchTasks() {
   try {
     const response = await fetch(API_URL, {
@@ -10,9 +24,7 @@ async function fetchTasks() {
         Authorization: `Bearer ${token}`,
       },
     });
-
     if (!response.ok) throw new Error("Erro ao buscar tarefas.");
-
     const tasks = await response.json();
     renderTasks(tasks);
   } catch (error) {
@@ -27,24 +39,15 @@ async function addTask(listId, inputId) {
     console.error(`Elemento de input não encontrado: ${inputId}`);
     return;
   }
-
   const taskTitle = inputElement.value.trim();
   if (!taskTitle) {
     alert("O título da tarefa é obrigatório.");
     return;
   }
-
-  const statusMap = {
-    "lista-em-andamento": "pendente",
-    "lista-revisar": "revisar",
-    "lista-Concluido": "concluida",
-  };
-
   const newTask = {
     titulo: taskTitle,
-    status: statusMap[listId] || "pendente", // Define o status correto com base na coluna
+    status: statusMap[listId] || "pendente",
   };
-
   try {
     const response = await fetch(API_URL, {
       method: "POST",
@@ -54,13 +57,11 @@ async function addTask(listId, inputId) {
       },
       body: JSON.stringify(newTask),
     });
-
     if (!response.ok) {
       throw new Error("Erro ao criar tarefa.");
     }
-
-    inputElement.value = ""; // Limpa o campo de entrada
-    fetchTasks(); // Atualiza a lista de tarefas
+    inputElement.value = "";
+    fetchTasks();
   } catch (error) {
     console.error(error);
     alert("Erro ao criar tarefa.");
@@ -73,9 +74,7 @@ async function deleteTask(taskId) {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });
-
     if (!response.ok) throw new Error("Erro ao excluir a tarefa.");
-
     fetchTasks();
     alert("Tarefa excluída com sucesso!");
   } catch (error) {
@@ -94,9 +93,7 @@ async function saveEdit(taskId, updatedData) {
       },
       body: JSON.stringify(updatedData),
     });
-
     if (!response.ok) throw new Error("Erro ao atualizar tarefa.");
-
     fetchTasks();
   } catch (error) {
     console.error(error);
@@ -111,14 +108,23 @@ function renderTasks(tasks) {
     concluida: document.getElementById("lista-Concluido"),
   };
 
-  Object.values(taskContainers).forEach(
-    (container) => (container.innerHTML = "")
-  );
+  // Limpa os containers antes de renderizar as tasks
+  Object.values(taskContainers).forEach((container) => {
+    container.innerHTML = "";
+  });
 
   tasks.forEach((task) => {
     const taskElement = document.createElement("li");
-    taskElement.textContent = task.titulo;
-    taskElement.setAttribute("data-id", task.id);
+    taskElement.classList.add("task");
+    taskElement.setAttribute("data-task-id", task.id);
+
+    // Div para o texto
+    const divText = document.createElement("div");
+    divText.classList.add("text");
+    divText.textContent = task.titulo;
+
+    const divButtons = document.createElement("div");
+    divButtons.classList.add("buttons");
 
     const editButton = document.createElement("button");
     editButton.innerHTML = "<i class='fa-solid fa-pen'></i>";
@@ -127,10 +133,15 @@ function renderTasks(tasks) {
     const deleteButton = document.createElement("button");
     deleteButton.innerHTML = "<i class='fa-solid fa-trash'></i>";
     deleteButton.onclick = () => deleteTask(task.id);
+    deleteButton.classList.add("delete");
 
-    taskElement.appendChild(editButton);
-    taskElement.appendChild(deleteButton);
+    divButtons.appendChild(editButton);
+    divButtons.appendChild(deleteButton);
 
+    taskElement.appendChild(divText);
+    taskElement.appendChild(divButtons);
+
+    // Coloca a task no container correspondente ao seu status
     if (taskContainers[task.status]) {
       taskContainers[task.status].appendChild(taskElement);
     } else {
@@ -144,6 +155,7 @@ function openEditModal(taskId, currentTitle) {
   const modalInput = document.getElementById("modalInput");
  
   modal.setAttribute("data-task-id", taskId);
+  // modal.setAttribute("data-task-id", taskId);
   modalInput.value = currentTitle;
   modal.style.display = "flex";
 
@@ -152,93 +164,42 @@ function openEditModal(taskId, currentTitle) {
   saveButton.onclick = () => {
     const updatedData = { titulo: modalInput.value.trim() };
     saveEdit(taskId, updatedData);
-    modal.style.display = "none";
-    modal.removeAttribute("data-task-id");
+    fecharModal();
   };
+}
+
+function fecharModal() {
+  const modal = document.getElementById("editModal");
+  modal.style.display = "none";
+  modal.removeAttribute("data-task-id");
 }
 
 
 document.getElementById("cancelEdit").onclick = () => {
-  document.getElementById("editModal").style.display = "none";
+  fecharModal();
 };
 
-document.querySelectorAll(".edit-task-button").forEach(button => {
+document.querySelectorAll(".move-to-column").forEach((button) => {
   button.addEventListener("click", function () {
-    
-      document.querySelectorAll(".task-being-edited").forEach(task => {
-          task.classList.remove("task-being-edited");
-      });
+    const targetColumnId = this.getAttribute("data-target-column");
 
-      // Adiciona a classe à task correta
-      const taskElement = this.closest(".task"); // Supondo que cada task tenha a classe "task"
-      if (taskElement) {
-          taskElement.classList.add("task-being-edited");
-          console.log("Task selecionada para edição:", taskElement);
-      } else {
-          console.warn("Nenhuma task foi selecionada!");
-      }
+    const newStatus = columnStatusMap[targetColumnId];
+    if (!newStatus) {
+      alert("Status inválido!");
+      return;
+    }
 
-      // Abre o modal
-      document.getElementById("editModal").style.display = "block";
+    const modal = document.getElementById("editModal");
+    const taskId = modal.getAttribute("data-task-id");
+    if (!taskId) {
+      alert("Tarefa não definida.");
+      return;
+    }
+
+    updateTaskStatus(taskId, newStatus);
+    fecharModal();
   });
 });
-
-document.querySelectorAll(".edit-task-button").forEach(button => {
-  button.addEventListener("click", function () {
-    
-      document.querySelectorAll(".task-being-edited").forEach(task => {
-          task.classList.remove("task-being-edited");
-      });
-
-  
-      const taskElement = this.closest(".task");
-
-      if (taskElement) {
-          taskElement.classList.add("task-being-edited");
-          console.log("Task selecionada para edição:", taskElement);
-      } else {
-          console.warn("Nenhuma task foi selecionada!");
-          return; 
-      }
-
-  
-      document.getElementById("editModal").style.display = "block";
-  });
-});
-
-
-document.querySelectorAll(".edit-task-button").forEach(button => {
-  button.addEventListener("click", function () {
-      const taskElement = this.closest(".task"); 
-
-      if (!taskElement) {
-          console.warn("Nenhuma task encontrada para edição!");
-          return;
-      }
-
-      const taskId = taskElement.getAttribute("data-task-id");
-      if (!taskId) {
-          console.warn("A task não possui um ID válido!");
-          return;
-      }
-
-      
-      document.getElementById("editModal").setAttribute("data-task-id", taskId);
-
-      console.log("Task selecionada para edição, ID:", taskId);
-
-    
-      document.getElementById("editModal").style.display = "block";
-  });
-});
-
-
-const columnStatusMap = {
-  "lista-em-andamento": "pendente",
-  "lista-revisar": "revisar",
-  "lista-Concluido": "concluida",
-};
-
 
 async function updateTaskStatus(taskId, newStatus) {
   try {
@@ -250,51 +211,15 @@ async function updateTaskStatus(taskId, newStatus) {
       },
       body: JSON.stringify({ status: newStatus }),
     });
-
-    if (!response.ok) throw new Error("Erro ao atualizar o status da tarefa.");
-
-    fetchTasks(); 
+    if (response.ok) {
+      console.log("Status atualizado no banco:", newStatus);
+      fetchTasks();
+    } else {
+      console.error("Erro ao atualizar status no banco!");
+    }
   } catch (error) {
-    console.error(error);
-    alert("Erro ao atualizar o status da tarefa.");
+    console.error("Erro na requisição:", error);
   }
 }
-
-document.querySelectorAll(".move-to-column").forEach((button) => {
-  button.addEventListener("click", function () {
-    
-    const targetColumn = button.getAttribute("data-target-column");
-    const newStatus = columnStatusMap[targetColumn];
-    if (!newStatus) {
-      alert("Status inválido!");
-      return;
-    }
-
-    
-    const modal = document.getElementById("editModal");
-    const taskId = modal.getAttribute("data-task-id");
-    if (!taskId) {
-      alert("Tarefa não definida.");
-      return;
-    }
-
-    
-    updateTaskStatus(taskId, newStatus);
-
-  
-    modal.style.display = "none";
-    modal.removeAttribute("data-task-id");
-  });
-});
-
-
-
-function fecharModal() {
-  document.getElementById("editModal").style.display = "none";
-  document.getElementById("editModal").removeAttribute("data-task-id");
-}
-
-
-
 
 fetchTasks();

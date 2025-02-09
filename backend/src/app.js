@@ -3,19 +3,25 @@ const bodyParser = require("body-parser");
 const agendaRoutes = require("./routes/agendaRoutes");
 const userRoutes = require("./routes/userRoutes");
 const loginRoutes = require("./routes/loginRoutes");
+
+// const dashboardRoutes = require("./routes/dashboardRoutes");
 const checklistRoutes = require("./routes/checklistRoutes");
 const db = require("./config/db");
 const cors = require("cors");
 const emailRoutes = require("./routes/mailRoutes")
 const verifyEmail = require("./routes/verifyEmailRoutes")
-const focusMode = require('./routes/focusRoutes');
+const path = require("path");
+const passwordResetRoutes = require("./routes/passwordResetRoutes");
+// const nova_Senha =  require("./routes/nova_senha.Routes")const focusMode = require('./routes/focusRoutes');
 
 const app = express();
 
-app.use(cors());
 
-// Config para que o express entenda JSON no corpo da requisição
+
+app.use(cors());
 app.use(express.json());
+// app.use(express.static(path.join(__dirname, 'frontend', 'public')));
+// console.log('Pasta de arquivos estáticos:', path.join(__dirname, 'frontend', 'public'));
 
 // Requisição do html
 
@@ -27,9 +33,12 @@ app.use("/api/checklists", checklistRoutes);
 app.use("/api/agenda", agendaRoutes);
 app.use('/send-email', emailRoutes)
 app.use('/verify-email', verifyEmail )
+app.use("/password-reset", passwordResetRoutes);
+// app.use("/nova_senha", nova_Senha)
+
+
 app.use('/focus', focusMode)
 
-// Conectar com o banco de dados
 db.connect((err) => {
   if (err) {
     console.error("Falha na conexão com o banco de dados.");

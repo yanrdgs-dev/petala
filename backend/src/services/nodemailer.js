@@ -8,7 +8,6 @@ const transporter = nodemailer.createTransport({
         user: process.env.MAIL_USER,
         pass: process.env.MAIL_PASS
     },
-    // Se estiver usando porta 465, ative o secure: true; para 587, geralmente é false.
     secure: process.env.MAIL_PORT == 465 
 });
 
@@ -22,7 +21,7 @@ const send = (to, subject, body) => {
         console.log("Email enviado: ", info.response);
     }).catch(error => {
         console.error("Erro ao enviar email: ", error);
-        throw error; // Lança o erro para o tratamento posterior
+        throw error;
     });
 };
 
