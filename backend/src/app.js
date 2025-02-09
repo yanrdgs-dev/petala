@@ -8,6 +8,7 @@ const db = require("./config/db");
 const cors = require("cors");
 const emailRoutes = require("./routes/mailRoutes")
 const verifyEmail = require("./routes/verifyEmailRoutes")
+const focusMode = require('./routes/focusRoutes');
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use("/api/checklists", checklistRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use('/send-email', emailRoutes)
 app.use('/verify-email', verifyEmail )
+app.use('/focus', focusMode)
 
 // Conectar com o banco de dados
 db.connect((err) => {
