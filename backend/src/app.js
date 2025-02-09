@@ -12,20 +12,16 @@ const emailRoutes = require("./routes/mailRoutes")
 const verifyEmail = require("./routes/verifyEmailRoutes")
 const path = require("path");
 const passwordResetRoutes = require("./routes/passwordResetRoutes");
-// const nova_Senha =  require("./routes/nova_senha.Routes")const focusMode = require('./routes/focusRoutes');
-
+// const nova_Senha =  require("./routes/nova_senha.Routes")
+const focusMode = require("./routes/focusRoutes")
 const app = express();
 
 
 
 app.use(cors());
 app.use(express.json());
-// app.use(express.static(path.join(__dirname, 'frontend', 'public')));
-// console.log('Pasta de arquivos estáticos:', path.join(__dirname, 'frontend', 'public'));
 
-// Requisição do html
 
-// Roteamento
 app.use("/api/users", userRoutes);
 app.use("/login", loginRoutes);
 app.use("/api/checklists", checklistRoutes);
@@ -35,9 +31,9 @@ app.use('/send-email', emailRoutes)
 app.use('/verify-email', verifyEmail )
 app.use("/password-reset", passwordResetRoutes);
 // app.use("/nova_senha", nova_Senha)
-
-
 app.use('/focus', focusMode)
+
+
 
 db.connect((err) => {
   if (err) {
