@@ -12,6 +12,7 @@ const emailRoutes = require("./routes/mailRoutes")
 const verifyEmail = require("./routes/verifyEmailRoutes")
 const path = require("path");
 const passwordResetRoutes = require("./routes/passwordResetRoutes");
+const redirectPassword = require("./routes/redirectPassswordRotues")
 // const nova_Senha =  require("./routes/nova_senha.Routes")
 const focusMode = require("./routes/focusRoutes")
 const app = express();
@@ -32,6 +33,7 @@ app.use('/verify-email', verifyEmail )
 app.use("/password-reset", passwordResetRoutes);
 // app.use("/nova_senha", nova_Senha)
 app.use('/focus', focusMode)
+app.use('/', redirectPassword)
 
 
 
