@@ -11,7 +11,7 @@ const emailRoutes = require("./routes/mailRoutes")
 const verifyEmail = require("./routes/verifyEmailRoutes")
 const path = require("path");
 const passwordResetRoutes = require("./routes/passwordResetRoutes");
-const nova_Senha =  require("./routes/nova_senha.Routes")
+// const nova_Senha =  require("./routes/nova_senha.Routes")
 const app = express();
 
 
@@ -31,7 +31,7 @@ app.use("/api/checklists", checklistRoutes);
 app.use('/send-email', emailRoutes)
 app.use('/verify-email', verifyEmail )
 app.use("/password-reset", passwordResetRoutes);
-app.use("/nova_senha", nova_Senha)
+// app.use("/nova_senha", nova_Senha)
 
 
 
