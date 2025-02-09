@@ -3,7 +3,6 @@ const bodyParser = require("body-parser");
 const agendaRoutes = require("./routes/agendaRoutes");
 const userRoutes = require("./routes/userRoutes");
 const loginRoutes = require("./routes/loginRoutes");
-const configRoutes = require("./routes/configRoutes");
 const checklistRoutes = require("./routes/checklistRoutes");
 const db = require("./config/db");
 const cors = require("cors");
@@ -23,7 +22,6 @@ app.use(express.json());
 // Roteamento
 app.use("/api/users", userRoutes);
 app.use("/login", loginRoutes);
-app.use("/profile_picture", configRoutes);
 app.use("/api/checklists", checklistRoutes);
 // app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/agenda", agendaRoutes);
