@@ -1,21 +1,13 @@
-document.getElementById("profilePictureInput").addEventListener("change", async function (event) {
-    let file = event.target.files[0];
+ const token = localStorage.getItem('token');
 
-    if (!file) return;
+ if (!token) {
+   alert('Você precisa estar logado!');
+   window.location.href = '/login.html';
+ } else {
+   const payload = JSON.parse(atob(token.split('.')[1])); 
+   const username = payload.username;
+   const email = payload.email;
 
-    let formData = new FormData();
-    formData.append("profilePicture", file);
-
-    let response = await fetch("/upload-profile", {
-        method: "POST",
-        body: formData
-    });
-
-    let result = await response.json();
-
-    if (result.success) {
-        document.getElementById("profileImage").src = result.imageUrl;
-    } else {
-        alert("Erro ao enviar imagem.");
-    }
-});
+   document.getElementById("username").textContent = username;
+   document.getElementById("email").textContent = email;
+}
