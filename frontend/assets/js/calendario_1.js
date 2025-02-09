@@ -24,6 +24,9 @@ const token = localStorage.getItem("token");
 let dataAtual = new Date();
 let eventos = {};
 
+carregarCalendario(dataAtual);
+
+
 function agruparEventos(eventosArray) {
   const agrupados = {};
   eventosArray.forEach((evento) => {
