@@ -6,22 +6,26 @@ const authenticateUser = require("../utils/authenticateUser");
 router.use(authenticateUser);
 router.get("/", (req, res) => {
   const userId = req.user.id;
-
+  
   const query = `
     SELECT 
       (SELECT COUNT(*) FROM checklist WHERE user_id = ? AND status = 'pendente') AS tarefas_pendentes,
       (SELECT COUNT(*) FROM checklist 
          WHERE user_id = ? AND status = 'concluida'
-         AND data_conclusao >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+           AND data_conclusao >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
       ) AS tarefas_concluidas,
       tarefas_em_progresso, 
       tarefas_completas_semana, 
-      tempo_foco_semana 
+      (SELECT SEC_TO_TIME(SUM(actualStudyDuration)) 
+       FROM focus_sessions 
+       WHERE user_id = ? AND timestamp >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+      ) AS tempo_foco_semana
     FROM dashboard 
     WHERE user_id = ?
   `;
-
-  db.query(query, [userId, userId, userId], (err, results) => {
+  
+  // Note que precisamos passar o userId 4 vezes
+  db.query(query, [userId, userId, userId, userId], (err, results) => {
     if (err) {
       console.error("Erro ao buscar o dashboard: ", err);
       return res.status(500).json({ message: "Erro ao buscar o dashboard." });
