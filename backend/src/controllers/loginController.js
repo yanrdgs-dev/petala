@@ -66,13 +66,13 @@ exports.login = (req, res) => {
               .json({ message: "Erro ao salvar refresh token." });
           }
 
-          //         if (!usuario.is_verified) {
-          //      return res
-          //        .status(403)
-          //        .json({
-          //          message: "Por favor, verifique seu e-mail antes de fazer login.",
-          //        });
-          //    }
+                  if (!usuario.is_verified) {
+               return res
+                 .status(403)
+                 .json({
+                   message: "Por favor, verifique seu e-mail antes de fazer login.",
+                 });
+             }
 
           res.status(200).json({
             message: "Login Efetuado com sucesso.",
