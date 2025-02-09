@@ -1,0 +1,142 @@
+/*--------------containers--------------*/
+
+.functions{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 90%;
+    gap: 50px;
+    margin-bottom: 50px;
+}
+
+.subFunctions{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 50px;
+}
+
+.visaoGeral{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: fit-content;
+    width: 100%;
+    gap: 15px;
+}
+
+.subVisaoGeral{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: fit-content;
+    width: 90%;
+}
+
+.continue{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: fit-content;
+    width: 100%;
+    gap: 15px;
+}
+
+.subContinue{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: fit-content;
+    width: 90%;
+}
+
+.sideTextBox{
+    width: 90%;
+}
+
+.containerSmall{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: baseline;
+    background-color: #fafafa;
+    height: 160px;
+    width: 280px;
+    border-radius: 30px;
+    padding: 15px 40px;
+}
+
+.containerBig{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fafafa;
+    height: 300.8px;
+    width: 280px;
+    border-radius: 30px;
+    padding: 25px 40px;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fafafa;
+    height: 600px;
+    width: 300px;
+    border-radius: 30px;
+    padding: 25px 40px;
+}
+
+
+/*--------------Texto--------------*/
+
+.initialText{
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    height: fit-content;
+}
+
+.num{
+    font-size: 40px;
+}
+
+/*--------------iconify--------------*/
+
+.icon {
+    font-size: 150px;
+    color: #FFA6A6;
+   }
+
+/*--------------botões--------------*/
+
+button{
+    display: flex;
+    width: 170px;
+    height: 50px;
+    background-color: #1f1717;
+    border: 0px;
+    border-radius: 25px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    color: #ffffff;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+/*--------------links--------------*/
+
+a:link {
+    background-color: transparent;
+    text-decoration: none;
+}

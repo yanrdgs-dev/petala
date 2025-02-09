@@ -1,75 +1,144 @@
 <!DOCTYPE html>
 <html lang="PT-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Petala</title>
-  <link rel="stylesheet" href="../assets/css/style_Pos_login.css" />
-  <script src="https://kit.fontawesome.com/28be5bc03d.js" crossorigin="anonymous"></script>
-</head>
-<body>
-  <header>
-    <div class="imagem_navbar">
-      <a href="index.html"><img src="../assets/images/logoSemPetala.png" width="70%" alt="logo" /></a>
-    </div>
-    <div class="header_pos">
-      <nav class="navbar_pos">
-        <a href="#start">Página inicial</a>
-        <a href="#">Rotina</a>
-        <a href="#">Biblioteca</a>
-        <a href="#">Agenda</a>
-      </nav>
-    </div>
-    <div class="side-bar">
-      <input type="checkbox" id="sidebar-active">
-      <label for="sidebar-active" class="open-sidebar-button">
-        <i class="fa-solid fa-bars fa-xl"></i>
-      </label>
-      <div class="link-container">
-        <label for="sidebar-active" class="close-sidebar-button">
-          <i class="fa-solid fa-xmark fa-xl"></i>
-        </label>
-        <a href="#" id="sidebar-link-1">Início</a>
-        <a href="#">Início</a>
-        <a href="#">Rotina</a>
-        <a href="#">Agenda</a>
-        <a href="#">Desempenho</a>
-        <a href="#">...</a>
-        <a href="#" id="sidebar-link-second-last">Configurações</a>
-        <a href="#">Sair</a>
-      </div>
-    </div>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Petala</title>
+    <link rel="stylesheet" href="../assets/css/PosLogin2.css" />
+    <link rel="stylesheet" href="../assets/css/style_Pos_login.css" />
+    <script
+      src="https://kit.fontawesome.com/28be5bc03d.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.3.0/dist/iconify-icon.min.js"></script>
+  </head>
 
-  <main>
-    <div class="mensagem_inicial" id="welcomeMessage" aria-label="Mensagem de boas-vindas"></div>
-    <div class="visao">
-      <p>Visão geral</p>
-    </div>
-    <div class="visao_geral">
-      <div class="tarefas_progresso">
-        <div class="tarefas-progresso-texto"><p>Tarefas em progresso:</p></div>
-        <p class="tarefas-progresso-variavel" id="tarefas-pendentes">0</p>
+  <body>
+    <header>
+      <div class="imagem_navbar">
+        <a href="index.html"
+          ><img src="../assets/images/logoSemPetala.png" width="70%" alt="logo"
+        /></a>
       </div>
-      <div class="tarefas_concluidas">
-        <div class="tarefas-concluidas-texto"><p>Tarefas concluídas:</p></div>
-        <p class="tarefas-progresso-variavel" id="tarefas-concluidas">0</p>
+
+      <div class="header_pos">
+        <nav class="navbar_pos">
+          <a href="#start">Página inicial</a>
+          <a href="#">Rotina</a>
+          <a href="#">Biblioteca</a>
+          <a href="#">Agenda</a>
+        </nav>
       </div>
-      <div class="tempo_de_foco">
-        <div class="foco-texto"><p>Tempo de foco:</p></div>
-        <p class="tarefas-progresso-variavel" id="tempo-foco">00:00</p>
+
+      <!-- _________________________________________________________________________________ -->
+
+      <div class="side-bar">
+        <input type="checkbox" id="sidebar-active" />
+        <label for="sidebar-active" class="open-sidebar-button">
+          <i class="fa-solid fa-bars fa-xl"></i>
+        </label>
+        <div class="link-container">
+          <label for="sidebar-active" class="close-sidebar-button">
+            <i class="fa-solid fa-xmark fa-xl"></i>
+          </label>
+          <a href="#" id="sidebar-link-1">Início</a>
+          <a href="#">Rotina</a>
+          <a href="#">Agenda</a>
+          <a href="#">Desempenho</a>
+          <a href="#">...</a>
+          <a href="#" id="sidebar-link-second-last">Configurações</a>
+          <a href="#">Sair</a>
+        </div>
       </div>
-    </div>
-    <div class="continue">
-      <p>Continue de onde parou</p>
-    </div>
-    <div class="continue_onde_parou">
-      <div class="container_rotina"></div>
-      <div class="container_desempenho"></div>
-      <div class="container_biblioteca"></div>
-      <div class="container_foco"></div>
-    </div>
-  </main>
+    </header>
+
+    <!-- _________________________________________________________________________________ -->
+
+    <main>
+      <h1
+        class="initialText"
+        id="welcomeMessage"
+        aria-label="Mesagem de boas vindas"
+      >
+        Bem vindo, fulano de tal! Vamos estudar?
+      </h1>
+      <div class="functions">
+        <div class="subFunctions">
+          <div class="visaoGeral">
+            <div class="sideTextBox">
+              <h2 class="sideText">Visão geral:</h2>
+            </div>
+            <div class="subVisaoGeral">
+              <div class="containerSmall">
+                <h3>Tarefas em progresso:</h3>
+                <h3 class="num" id="tarefas-progresso">0</h3>
+              </div>
+              <div class="containerSmall">
+                <h3>Tarefas concluidas essa semana:</h3>
+                <h3 class="num" id="tarefas-concluidas">0</h3>
+              </div>
+              <div class="containerSmall">
+                <h3>Tempo de foco essa semana:</h3>
+                <h3 class="num" id="tempo-foco">0</h3>
+              </div>
+            </div>
+          </div>
+          <div class="continue">
+            <div class="sideTextBox">
+              <h2 class="sideTexto">Continue de onde parou:</h2>
+            </div>
+            <div class="subContinue">
+              <div class="containerBig">
+                <iconify-icon
+                  icon="line-md:calendar"
+                  class="icon"
+                ></iconify-icon>
+                <a href="calendario.html"><button>Calendario</button></a>
+              </div>
+              <div class="containerBig">
+                <iconify-icon
+                  icon="octicon:checklist-16"
+                  class="icon"
+                ></iconify-icon>
+                <a href="CheckList.html"><button>Rotina</button></a>
+              </div>
+              <div class="containerBig">
+                <iconify-icon
+                  icon="icon-park-outline:gate"
+                  class="icon"
+                ></iconify-icon>
+                <a href="modo_foco.html"><button>Modo Foco</button></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <h2>Atividade</h2>
+          <div class="historico" id="hist"></div>
+        </div>
+      </div>
+
+      <!--
+      <div class="container_direita">
+        <div class="calendario">calendario + Botão
+          <div class="calendario_interativo"></div>
+          <div class="button" id="button_ver_mais">Ver mais</div>
+        </div>
+        <div class="atividade">Atividade de amigos
+          <p>Pedro</p>
+          <p>Informação</p>
+          <p>Bruno</p>
+          <p>Informação</p>
+          <p>...</p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <div class="button" id="button_Ver_amigos">Ver amigos</div>
+        </div>
+      </div>
+-->
+    </main>
 
   <footer></footer>
   <script src="../assets/js/posLogin.js"></script>

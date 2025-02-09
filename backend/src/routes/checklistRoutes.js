@@ -7,7 +7,7 @@ router.use(authenticateUser);
 
 router.post("/", (req, res) => {
   const userId = req.user.id;
-  const { titulo, descricao, prazo, status = "pendente" } = req.body;
+  const { titulo, descricao, prazo, status = "pendente" } = req.body; 
 
   if (!titulo) {
     return res.status(400).json({ message: "O título é obrigatório." });
@@ -32,6 +32,7 @@ router.post("/", (req, res) => {
     res.status(201).json({ message: "Tarefa adicionada com sucesso." });
   });
 });
+
 
 router.get("/", (req, res) => {
   const userId = req.user.id;
