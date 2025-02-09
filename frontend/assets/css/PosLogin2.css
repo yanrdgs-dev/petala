@@ -140,3 +140,250 @@ a:link {
     background-color: transparent;
     text-decoration: none;
 }
+
+/*--------------responsivo-------------*/
+
+@media screen and (max-width: 1400px){
+    .containerSmall{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: baseline;
+        background-color: #fafafa;
+        height: 120px;
+        width: 200px;
+        border-radius: 30px;
+        padding: 15px 40px;
+    }
+    
+    .containerBig{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #fafafa;
+        height: 220px;
+        width: 200px;
+        border-radius: 30px;
+        padding: 25px 40px;
+    }
+    
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #fafafa;
+        height: 468px;
+        width: 250px;
+        border-radius: 30px;
+        padding: 25px 40px;
+    }
+    
+    button{
+        display: flex;
+        width: 130px;
+        height: 40px;
+        background-color: #1f1717;
+        border: 0px;
+        border-radius: 25px;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        color: #ffffff;
+        justify-content: center;
+        align-items: center;
+        font-size: 17px;
+        font-weight: 500;
+    }
+
+    .icon {
+        font-size: 120px;
+        color: #FFA6A6;
+       }
+
+    .num{
+        font-size: 30px;
+    }
+
+    h1{
+        font-size: 1.75em;
+    }
+
+    h2{
+        font-size: 1.25em;
+    }
+
+    h3{
+        font-size: 1em;
+    }
+}
+
+@media screen and (max-width: 1100px){
+    .containerSmall{
+        height: 120px;
+        width: 160px;
+        padding: 15px 40px;
+    }
+    
+    .containerBig{
+        height: 170px;
+        width: 160px;
+        border-radius: 30px;
+        padding: 25px 40px;
+    }
+    
+    .container{
+        height: 408.4px;
+        width: 210px;
+        border-radius: 30px;
+        padding: 25px 40px;
+    }
+    
+    button{
+        width: 130px;
+        height: 40px;
+        font-size: 17px;
+        font-weight: 500;
+    }
+
+    .icon {
+        font-size: 90px;
+        color: #FFA6A6;
+       }
+
+    .num{
+        font-size: 20px;
+    }
+
+    h1{
+        font-size: 1.5em;
+    }
+
+    h2{
+        font-size: 1em;
+    }
+
+    h3{
+        font-size: 0.80em;
+    }
+}
+
+@media screen and (max-width: 900px){
+ .subFunctions{
+    flex-direction: row;
+ }
+
+ .continue{
+    height: 600px;
+ }
+
+ .subContinue{
+    height: 100%;
+    flex-direction: column;
+ }
+
+ .visaoGeral{
+    height: 600px;
+ }
+ .subVisaoGeral{
+    flex-direction: column;
+    height: 100%;
+ }
+
+ .containerSmall{
+    height: 150px;
+    width: 220px;
+    padding: 15px 25px;
+}
+ .sideTextBox{
+    text-align: center;
+ }
+
+ .initialText{
+    position: absolute;
+    top: 1.9em;
+ }
+
+ h1{
+    font-size: 1.20em;
+ }
+
+ h2{
+    font-size: 0.75em;
+ }
+
+ .sideTextBox{
+    width: 100%;
+ }
+
+ .container{
+    height: 600px;
+ }
+}
+
+@media screen and (max-width: 700px){
+    .container{
+        display: none;
+     }
+}
+
+@media screen and (max-width: 600px){
+ h1{
+    font-size: 0.8em;
+ }
+}
+
+@media screen and (max-width: 450px){
+    .initialText{
+       position: relative;
+    }
+
+    h1{
+        font-size: 0.8em;
+     }
+
+     .subFunctions{
+        flex-direction: row;
+     }
+    
+     .continue{
+        height: 600px;
+     }
+    
+     .subContinue{
+        height: 100%;
+        flex-direction: column;
+     }
+    
+     .visaoGeral{
+        height: 600px;
+     }
+     .subVisaoGeral{
+        flex-direction: column;
+        height: 100%;
+     }
+
+     .containerSmall{
+        height: 140px;
+        width: 125px;
+        padding: 15px 40px;
+    }
+    
+    .containerBig{
+        height: 140px;
+        width: 125px;
+        border-radius: 30px;
+        padding: 25px 40px;
+    }
+
+    button{
+        width: 80px;
+        height: 30px;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .icon {
+        font-size: 70px;
+        color: #FFA6A6;
+    }
+   }
