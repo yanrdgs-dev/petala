@@ -41,9 +41,3 @@ document.getElementById('cadastrarUser').addEventListener('click', () => {
   window.location.href = './register.html';
 });
 
-
-const btnForgotPass = document.getElementById("forgotPassword")
-
-btnForgotPass.addEventListener("click", () => {
-  window.location.href = "./email.html" 
-})
