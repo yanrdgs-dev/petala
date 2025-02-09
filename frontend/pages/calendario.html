@@ -1,96 +1,167 @@
 <!DOCTYPE html>
 <html lang="PT-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Petala</title>
+  <link rel="stylesheet" href="../assets/css/calendario.css">
+  <link rel="stylesheet" href="../assets/css/responsivo_calend.css">
+  <script type="text/javascript" src="../assets/js/darkmode.js" defer></script>
 
-    <title>Petala</title>
-    <link rel="stylesheet" href="../assets/css/calendario.css">
-    <script
-      src="https://kit.fontawesome.com/28be5bc03d.js"
-      crossorigin="anonymous"
-    ></script>
+  <script src="https://kit.fontawesome.com/28be5bc03d.js" crossorigin="anonymous"></script>
+  <style>
+
+  </style>
 </head>
-
 <body>
-    <header>
+  <header>
+    <div class="imagem_navbar">
+      <a href="Pos_Login.html"
+        ><img src="../assets/images/logoSemPetala.png" width="70%" alt="logo"
+      /></a>
+    </div>
 
-        <div class="imagem_navbar">
-            <a href="index.html"
-              ><img src="../assets/images/logoSemPetala.png" width="70%" alt="logo"
-            /></a>
-          </div>
+    <div class="header_pos">
+      
+      <nav class="navbar_pos">
+        <a href="Pos_Login.html">Página inicial</a>
+        <a href="calendario.html">Calendario</a>
+        <a href="Check_list.html">Checklist</a>
+        <a href="modo_foco.html">Modo foco</a>
+      </nav>
+    </div>
+  
+<!-- _________________________________________________________________________________ -->
     
-          <div class="header_pos">
-            
-            <nav class="navbar_pos">
-              <a href="#start">Página inicial</a>
-              <a href="#">Rotina</a>
-              <a href="#">Biblioteca</a>
-              <a href="#">Agenda</a>
-            </nav>
-          </div>
-          
-          <div class="side-bar">
-            <input type="checkbox" id="sidebar-active">
-            <label for="sidebar-active" class="open-sidebar-button">
-              <i class="fa-solid fa-bars fa-xl"></button></i>
-            </label>
-            <div class="link-container">
-              <label for="sidebar-active" class="close-sidebar-button">
-                <i class="fa-solid fa-xmark fa-xl"></i>
-              </label>
-              <a href="#" id="sidebar-link-1">Início</a>
-              <a href="#">Início</a>
-              <a href="#">Rotina</a>
-              <a href="#">Agenda</a>
-              <a href="#">Desempenho</a>
-              <a href="#">...</a>
-              <a href="#" id="sidebar-link-second-last">Configurações</a>
-              <a href="#">Sair</a>
+    <div class="mode-switch">
+      <button id="theme-switch"><i class="fa-solid fa-sun fa-xl"></i></button>
+    </div>
+
+<!-- _____________________________________________________________________________ -->
+    <div class="side-bar">
+      <input type="checkbox" id="sidebar-active">
+      <label for="sidebar-active" class="open-sidebar-button">
+        <i class="fa-solid fa-bars fa-xl"></button></i>
+      </label>
+      <div class="link-container">
+        <label for="sidebar-active" class="close-sidebar-button">
+          <i class="fa-solid fa-xmark fa-xl"></i>
+        </label>
+        <a href="Pos_Login.html" id="sidebar-link-1">Início</a>
+        <a href="calendario.html">Calendario</a>
+        <a href="Check_list.html">Checklist</a>
+        <a href="modo_foco.html">Modo foco</a>
+        <!-- <a href="desempenho.html">Desempenho</a> -->
+        <a href="configuracao.html" id="sidebar-link-second-last">Configurações</a>
+        <!-- Precisa sair da conta ainda -->
+        <a href="index.html">Sair</a>
+      </div>
+    </div>
+
+  </header> 
+
+  <main>
+    <div id="calendario">
+      <div class="calendario-header">
+        <button id="prev" class="nav-btn"><i class="fa-solid fa-arrow-left"></i></button>
+        <div id="mes-ano"></div>
+        <button id="next" class="nav-btn"><i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+      <div class="calendario-dias">
+        <div class="dia-nome">Dom</div>
+        <div class="dia-nome">Seg</div>
+        <div class="dia-nome">Ter</div>
+        <div class="dia-nome">Qua</div>
+        <div class="dia-nome">Qui</div>
+        <div class="dia-nome">Sex</div>
+        <div class="dia-nome">Sab</div>
+      </div>
+      <div id="dias"></div>
+    </div>
+
+    <!-- MODAL EXIBIR (lista de eventos do dia) -->
+    <div class="modal-overlay-exibir" id="modal-exibir">
+      <div class="modal">
+        <h2>Eventos</h2>
+        <div class="modal-action1">
+          <button id="fechar-modal" type="button" onclick="closeEventList()">Cancelar</button>
+          <button id="criar-evento" type="button" onclick="openCreateModal()">Criar evento</button>
+        </div>
+        <!-- Aqui a lista de eventos será inserida -->
+      </div>
+    </div>
+
+    <!-- MODAL CRIAR -->
+    <div class="modal-overlay-exibir" id="modal-criar">
+      <div id="modal" class="modal">
+        <div class="modal-content">
+          <h2>Adicionar evento</h2>
+          <form id="evento-form">
+            <div>
+              <label for="evento-titulo">Título:</label>
+              <input type="text" id="evento-titulo" required />
+              <label for="evento-descricao">Descrição:</label>
+              <input type="text" id="evento-descricao" />
+              <label for="evento-hora">Hora:</label>
+              <input type="text" id="evento-hora" placeholder="12:00 - 13:50" maxlength="13" />
+
             </div>
-          </div>
-
-    </header>
-
-
-    <main>
-        <div id="calendario">
-          <div class="calendario-header">
-          <button id="prev" class="nav-btn"><</button>
-            <div id="mes-ano"></div>
-            <button id="next" class="nav-btn">></button>
-          </div>
-          <div class="calendario-dias">
-            <div class="dia-nome">Dom</div>
-            <div class="dia-nome">Seg</div>            
-            <div class="dia-nome">Ter</div>            
-            <div class="dia-nome">Qua</div>            
-            <div class="dia-nome">Qui</div>            
-            <div class="dia-nome">Sex</div>            
-            <div class="dia-nome">Sab</div>            
-          </div>
-          <div id="dias"></div>
+            <div class="cancel-save">
+              <button type="button" id="cancelar-evento" onclick="fecharModal()">Cancelar</button>
+              <button type="submit" id="salvar-evento">Salvar</button>
+            </div>
+          </form>
         </div>
-
-        <div id="modal" class="modal">
-          <div class="modal-content">
-            <span class="close"></span>
-            <h2>Adicionar evento</h2>
-            <form id="evento-form">
-              <div>
-                <label for="evento-descricao">Descrição:</label>
-                <input type="text" id="evento-descricao" required />
-              </div>
-              <button type="submit">Salvar</button>
-              <button type="submit">Cancelar</button>
-            </form>
-          </div>
-        </div>
-    </main>
+      </div>
+    </div>
+    <!-- MODAL VIEW EVENT -->
+<div class="modal-overlay-exibir" id="viewEventModal">
+  
+  <div class="modal">
     
+    <div class="ViewModalDetails">
+      
+      <div class="ViewModalDetailsInformation">
+      
+        <div class="ViewEventTitle">
+          <strong>Titulo:</strong>
+          <p id="viewTitle"></p>
+        </div>
+    
+        <div class="ViewEventDescription">
+          <strong>Descrição:</strong>
+          <p id="viewDescription"></p>
+        </div>
+    
+        <div class="ViewEventTime">
+          <strong>Hora:</strong>
+          <p id="viewTime"></p>
+        </div>
+      </div>
+  
+      <div class="modal-actions">
+        <div class="space"></div>
+        
+        <div class="main-buttons">
+          <button id="cancelEditBtn" type="button">Cancelar</button>
+          <button id="confirmEditBtn" type="button">Salvar Alterações</button>
+        </div>
+        <div class="side-button">
+          <button id="deleteEventBtn" type="button"><i class='fa-solid fa-trash'></i></button>
+        </div>
 
-    <footer></footer>
-    <script src="../assets/js/calendario_1.js"></script>
-    </body>
+      </div>
+  
+    </div>
+  
+  </div>
+
+</div>
+
+  </main>
+
+  <footer></footer>
+  <div id="dark-overlay"></div>
+  <script src="../assets/js/calendario_1.js"></script>
+</body>
 </html>

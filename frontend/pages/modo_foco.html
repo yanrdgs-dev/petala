@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Petala - Modo Foco</title>
+    <link rel="stylesheet" href="../assets/css/style_modo_foco.css" />
+    <link rel="stylesheet" href="../assets/css/responsivo_modo_foco.css">
+    <script type="text/javascript" src="../assets/js/darkmode.js" defer></script>
+
+    <script
+      src="https://kit.fontawesome.com/28be5bc03d.js"
+      crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <header>
+      <div class="imagem_navbar">
+        <a href="Pos_Login.html"
+          ><img src="../assets/images/logoSemPetala.png" width="70%" alt="logo"
+        /></a>
+      </div>
+
+      <div class="header_pos">
+        
+        <nav class="navbar_pos">
+          <a href="Pos_Login.html">Página inicial</a>
+          <a href="calendario.html">Calendario</a>
+          <a href="Check_list.html">Checklist</a>
+          <a href="modo_foco.html">Modo foco</a>
+        </nav>
+      </div>
+    
+<!-- _________________________________________________________________________________ -->
+      
+      <div class="mode-switch">
+        <button id="theme-switch"><i class="fa-solid fa-sun fa-xl"></i></button>
+      </div>
+
+<!-- _____________________________________________________________________________ -->
+      <div class="side-bar">
+        <input type="checkbox" id="sidebar-active">
+        <label for="sidebar-active" class="open-sidebar-button">
+          <i class="fa-solid fa-bars fa-xl"></button></i>
+        </label>
+        <div class="link-container">
+          <label for="sidebar-active" class="close-sidebar-button">
+            <i class="fa-solid fa-xmark fa-xl"></i>
+          </label>
+          <a href="Pos_Login.html" id="sidebar-link-1">Início</a>
+          <a href="calendario.html">Calendario</a>
+          <a href="Check_list.html">Checklist</a>
+          <a href="modo_foco.html">Modo foco</a>
+          <!-- <a href="desempenho.html">Desempenho</a> -->
+          <a href="configuracao.html" id="sidebar-link-second-last">Configurações</a>
+          <!-- Precisa sair da conta ainda -->
+          <a href="index.html">Sair</a>
+        </div>
+      </div>
+
+    </header> 
+
+    <main>
+      <div class="main-container">
+        <div class="clock-container">
+          <div class="clock" onclick="handleTimerClick(event)">
+            <div class="timer">
+              <span id="timerDisplay">00:00</span>
+            </div>
+          </div>
+          <div class="control-buttons">
+            <button id="stopBtn" onclick="stopTimer()" disabled>Parar</button>
+            <button id="pauseBtn" disabled>Pausar</button>
+          </div>
+        </div>
+
+        <div id="modalOverlay" class="modal-overlay" style="display: none;">
+          <div class="modal">
+          <div id="modalTitle">Fim de tempo!</div>
+          <div id="modalMessage">Quer trocar de modo?</div>
+          <div class="modalButtons">
+              <button id="modalCancelBtn">Parar</button>
+              <button id="modalConfirmBtn">Continuar</button>
+                  </div>
+              </div>
+          </div>
+
+        <div class="historico">
+          <div class="historico-header">HISTÓRICO</div>
+          <div class="hist"></div>
+        </div>
+
+        <div class="modes">
+          <label class="time-input-box">
+            Estudo (min):
+            <input
+              type="number"
+              id="studyTime"
+              value="25"
+              min="1"
+              max="60"
+              class="time-input" />
+          </label>
+          <label class="time-input-box">
+            Descanso (min):
+            <input
+              type="number"
+              id="breakTime"
+              value="5"
+              min="1"
+              max="60"
+              class="time-input" />
+          </label>
+        </div>
+      </div>
+    </main>
+
+    <footer></footer>
+    <div id="dark-overlay"></div>
+
+    <script src="../assets/js/modo-foco.js"></script>
+  </body>
+</html>

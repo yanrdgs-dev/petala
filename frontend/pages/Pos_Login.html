@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Petala</title>
     <link rel="stylesheet" href="../assets/css/style_Pos_login.css" />
+    <script type="text/javascript" src="../assets/js/darkmode.js" defer></script>
     <script
       src="https://kit.fontawesome.com/28be5bc03d.js"
       crossorigin="anonymous"
@@ -15,7 +16,7 @@
     
     <header>
       <div class="imagem_navbar">
-        <a href="index.html"
+        <a href="Pos_Login.html"
           ><img src="../assets/images/logoSemPetala.png" width="70%" alt="logo"
         /></a>
       </div>
@@ -23,15 +24,20 @@
       <div class="header_pos">
         
         <nav class="navbar_pos">
-          <a href="#start">Página inicial</a>
-          <a href="#">Rotina</a>
-          <a href="#">Biblioteca</a>
-          <a href="#">Agenda</a>
+          <a href="Pos_Login.html">Página inicial</a>
+          <a href="calendario.html">Calendario</a>
+          <a href="Check_list.html">Checklist</a>
+          <a href="modo_foco.html">Modo foco</a>
         </nav>
       </div>
     
 <!-- _________________________________________________________________________________ -->
       
+      <div class="mode-switch">
+        <button id="theme-switch"><i class="fa-solid fa-sun fa-xl"></i></button>
+      </div>
+
+<!-- _____________________________________________________________________________ -->
       <div class="side-bar">
         <input type="checkbox" id="sidebar-active">
         <label for="sidebar-active" class="open-sidebar-button">
@@ -41,14 +47,14 @@
           <label for="sidebar-active" class="close-sidebar-button">
             <i class="fa-solid fa-xmark fa-xl"></i>
           </label>
-          <a href="#" id="sidebar-link-1">Início</a>
-          <a href="#">Início</a>
-          <a href="#">Rotina</a>
-          <a href="#">Agenda</a>
-          <a href="#">Desempenho</a>
-          <a href="#">...</a>
-          <a href="#" id="sidebar-link-second-last">Configurações</a>
-          <a href="#">Sair</a>
+          <a href="Pos_Login.html" id="sidebar-link-1">Início</a>
+          <a href="calendario.html">Calendario</a>
+          <a href="Check_list.html">Checklist</a>
+          <a href="modo_foco.html">Modo foco</a>
+          <!-- <a href="desempenho.html">Desempenho</a> -->
+          <a href="configuracao.html" id="sidebar-link-second-last">Configurações</a>
+          <!-- Precisa sair da conta ainda -->
+          <a href="index.html">Sair</a>
         </div>
       </div>
 
@@ -58,6 +64,8 @@
 <!-- _________________________________________________________________________________ -->
 
     <main>
+      <!-- <div class="overlay"></div> -->
+
       <div class="mensagem_inicial" id="welcomeMessage" aria-label="Mensagem de boas-vindas"></div>
       
       <div class="visao">
@@ -90,7 +98,7 @@
 
       <div class="continue_onde_parou">
         <div class="container_rotina"></div>
-        <div class="container_desempenho"></div>
+        <!-- <div class="container_desempenho"></div> -->
         <div class="container_biblioteca"></div>
         <div class="container_foco"></div>
             </div>
@@ -117,6 +125,7 @@
     </main>
 
     <footer></footer>
+    <div id="dark-overlay"></div>
     <script src="../assets/js/posLogin.js"></script>
   </body>
   <script src="../assets/js/dashboard.js"></script>
