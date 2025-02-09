@@ -1,8 +1,9 @@
-// passwordReset.js
 const db = require("../config/db");
 const crypto = require("crypto");
 const bcrypt = require("bcryptjs");
-const { sendPasswordResetEmail } = require("../controllers/mail"); // ajuste o caminho conforme sua estrutura
+const { sendPasswordResetEmail } = require("../controllers/mail");
+
+const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:3000";
 
 exports.requestPasswordReset = async (req, res) => {
   const { email } = req.body;
@@ -10,7 +11,6 @@ exports.requestPasswordReset = async (req, res) => {
   db.query("SELECT * FROM users WHERE email = ?", [email], (err, result) => {
     if (err)
       return res.status(500).json({ message: "Erro ao verificar e-mail." });
-
     if (result.length === 0)
       return res.status(404).json({ message: "E-mail não cadastrado." });
 
@@ -24,14 +24,14 @@ exports.requestPasswordReset = async (req, res) => {
         if (err)
           return res.status(500).json({ message: "Erro ao salvar token." });
 
-        // Construa o link para reset de senha; ajuste o domínio conforme seu frontend
-        const resetLink = `http://localhost:3000/reset?token=${token}`;
-        // Envia o e-mail de redefinição de senha
-        sendPasswordResetEmail(email, result[0].name, resetLink)
+        const FRONTEND_URL =
+          process.env.FRONTEND_URL || "http://localhost:3000";
+          const resetLink = `${FRONTEND_URL}/nova-senha?token=${token}`;
+          sendPasswordResetEmail(email, result[0].name, resetLink)
           .then(() => {
-            return res
-              .status(200)
-              .json({ message: "E-mail para redefinição enviado com sucesso!" });
+            return res.status(200).json({
+              message: "E-mail para redefinição enviado com sucesso!",
+            });
           })
           .catch((error) => {
             return res.status(500).json({
@@ -46,60 +46,63 @@ exports.requestPasswordReset = async (req, res) => {
 
 exports.resetPassword = async (req, res) => {
   const { token, newPassword } = req.body;
-  db.query("SELECT * FROM users WHERE reset_token = ?", [token], (err, result) => {
-    if (err) {
-      console.log("Erro ao verificar token: ", err);
-      return res.status(500).json({ message: "Erro ao verificar token." });
-    }
-    if (result.length === 0) {
-      return res.status(404).json({ message: "Token inválido ou expirado." });
-    }
-
-    const user = result[0];
-    // Verifica se o token ainda é válido
-    if (new Date(user.reset_token_expiry) < new Date()) {
-      return res
-        .status(400)
-        .json({ message: "Token expirado. Por favor, solicite um novo token." });
-    }
-
-    bcrypt.hash(newPassword, 10, (err, hashedPassword) => {
+  db.query(
+    "SELECT * FROM users WHERE reset_token = ?",
+    [token],
+    (err, result) => {
       if (err) {
-        console.log("Erro ao criptografar senha: ", err);
-        return res
-          .status(500)
-          .json({ message: "Erro ao criptografar nova senha." });
+        console.error("Erro ao verificar token: ", err);
+        return res.status(500).json({ message: "Erro ao verificar token." });
+      }
+      if (result.length === 0) {
+        return res.status(404).json({ message: "Token inválido ou expirado." });
       }
 
-      db.query(
-        "UPDATE users SET password_hash = ? WHERE id = ?",
-        [hashedPassword, user.id],
-        (err) => {
-          if (err) {
-            console.log("Erro ao atualizar senha: ", err);
-            return res
-              .status(500)
-              .json({ message: "Erro ao atualizar senha." });
-          }
+      const user = result[0];
+      if (new Date(user.reset_token_expiry) < new Date()) {
+        return res.status(400).json({
+          message: "Token expirado. Por favor, solicite um novo token.",
+        });
+      }
 
-          db.query(
-            "UPDATE users SET reset_token = NULL, reset_token_expiry = NULL WHERE id = ?",
-            [user.id],
-            (err) => {
-              if (err) {
-                console.log("Erro ao limpar token: ", err);
-                return res
-                  .status(500)
-                  .json({ message: "Erro ao limpar token." });
-              }
-
-              return res
-                .status(200)
-                .json({ message: "Senha redefinida com sucesso!" });
-            }
-          );
+      bcrypt.hash(newPassword, 10, (err, hashedPassword) => {
+        if (err) {
+          console.error("Erro ao criptografar senha: ", err);
+          return res
+            .status(500)
+            .json({ message: "Erro ao criptografar nova senha." });
         }
-      );
-    });
-  });
+
+        db.query(
+          "UPDATE users SET password_hash = ? WHERE id = ?",
+          [hashedPassword, user.id],
+          (err) => {
+            if (err) {
+              console.error("Erro ao atualizar senha: ", err);
+              return res
+                .status(500)
+                .json({ message: "Erro ao atualizar senha." });
+            }
+
+            db.query(
+              "UPDATE users SET reset_token = NULL, reset_token_expiry = NULL WHERE id = ?",
+              [user.id],
+              (err) => {
+                if (err) {
+                  console.error("Erro ao limpar token: ", err);
+                  return res
+                    .status(500)
+                    .json({ message: "Erro ao limpar token." });
+                }
+
+                return res
+                  .status(200)
+                  .json({ message: "Senha redefinida com sucesso!" });
+              }
+            );
+          }
+        );
+      });
+    }
+  );
 };

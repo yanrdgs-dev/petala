@@ -14,7 +14,6 @@ const verifyEmail = (req, res) => {
 
     const userId = decoded.id;
     const html = `<h1>Seu Email Foi verificado com sucesso!</h1>`;
-    // Atualiza o status de verificação do usuário no banco de dados
     db.query(
       "UPDATE users SET is_verified = 1 WHERE id = ?",
       [userId],

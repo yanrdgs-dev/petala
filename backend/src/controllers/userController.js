@@ -13,7 +13,6 @@ exports.register = (req, res) => {
 
   const { username, name, email, password } = req.body;
 
-  // Verifica se o e-mail ou username já existe
   db.query(
     "SELECT * FROM users WHERE email = ? OR username = ?",
     [email, username],
@@ -40,7 +39,6 @@ exports.register = (req, res) => {
             .json({ message: "Erro ao criptografar senha." });
         }
 
-        // Inserir usuário no banco de dados
         db.query(
           "INSERT INTO users (username, name, email, password_hash) VALUES (?, ?, ?, ?)",
           [username, name, email, hashedPassword],
@@ -60,7 +58,6 @@ exports.register = (req, res) => {
               }
             );
 
-            // Retornar resposta com sucesso
             res.status(201).json({
               message: "Usuário cadastrado com sucesso.",
               username: username,
@@ -74,7 +71,6 @@ exports.register = (req, res) => {
               { expiresIn: '1h' } 
             );
             
-            // Enviar o e-mail com o link de verificação
             const verificationLink = `http://localhost:3000/verify-email?token=${verificationToken}`;
             sendWelcomeEmail(email, name, verificationLink);
             
