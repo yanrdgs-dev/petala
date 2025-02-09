@@ -24,10 +24,8 @@ exports.requestPasswordReset = async (req, res) => {
         if (err)
           return res.status(500).json({ message: "Erro ao salvar token." });
 
-        const FRONTEND_URL =
-          process.env.FRONTEND_URL || "http://localhost:3000";
-          const resetLink = `${FRONTEND_URL}/nova-senha?token=${token}`;
-          sendPasswordResetEmail(email, result[0].name, resetLink)
+        const resetLink = `${FRONTEND_URL}/reset-page?token=${token}`;
+        sendPasswordResetEmail(email, result[0].name, resetLink)
           .then(() => {
             return res.status(200).json({
               message: "E-mail para redefinição enviado com sucesso!",
