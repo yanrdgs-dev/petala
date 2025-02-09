@@ -317,22 +317,11 @@ main {
 @media (max-width: 768px) {
   .imagem_navbar {
     position: static;
-    width: 25%;
   }
 
 header {
   padding: 0;
 }
-
-  .header_pos {
-    display: none;
-  }
-
-  body {
-    margin: 0;
-    background-attachment: fixed;
-    overflow-x: hidden;
-  }
 
   .side-bar {
     display: block;
@@ -359,7 +348,6 @@ header {
   main {
     flex-direction: column;
     align-items: center;
-    margin: 0;
   }
 
   .visao{
@@ -440,4 +428,44 @@ header {
     font-size: 15px;
     align-items: center;
   }
+}
+
+@media screen and (max-width: 1250px){
+  .navbar_pos a {
+      font-size: 1em;
+    }
+}
+
+@media screen and (max-width: 1000px){
+  .navbar_pos a {
+      font-size: 0.8em;
+    }
+  
+  .link-container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      width: 100%;
+      align-items: flex-start;
+    
+      position: fixed;
+      top: 0px;
+      right: -50%;
+      z-index: 1000;
+      width: 25%;
+    
+      transition-duration: 0.55s;
+      transition-delay: 0s;
+      transition-timing-function: ease-out;
+      background-color: white;
+      box-shadow: -5px 0 5px rgba(0, 0, 0, 0.25);
+    }
+}
+
+@media screen and (max-width: 900px){
+  .header_pos {
+    display: none;
+  }
+
+  
 }
