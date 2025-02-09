@@ -304,10 +304,10 @@ li {
   margin-right: auto;
 }
 
-#evento-form button:hover{
-  /* opacity: 80%; */
-  /* border-radius: 5px; */
-}
+/* #evento-form button:hover{
+  opacity: 80%; */
+  /* border-radius: 5px;
+} */
 #evento-form button{
   font-size: 12px;
 }
@@ -333,18 +333,18 @@ li {
   color: var(--color1);
 }
 
-#salvar-evento:hover {
-  /* opacity: 0.6; */
-}
+/* #salvar-evento:hover {
+  opacity: 0.6;
+} */
 
 #cancelar-evento {
   background-color: var(--color11);
   color: white;
 }
-
+/* 
 #cancelar-evento:hover {
-  /* opacity: 0.6; */
-}
+  opacity: 0.6;
+} */
 
 #lista-eventos {
   margin: 15px 0;
@@ -369,18 +369,18 @@ li {
 #lista-eventos {
   width: 60%;
 }
-#lista-eventos li:hover {
-  /* opacity: 0.6; */
-}
-.ViewEventTitle {
-  /* background-color: red; */
+/* #lista-eventos li:hover {
+  opacity: 0.6;
+} */
+/* .ViewEventTitle {
+  background-color: red;
 }
 .ViewEventDescription {
-  /* background-color: blue; */
+  background-color: blue;
 }
 .ViewEventTime {
-  /* background-color:green; */
-}
+  background-color:green;
+} */
 .ViewModalDetails{
   height: 100%;
   width: 100%;
