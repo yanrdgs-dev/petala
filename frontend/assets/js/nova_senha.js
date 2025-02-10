@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!token) {
     alert("Token inválido ou ausente.");
-    window.location.href = "/login.html";
+    // window.location.href = "/login.html";
     return;
   }
 

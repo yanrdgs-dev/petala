@@ -49,7 +49,6 @@ exports.register = (req, res) => {
                 .json({ message: "Erro ao cadastrar usuário." });
             }
 
-            // Gerar token JWT
             const token = jwt.sign(
               { id: insertResult.insertId, email, username },
               process.env.JWT_SECRET,
@@ -64,51 +63,27 @@ exports.register = (req, res) => {
               token: token,
             });
 
-       
+            const dashboardQuery = `INSERT INTO dashboard (user_id, tarefas_em_progresso, tarefas_completas_semana, tempo_foco_semana, provas_futuras) 
+            VALUES (?, 0, 0, 0, 0)`;
+
+            db.query(dashboardQuery, [insertResult.insertId], (err) => {
+              if (err) {
+                console.error("Erro ao criar dashboard")
+              }
+              return dashboardQuery;
+            });
+
             const verificationToken = jwt.sign(
               { id: insertResult.insertId, email },
               process.env.JWT_SECRET,
-              { expiresIn: '1h' } 
+              { expiresIn: "1h" }
             );
-            
+
             const verificationLink = `http://localhost:3000/verify-email?token=${verificationToken}`;
             sendWelcomeEmail(email, name, verificationLink);
-            
           }
         );
       });
     }
   );
 };
-
-// db.query(
-//   "SELECT * FROM users WHERE email_verification_token = ? AND email_expires > NOW()",
-//   [token],
-//   err
-// ),
-//   (err) => {
-//     if (err) {
-//       res.status(400).json({ message: "Erro no servidor" });
-//     }
-
-//     if (token.length === 0) {
-//       res.status(400).json({ message: "Token inexistente ou expirado" });
-//     }
-//   };
-// db.query(
-//   "UPDATE users SET email_verify = true, email_verification_token = NULL, email_expires = NULL WHERE email_verification_token = ?",
-//   [token],
-//   err
-// ),
-//   (err) => {
-//     if (err) {
-//       res
-//         .status(500)
-//         .json({ message: "Não foi possível verificar seu email" });
-//     }
-//     if (!err) {
-//       res.status(200).json({ message: "Email veificado com sucesso!" });
-//     }
-//     sendWelcomeEmail({ name, email }).catch(console.error);
-//     sendWelcomeEmail({ name, email }).catch(console.error)
-// };
