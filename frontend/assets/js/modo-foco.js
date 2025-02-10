@@ -208,7 +208,7 @@ function updateHistory() {
           ${formattedBreak} de descanso
         `;
         const deleteBtn = document.createElement("button");
-        deleteBtn.textContent = "<i class='fa-solid fa-trash'></i>";
+        deleteBtn.innerHTML = "<i class='fa-solid fa-trash'></i>";
         deleteBtn.classList.add("delete-session-btn");
         deleteBtn.addEventListener("click", () => {
           if (confirm("Tem certeza que deseja excluir essa sessão?")) {
