@@ -3,8 +3,7 @@ const bodyParser = require("body-parser");
 const agendaRoutes = require("./routes/agendaRoutes");
 const userRoutes = require("./routes/userRoutes");
 const loginRoutes = require("./routes/loginRoutes");
-
-// const dashboardRoutes = require("./routes/dashboardRoutes");
+const dashboardRoutes = require("./routes/dashboardRoutes");
 const checklistRoutes = require("./routes/checklistRoutes");
 const db = require("./config/db");
 const cors = require("cors");

@@ -30,7 +30,6 @@ html {
 }
 body {
   width: 100%;
-  min-height: 100vh;
   background-image: url(../images/árvore\ pos\ login.png);
   background-size: cover;
   background-position: center;
@@ -49,12 +48,7 @@ header {
   padding-left: 50px;
   padding-right: 50px;
 }
-button {
-  margin: 0;
-  padding: 0;
-  border: none;
-  text-decoration: none;
-}
+
 .imagem_navbar {
   position: fixed;
   left: 50px;
@@ -171,11 +165,11 @@ button {
 /*__________________________________________*/
 main {
   display: flex;
-  position: relative;
-  height: 900px;
-  margin-top: 120px;
-  /* border: purple 5px solid; */
-  z-index: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 130px;
+  gap: 50px;
 }
 
 .mensagem_inicial {
@@ -186,25 +180,11 @@ main {
   transform: translateX(-50%);
   font-size: 30px;
   font-weight: 700;
-  /* background-color: green; */
   z-index: 6;
 }
 
 /* ______________________________________________________ */
 
-.visao_geral {
-  display: inline-flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  margin-top: 112px;
-  margin-left: 126px;
-  width: 65%;
-  /* border: red dashed 2px; */
-  height: 100px;
-  flex-wrap: wrap;
-  color: var(--color5);
-}
 .tarefas_progresso {
   position: relative;
   display: flex;
@@ -304,14 +284,6 @@ main {
   box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.15);
 }
 
-.continue {
-  display: flex;
-  position: absolute;
-  margin-top: 386px;
-  margin-left: 126px;
-  font-size: 20px;
-  /* border:deeppink 2px solid; */
-}
 
 /* ___________________________________________________________________-- */
 
@@ -338,18 +310,6 @@ main {
   background-color: var(--color1);
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
-}
-.button {
-  position: absolute;
-  display: flex;
-  width: 170px;
-  height: 42px;
-  background-color: var(--color2);
-  border-radius: 25px;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
-  color: #ffffff;
-  justify-content: center;
   align-items: center;
 }
 .atividade {
@@ -382,7 +342,6 @@ main {
   display: flex;
   bottom: 10px;
   position: absolute;
-  background-color: purple;
   height: 42px;
   width: 185px;
 }
@@ -407,23 +366,11 @@ main {
 @media (max-width: 768px) {
   .imagem_navbar {
     position: static;
-    width: 25%;
   }
 
 header {
   padding: 0;
 }
-
-  .header_pos {
-    display: none;
-  }
-
-  body {
-    margin: 0;
-    height: 100vh;
-    background-attachment: fixed;
-    overflow-x: hidden;
-  }
 
   .side-bar {
     display: block;
@@ -450,7 +397,6 @@ header {
   main {
     flex-direction: column;
     align-items: center;
-    margin: 0;
   }
 
   .visao{
@@ -524,12 +470,6 @@ header {
     flex-direction: column;
   }
 
-  .continue{
-    font-size: 15px;
-    margin: 0;
-    margin-top: 456px;
-  }
-
   .mensagem_inicial{
     width: 300px;
     margin: 0;
@@ -541,4 +481,44 @@ header {
 i {
   cursor: pointer;
   background-color: transparent;
+}
+
+@media screen and (max-width: 1250px){
+  .navbar_pos a {
+      font-size: 1em;
+    }
+}
+
+@media screen and (max-width: 1000px){
+  .navbar_pos a {
+      font-size: 0.8em;
+    }
+  
+  .link-container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      width: 100%;
+      align-items: flex-start;
+    
+      position: fixed;
+      top: 0px;
+      right: -50%;
+      z-index: 1000;
+      width: 25%;
+    
+      transition-duration: 0.55s;
+      transition-delay: 0s;
+      transition-timing-function: ease-out;
+      background-color: white;
+      box-shadow: -5px 0 5px rgba(0, 0, 0, 0.25);
+    }
+}
+
+@media screen and (max-width: 900px){
+  .header_pos {
+    display: none;
+  }
+
+  
 }

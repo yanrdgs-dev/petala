@@ -210,8 +210,8 @@ button {
 }
 .clock {
   display: flex;
-  height: 400px;
-  width: 400px;
+  height: 300px;
+  width: 300px;
   border-radius: 50%;
   background-color: #1f1717;
   border: 12px inset black;
@@ -270,7 +270,7 @@ button {
 
 .historico {
   position: absolute;
-  height: 80vh;
+  height: 70vh;
   width: 20vw;
   background-color: #1f1717;
   right: 12px;

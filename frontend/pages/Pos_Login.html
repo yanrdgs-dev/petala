@@ -4,16 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Petala</title>
+    <link rel="stylesheet" href="../assets/css/PosLogin2.css" />
     <link rel="stylesheet" href="../assets/css/style_Pos_login.css" />
     <script type="text/javascript" src="../assets/js/darkmode.js" defer></script>
     <script
       src="https://kit.fontawesome.com/28be5bc03d.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.3.0/dist/iconify-icon.min.js"></script>
   </head>
 
   <body>
-    
     <header>
       <div class="imagem_navbar">
         <a href="Pos_Login.html"
@@ -22,7 +23,6 @@
       </div>
 
       <div class="header_pos">
-        
         <nav class="navbar_pos">
           <a href="Pos_Login.html">Página inicial</a>
           <a href="calendario.html">Calendario</a>
@@ -30,18 +30,13 @@
           <a href="modo_foco.html">Modo foco</a>
         </nav>
       </div>
-    
-<!-- _________________________________________________________________________________ -->
-      
-      <div class="mode-switch">
-        <button id="theme-switch"><i class="fa-solid fa-moon fa-xl"></i></button>
-      </div>
 
-<!-- _____________________________________________________________________________ -->
+      <!-- _________________________________________________________________________________ -->
+
       <div class="side-bar">
-        <input type="checkbox" id="sidebar-active">
+        <input type="checkbox" id="sidebar-active" />
         <label for="sidebar-active" class="open-sidebar-button">
-          <i class="fa-solid fa-bars fa-xl"></button></i>
+          <i class="fa-solid fa-bars fa-xl"></i>
         </label>
         <div class="link-container">
           <label for="sidebar-active" class="close-sidebar-button">
@@ -57,76 +52,80 @@
           <a href="index.html">Sair</a>
         </div>
       </div>
+    </header>
 
-    </header> 
-    
-    
-<!-- _________________________________________________________________________________ -->
+    <!-- _________________________________________________________________________________ -->
 
     <main>
-      <!-- <div class="overlay"></div> -->
-
-      <div class="mensagem_inicial" id="welcomeMessage" aria-label="Mensagem de boas-vindas"></div>
-      
-      <div class="visao">
-        <p>Visão geral</p>
-      </div>
-
-      <div class="visao_geral">
-      
-        <div class="tarefas_progresso">
-          <div class="tarefas-progresso-texto"><p>Tarefas em progresso:</p></div>
-          <p class="tarefas-progresso-variavel" id="tarefas-proresso">0</p>
-        </div>
-        <div class="tarefas_concluidas">
-          <div class="tarefas-concluidas-texto"><p>Tarefas concluídas essa semana:</p></div>
-          <p class="tarefas-progresso-variavel" id="tarefas-concluidas">0</p>
-        </div>
-        <div class="tempo_de_foco">
-          <div class="foco-texto"><p>Tempo de foco essa semana:</p></div>
-          <p class="tarefas-progresso-variavel" id="tempo-foco">0</p>
-        </div>
-        <div class="provas_futuras">
-          <div class="provas-texto"><p>Provas provas futuras:</p></div>
-          <p class="tarefas-progresso-variavel" id="provas-futuras"></p>
-        </div>
-      </div>
-
-      <div class="continue">
-          <p>Continue de onde parou</p>
-      </div>
-
-      <div class="continue_onde_parou">
-        <div class="container_rotina"></div>
-        <!-- <div class="container_desempenho"></div> -->
-        <div class="container_biblioteca"></div>
-        <div class="container_foco"></div>
+      <h1
+        class="initialText"
+        id="welcomeMessage"
+        aria-label="Mesagem de boas vindas"
+      >
+        Bem vindo, fulano de tal! Vamos estudar?
+      </h1>
+      <div class="functions">
+        <div class="subFunctions">
+          <div class="visaoGeral">
+            <div class="sideTextBox">
+              <h2 class="sideText">Visão geral:</h2>
             </div>
-            <!--
-      <div class="container_direita">
-        <div class="calendario">calendario + Botão
-          <div class="calendario_interativo"></div>
-          <div class="button" id="button_ver_mais">Ver mais</div>
+            <div class="subVisaoGeral">
+              <div class="containerSmall">
+                <h3>Tarefas em progresso:</h3>
+                <h3 class="num" id="tarefas-pendentes">0</h3>
+              </div>
+              <div class="containerSmall">
+                <h3>Tarefas concluidas essa semana:</h3>
+                <h3 class="num" id="tarefas-concluidas">0</h3>
+              </div>
+              <div class="containerSmall">
+                <h3>Tempo de foco essa semana:</h3>
+                <h3 class="num" id="tempo-foco">0</h3>
+              </div>
+            </div>
+          </div>
+          <div class="continue">
+            <div class="sideTextBox">
+              <h2 class="sideTexto">Continue de onde parou:</h2>
+            </div>
+            <div class="subContinue">
+              <div class="containerBig">
+                <iconify-icon
+                  icon="line-md:calendar"
+                  class="icon"
+                ></iconify-icon>
+                <a href="calendario.html"><button>Calendario</button></a>
+              </div>
+              <div class="containerBig">
+                <iconify-icon
+                  icon="octicon:checklist-16"
+                  class="icon"
+                ></iconify-icon>
+                <a href="CheckList.html"><button>Rotina</button></a>
+              </div>
+              <div class="containerBig">
+                <iconify-icon
+                  icon="icon-park-outline:gate"
+                  class="icon"
+                ></iconify-icon>
+                <a href="modo_foco.html"><button>Modo Foco</button></a>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="atividade">Atividade de amigos
-          <p>Pedro</p>
-          <p>Informação</p>
-          <p>Bruno</p>
-          <p>Informação</p>
-          <p>...</p>
-          <p></p>
-          <p></p>
-          <p></p>
-          <p></p>
-          <div class="button" id="button_Ver_amigos">Ver amigos</div>
+        <div  id="containerActivities" class="container">
+          <h2>Atividade</h2>
+          <div class="historico" id="hist"></div>
         </div>
       </div>
--->
+
+    
     </main>
 
     <footer></footer>
     <div id="dark-overlay"></div>
     <script src="../assets/js/posLogin.js"></script>
+    <footer></footer>
   </body>
-  <script src="../assets/js/dashboard.js"></script>
 </html>
