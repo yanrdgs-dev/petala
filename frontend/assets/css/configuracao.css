@@ -2,6 +2,22 @@
   src: url(../fonts/Montserrat-VariableFont_wght.ttf);
   font-family: Montserrat;
 }
+:root{
+  --color1: white;
+  --color2: #1f1717;
+  --color3: #fafafa;
+  --color4: hsl(343, 87%, 75%);
+  --color5: black;
+}
+
+
+.darkmode{
+  --color1: black;
+  --color2: white;
+  --color3: #1f1717;
+  --color4: hsl(343, 54%, 46%);
+  --color5: white;
+}
 html {
   scroll-behavior: smooth;
 }
@@ -25,7 +41,8 @@ header {
   top: 0px;
   width: 100%;
   height: 120px;
-  z-index: 100;
+  /* background-color: white; */
+  z-index: 1;
   justify-content: center;
   align-items: center;
   padding-left: 50px;
@@ -36,11 +53,7 @@ button {
   padding: 0;
   border: none;
   text-decoration: none;
-  cursor: pointer;
 }
-/* button:hover {
-    opacity: 0.8;
-  } */
 .imagem_navbar {
   position: fixed;
   left: 50px;
@@ -53,9 +66,9 @@ button {
   height: 80px;
   padding: 20px 62px;
   border-radius: 40px;
-  background: white;
+  background: var(--color1);
   display: flex;
-  z-index: 100;
+  z-index: 1;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 .navbar_pos {
@@ -68,10 +81,17 @@ button {
   text-align: center;
   margin: auto;
   text-decoration: none;
-  color: #1f1717;
+  color: var(--color2);
   font-weight: 540;
   font-size: 1.3em;
 }
+/* ________________________________________________ */
+
+.mode-switch {
+  position: absolute;
+  right: 120px;
+}
+
 
 .side-bar {
   display: flex;
@@ -79,21 +99,27 @@ button {
   margin-left: auto;
   align-items: center;
 }
+
 .link-container {
   display: flex;
   flex-direction: column;
   height: 100vh;
   width: 100%;
   align-items: flex-start;
+
   position: fixed;
   top: 0px;
   right: -20%;
-  z-index: 1000;
+  z-index: 7;
   width: 15%;
+
   transition-duration: 0.55s;
-  background-color: white;
+  transition-delay: 0s;
+  transition-timing-function: ease-out;
+  background-color: var(--color1);
   box-shadow: -5px 0 5px rgba(0, 0, 0, 0.25);
 }
+
 .side-bar a {
   box-sizing: border-box;
   display: block;
@@ -102,22 +128,44 @@ button {
   padding: 20px 30px;
   justify-content: flex-start;
   text-decoration: none;
-  color: #1f1717;
+  color: var(--color2);
 }
+
+
 .side-bar a:hover {
-  background-color: hsl(343, 87%, 75%);
+  background-color: var(--color4);
+  transition-duration: 0.30s;
+  transition-delay: 0s;
+  transition-timing-function:ease-out;
 }
+
 #sidebar-active {
   display: none;
 }
+
 .open-sidebar-button,
 .close-sidebar-button {
   padding: 20px;
   display: block;
 }
+.fa-xmark {
+  color: var(--color5);
+}
+#theme-switch {
+  background-color: transparent;
+}
 #sidebar-active:checked ~ .link-container {
   right: 0px;
 }
+
+#sidebar-link-1 {
+  margin-top: 60px;
+}
+
+#sidebar-link-second-last {
+  margin-top: auto;
+}
+
 /*-----------------------------------------------------*/
 
 .grid-1 {
@@ -254,4 +302,18 @@ button {
 
 button:hover {
   opacity: 0.8;
+}
+.darkmode #dark-overlay {
+  opacity: 1;
+}
+i {
+  cursor: pointer;
+  background-color: transparent;
+}
+.delete-session-btn {
+  background-color: transparent;
+}
+.fa-trash {
+  margin-left: 20px;
+  color: rgb(196, 0, 0);
 }

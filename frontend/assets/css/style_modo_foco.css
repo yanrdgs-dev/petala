@@ -461,5 +461,6 @@ i {
   background-color: transparent;
 }
 .fa-trash {
+  margin-left: 20px;
   color: rgb(196, 0, 0);
 }
