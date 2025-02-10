@@ -13,13 +13,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const passwordInput = document.getElementById("password");
   const confirmPasswordInput = document.getElementById("confirmPassword");
   const successMessageDiv = document.getElementById("successMessage");
-
+  // const backPass = document.getElementById("voltarPass");
+  // backPass.addEventListener("click", ()=>{
+  //   window.location.href = "../../pages/login.html"
+  // })
   recoveryForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const password = passwordInput.value.trim();
     const confirmPassword = confirmPasswordInput.value.trim();
-
+    
     if (!password || !confirmPassword) {
       alert("Por favor, preencha os dois campos de senha.");
       return;
@@ -55,4 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Erro ao redefinir a senha. Tente novamente mais tarde.");
     }
   });
-});
+  
+} 
+);
