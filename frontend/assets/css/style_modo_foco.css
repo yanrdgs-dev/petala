@@ -457,3 +457,9 @@ i {
   cursor: pointer;
   background-color: transparent;
 }
+.delete-session-btn {
+  background-color: transparent;
+}
+.fa-trash {
+  color: rgb(196, 0, 0);
+}
