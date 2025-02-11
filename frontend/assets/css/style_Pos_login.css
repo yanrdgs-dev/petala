@@ -137,7 +137,9 @@ header {
 #sidebar-active {
   display: none;
 }
-
+button {
+  cursor: pointer;
+}
 .open-sidebar-button,
 .close-sidebar-button {
   padding: 20px;
@@ -295,7 +297,7 @@ main {
   height: 680px;
   width: 205px;
   flex-wrap: nowrap;
-  /* border: orange 1px solid; */
+  border: orange 1px solid;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
@@ -361,6 +363,15 @@ main {
 
 .darkmode #dark-overlay {
   opacity: 1;
+}
+
+#containerActivities {
+  justify-content: start;
+  gap: 15px;
+}
+
+.prev-hist {
+  margin-top: 20px;
 }
 
 @media (max-width: 768px) {

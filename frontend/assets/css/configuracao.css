@@ -192,7 +192,7 @@ button {
   height: 100%;
   font-size: 1.8em;
   display: flex;
-  grid-row: 3 / 4;
+  grid-row: 2 / 4;
   grid-column: 1 / 22;
   justify-content: center;
 }

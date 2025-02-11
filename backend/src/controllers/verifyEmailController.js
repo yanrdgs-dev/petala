@@ -13,7 +13,22 @@ const verifyEmail = (req, res) => {
     }
 
     const userId = decoded.id;
-    const html = `<h1>Seu Email Foi verificado com sucesso!</h1>`;
+    const html = `<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verificado</title>
+</head>
+<body style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #fde2e4;">
+    <a href="http://localhost:5500/frontend/pages/login.html" style="text-decoration: none; color: white;">
+      <div style="background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); text-align: center;">
+        <h2 style="color: black; font-family: Arial, sans-serif;">Seu email foi verificado!</h2>
+      </div>
+    </a>
+</body>
+</html>
+`;
     db.query(
       "UPDATE users SET is_verified = 1 WHERE id = ?",
       [userId],
